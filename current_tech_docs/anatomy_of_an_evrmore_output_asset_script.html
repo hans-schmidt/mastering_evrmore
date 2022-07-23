@@ -1,0 +1,1355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Anatomy_of_an_Evrmore_Asset_Transaction_Script</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Anatomy_of_an_Evrmore_Asset_Transaction_Script"
+      name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last update: July
+                    9th 2022 </td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main_Menu</a> </td>
+                  <td width="33%" valign="top" align="right"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>Anatomy of an Evrmore Asset
+                  Transaction Script <br>
+                </big></big><i><b><br>
+                  <small>*Note: This document is a "work in progress".
+                    If you see errors, please enter an "Issue" on
+                    github*</small></b></i><br>
+            </div>
+            <br>
+            <table width="90%" cellspacing="2" cellpadding="2"
+              border="1" align="center">
+              <tbody>
+                <tr>
+                  <td valign="top">This page describes the encoding of a
+                    Evrmore Asset Script. <br>
+                    <br>
+                    Asset scripts are used to create an asset, transfer
+                    an asset, modify data associated with an asset, or
+                    modify the behavior of an asset.<br>
+                    <br>
+                    An asset script is always placed into one of the
+                    output structures of a transaction, with the value
+                    of that output set at value=0. Usually, when the
+                    asset operation involves an address, the asset
+                    script is appended to a bitcoin-style scriptPubKey
+                    in the output. There are, however, some asset
+                    scripts (called nullasset scripts), for which the
+                    asset operation involves only asset metadata but no
+                    address, which are placed into an output which has
+                    no bitcoin-style scriptPubKey at all. <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <b><u>Asset Owner script</u></b><br>
+            <br>
+            The asset owner script gives the Owner Asset to an address.
+            The Owner Asset (represented by a NAME followed by the
+            symbol '!') proves ownership of that NAME, which provides
+            certain authority such as the authority to reissue assets
+            using that NAME, to create subassets and unique assets under
+            that NAME, and to&nbsp; create restricted assets using that
+            NAME. The Owner Asset is given as an output when a new
+            Main_Asset (Root Asset) is created. It is also used as an
+            input and given back as an output in any transactions which
+            needs the Owner Asset to authorize one of the
+            authority-requiring asset operations just described.<br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of script</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">0c<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Asset_type Header("evr" in ASCII) </td>
+                  <td width="20%" valign="bottom" align="center">3 bytes<br>
+                  </td>
+                  <td width="30%"> 657672 </td>
+                </tr>
+                <tr>
+                  <td>Asset operation type: owner(o)=6f </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">6f<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Asset_Name</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Asset_Name: (<small><small>root_asset! is the
+                        owner asset for root_asset)</small></small></td>
+                  <td width="20%" valign="bottom" align="center">&gt;=3
+                    and &lt;=30 bytes not including the owner asset ! </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>New Asset script</u></b><br>
+            <br>
+            The New Asset script serves to create a new asset, which can
+            be a Main_Asset (Root Asset), a Subasset, a
+            Restricted_Asset, a Qualifier asset, or a Subqualifier
+            asset. Metadata will also be associated with the created
+            asset as detailed below. If the New Asset being created is a
+            Main_Asset (Root Asset), then an Owner Asset is also
+            created.<br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td><small>Either:<br>
+                      a) The number (#) of bytes below not counting
+                      OP_DROP (if #&lt;=75)<br>
+                      or <br>
+                      b) 0x4c followed by the number (#) of bytes below
+                      not counting OP_DROP (if #&gt;75)</small></td>
+                  <td width="20%" valign="middle" align="center">1 or 2
+                    bytes<br>
+                  </td>
+                  <td width="30%">48<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Asset_type Header("evr" in ASCII) </td>
+                  <td width="20%" valign="bottom" align="center">3 bytes<br>
+                  </td>
+                  <td width="30%"> 657672 </td>
+                </tr>
+                <tr>
+                  <td>Asset operation type: new(q)=71</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 71 </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Asset_Name</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Asset_Name:<br>
+                    <small><small>root_asset, root_asset!,
+                        root/subasset, root#unique, $restricted_asset,
+                        #qualifier, #qualifier/#subqualifier <br>
+                      </small></small> </td>
+                  <td width="20%" valign="middle" align="center">&gt;=3
+                    and &lt;=30 bytes not including the owner asset ! </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8 Bytes of Little Endian hex: "Amount" of assets
+                    in satoshis </td>
+                  <td width="20%" valign="bottom" align="center">8 bytes<br>
+                  </td>
+                  <td width="30%"> 00743ba40b000000 </td>
+                </tr>
+                <tr>
+                  <td>Divisible-by range: (00..08) units<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 08 </td>
+                </tr>
+                <tr>
+                  <td>is reissueable (01 yes: 00 no) </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 01 </td>
+                </tr>
+                <tr>
+                  <td>Has userdata (01 yes: 00 no) </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 01 </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td valign="top">userdata Type <small>(usually
+
+
+
+                              0x12 or 0x54)</small><br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata Length (usually
+                            0x20)<br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td valign="middle">32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td width="20%" valign="middle" align="center">optional<br>
+                    variable (max 34 bytes)<br>
+                  </td>
+                  <td width="30%">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea) </td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <u><b>Note:<br>
+                <br>
+              </b></u>For Unique Asset:<br>
+            <ul>
+              <li>Unit is always set to Zero (0)</li>
+              <li>Reissuable is always set to false</li>
+            </ul>
+            <br>
+            For Qualifier or SubQualifier:<br>
+            <ul>
+              <li>Amount is a number between 1 and 10</li>
+              <li>Unit is always set to Zero (0)</li>
+              <li>Reissuable is always set to false</li>
+              <li>Note that the purpose of the ability to issue more
+                than quantity=1 of a Qualifier or SubQualifier is to
+                give the Qualifier owner the ability to delegate tagging
+                authority to other entities by transferring a Qualifier
+                or SubQualifier to an address they control. Using a
+                Qualifier or SubQualifier to tag an address does not
+                consume that Qualifier or SubQualifier (a tag operation
+                is not a transfer). </li>
+            </ul>
+            <br>
+            For Restricted Asset:<br>
+            <ul>
+              <li>Unit is always set to Zero (0)</li>
+              <li>Reissuable is true/false for whether additional asset
+                quantity can be created and if the verifier string can
+                be changed</li>
+            </ul>
+            <br>
+            Divisible:<br>
+            <ul>
+              <li>Specifies how many decimal places the "Amount" has to
+                the right of the decimal point. Zero means "Amount" is
+                always an integer number of assets. Amount of eight
+                means "Amount" varies in increments of 0.00000001
+                assets.</li>
+            </ul>
+            <br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>Asset Transfer script</u></b><br>
+            <br>
+            The Asset Transfer script simply moves an asset from one
+            address to another address. Any asset type can be
+            transferred, but the movement of a Restricted Asset may be
+            restricted based on the associated Verifier String, an
+            Address Freeze, or a Global Freeze. Asset transfer scripts
+            support the embedding of a message and a message expiry time
+            into the transaction output.<br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td><small>Either:<br>
+                      a) The number (#) of bytes below not counting
+                      OP_DROP (if #&lt;=75)<br>
+                      or <br>
+                      b) 0x4c followed by the number (#) of bytes below
+                      not counting OP_DROP (if #&gt;75)</small></td>
+                  <td width="20%" valign="middle" align="center">1 or 2
+                    bytes<br>
+                  </td>
+                  <td width="30%"> 38 </td>
+                </tr>
+                <tr>
+                  <td>Asset_type Header("evr" in ASCII) </td>
+                  <td width="20%" valign="bottom" align="center">3 bytes<br>
+                  </td>
+                  <td width="30%"> 657672 </td>
+                </tr>
+                <tr>
+                  <td>Asset operation type: transfer(t)=74</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 74 </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Asset_Name</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Asset_Name:<br>
+                    <small><small>root_asset, root_asset!,
+                        root/subasset, root#unique, $restricted_asset,
+                        #qualifier, #qualifier/#subqualifier </small></small>
+                  </td>
+                  <td width="20%" valign="middle" align="center">&gt;=3
+                    and &lt;=30 bytes not including the owner asset ! </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8 Bytes of Little Endian hex: Amount of assets in
+                    satoshis </td>
+                  <td width="20%" valign="bottom" align="center">8 bytes<br>
+                  </td>
+                  <td width="30%"> 00743ba40b000000 </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td valign="top">userdata Type <small>(usually
+
+
+
+                              0x12 or 0x54)</small><br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata Length (usually
+                            0x20)<br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td valign="middle">32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td width="20%" valign="middle" align="center">optional;<br>
+                    variable (max 34 bytes) </td>
+                  <td width="30%">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea)</td>
+                </tr>
+                <tr>
+                  <td>userdata Expiry Time (UTC Unix timestamp format)<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">optional;<br>
+                    8 bytes<br>
+                  </td>
+                  <td width="30%">00000000625a168a<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>Asset Reissue script</u></b><br>
+            <br>
+            The Asset Reissue script issues an additional quantity of an
+            asset or modifies the metadata associated with that asset.
+            Asset Reissue requires possession of the Owner Asset, which
+            is used as an input of the transaction containing a Reissue
+            (to prove authority), and is returned as an output of the
+            same transaction. Asset Reissue is also only possible if the
+            reissue authority is indicated in the metadata of the asset,
+            based on a choice made during the original Issue operation
+            of the asset or during a subsequent Reissue operation. Note
+            that during a Reissue operation, divisibility (how many
+            decimal places to the right of the decimal point) may only
+            be increased or kept the same, and any increase in
+            divisibility cannot be used until after the increase has
+            taken effect by being mined. Unique assets can never be
+            reissued. <br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td><small>Either:<br>
+                      a) The number (#) of bytes below not counting
+                      OP_DROP (if #&lt;=75)<br>
+                      or <br>
+                      b) 0x4c followed by the number (#) of bytes below
+                      not counting OP_DROP (if #&gt;75)</small></td>
+                  <td width="20%" valign="middle" align="center">1 or 2
+                    bytes<br>
+                  </td>
+                  <td width="30%"> 38 </td>
+                </tr>
+                <tr>
+                  <td>Asset_type Header("evr" in ASCII) </td>
+                  <td width="20%" valign="bottom" align="center">3 bytes<br>
+                  </td>
+                  <td width="30%"> 657672 </td>
+                </tr>
+                <tr>
+                  <td>Asset operation type: reissue(r)=72</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 71 </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Asset_Name</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Asset_Name:<br>
+                    <small><small>root_asset, root_asset!,
+                        root/subasset, root#unique, $restricted_asset,
+                        #qualifier, #qualifier/#subqualifier </small></small>
+                  </td>
+                  <td width="20%" valign="middle" align="center">&gt;=3
+                    and &lt;=30 bytes not including the owner asset ! </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8 Bytes of Little Endian hex: Amount of assets in
+                    satoshis </td>
+                  <td width="20%" valign="bottom" align="center">8 bytes<br>
+                  </td>
+                  <td width="30%"> 00743ba40b000000 </td>
+                </tr>
+                <tr>
+                  <td>Divisible-by range: (00..08) units<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 08 </td>
+                </tr>
+                <tr>
+                  <td>is reissueable (01 yes: 00 no) </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 01 </td>
+                </tr>
+                <tr>
+                  <td>Has userdata (01 yes: 00 no) </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 01 </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td valign="top">userdata Type <small>(usually
+
+
+
+                              0x12 or 0x54)</small><br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata Length (usually
+                            0x20)<br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td valign="middle">32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td width="20%" valign="middle" align="center">optional;<br>
+                    variable (max 34 bytes) </td>
+                  <td width="30%">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea) </td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            Note:<br>
+            <br>
+            For Restricted Asset:<br>
+            <ul>
+              <li>Unit is always set to Zero (0)</li>
+              <li>Reissuable is true/false for whether additional asset
+                quantity can be created and if the VerifierString can be
+                changed</li>
+            </ul>
+            <br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>Tag/Untag Address script<br>
+                (a type of nullasset script)<br>
+              </u></b> <br>
+            The Tag/Untag Address script is used to tag or untag an
+            address using a Qualifier or SubQualifier asset. This
+            operation determines whether a particular Restricted Asset
+            may be received by that address depending on whether or not
+            the address satisfies the requirements of the VerifierString
+            (a boolean of Qualifiers) associated with that Restricted
+            Asset. <br>
+            <br>
+            Note that although a SubQualifier can be used to tag an
+            address, only the root Qualifier has any effect and is
+            stored with the address since VerifierStrings can consist
+            only of Qualifiers. <br>
+            <br>
+            Note also that using a Qualifier or SubQualifier to tag an
+            address does not consume that Qualifier or SubQualifier (a
+            tag operation is not a transfer). The purpose of the ability
+            to issue more than quantity=1 of a Qualifier or SubQualifier
+            asset is to give the Qualifier owner the ability to delegate
+            tagging authority to other entities by transferring a
+            Qualifier or SubQualifier to an address they control.
+            Typically this is done using a SubQualifier. Although an
+            address tagged by such an entity using a SubQualifier is
+            affected only by the root Qualifier, the blockchain
+            maintains the transaction history of the SubQualifier used
+            to tag that address. This provides a record of the use of
+            the delegated authority.<br>
+            <br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td>NullAssetTxDataScript identifier<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">14<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hash-160 Address<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">20
+                    bytes<br>
+                  </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Script</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">0b<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Qualifier Name<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Qualifier Name <small><small>(#qualifier or
+                        #qualifier/#subqualifier)</small></small></td>
+                  <td width="20%" valign="bottom" align="center">&gt;=3
+                    and &lt;=30 bytes not including the owner asset ! </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Operation (1=Add, 0=Remove)<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 bytes<br>
+                  </td>
+                  <td width="30%"> 01</td>
+                </tr>
+                <tr>
+                  <td valign="middle" align="center">
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td valign="top">userdata Type <small>(usually
+
+
+
+                              0x12 or 0x54)</small><br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata Length (usually
+                            0x20)<br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td valign="middle">32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td valign="middle" align="center">optional;<br>
+                    variable (max 34 bytes)</td>
+                  <td valign="top">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea)</td>
+                </tr>
+                <tr>
+                  <td valign="middle">userdata Expiry Time (UTC Unix
+                    timestamp format)</td>
+                  <td valign="middle" align="center">optional;<br>
+                    8 bytes</td>
+                  <td valign="middle">00000000625a168a</td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            Note that if the first two bytes are "c014" and the Name (up
+            to 31 bytes) is a valid "Qualifier Name" (ie starts&nbsp;
+            with "#"), then this is a "Tag/Untag Address" type of
+            nullasset script, rather than a "Freeze/Unfreeze Address"
+            type.<br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>Freeze/Unfreeze Address script<br>
+                (a type of nullasset script)<br>
+              </u></b> <br>
+            The Freeze/Unfreeze Address script is used to freeze or
+            unfreeze the movements of a particular Restricted Asset at a
+            particular address. When frozen, the specified Restricted
+            Asset may not be transferred into or out of the specified
+            address.<br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td>NullAssetTxDataScript identifier<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">14<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hash-160 Address<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">20
+                    bytes<br>
+                  </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Script</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">0b<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Restricted Asset Name<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Restricted Asset Name <small><small>($restricted_asset)</small></small></td>
+                  <td width="20%" valign="bottom" align="center">&gt;=3
+                    and &lt;=30 bytes not including the $ </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Operation (1=Freeze, 0=Unfreeze)<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 bytes<br>
+                  </td>
+                  <td width="30%">01</td>
+                </tr>
+                <tr>
+                  <td valign="middle" align="center">
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td valign="top">userdata Type <small>(usually
+
+
+
+                              0x12 or 0x54)</small><br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata Length (usually
+                            0x20)<br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td valign="middle">32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td valign="middle" align="center">optional;<br>
+                    variable (max 34 bytes)</td>
+                  <td valign="top">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea)</td>
+                </tr>
+                <tr>
+                  <td valign="middle">userdata Expiry Time (UTC Unix
+                    timestamp format)</td>
+                  <td valign="middle" align="center">optional;<br>
+                    8 bytes</td>
+                  <td valign="middle">00000000625a168a</td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            Note that if the first two bytes are "c014" and the Name (up
+            to 31 bytes) is a valid "Restricted Asset Name" (ie
+            starts&nbsp; with "$"), then this is a "Freeze/Unfreeze
+            Address" type of nullasset script, rather than a "Tag/Untag
+            Address" type.<br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>Global Freeze/Unfreeze script<br>
+                (a type of nullasset script)<br>
+              </u></b> <br>
+            The Global Freeze/Unfreeze script is used to freeze or
+            unfreeze the movements of a particular Restricted Asset at
+            all addresses. When frozen, the specified Restricted Asset
+            may not be transferred into or out of any addresses.<br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td>NullGlobalRestrictionAssetTxDataScript identifier<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">2 bytes<br>
+                  </td>
+                  <td width="30%">5050<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Script</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">0b<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Restricted Asset Name<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>Restricted Asset Name <small><small>($restricted_asset)</small></small></td>
+                  <td width="20%" valign="bottom" align="center">&gt;=3
+                    and &lt;=30 bytes not including the $ </td>
+                  <td width="30%"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Operation (1=Freeze, 0=Unfreeze)<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 bytes<br>
+                  </td>
+                  <td width="30%">01</td>
+                </tr>
+                <tr>
+                  <td valign="middle" align="center">
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td valign="top">userdata Type <small>(usually
+
+
+
+                              0x12 or 0x54)</small><br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata Length (usually
+                            0x20)<br>
+                          </td>
+                          <td valign="top">1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top">userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td valign="middle">32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td valign="middle" align="center">optional;<br>
+                    variable (max 34 bytes)</td>
+                  <td valign="middle">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea)</td>
+                </tr>
+                <tr>
+                  <td valign="middle">userdata Expiry Time (UTC Unix
+                    timestamp format)</td>
+                  <td valign="middle" align="center">optional;<br>
+                    8 bytes</td>
+                  <td valign="middle">00000000625a168a</td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <b><u>VerifierString Assignment script<br>
+                (a type of nullasset script)<br>
+              </u></b> <br>
+            A VerifierString is a boolean expression comprised of
+            Qualifiers and boolean operators. It is associated with a
+            Restricted Asset and determines the qualifiers which must
+            have tagged an address in order for that address to be
+            allowed to receive that Restricted Asset. In a transaction
+            in which a Restricted Asset is issued or reissued by an
+            output New Asset script or Reissue Asset script, an
+            additional output containing a VerifierString nullasset
+            script as described here is created in the transaction which
+            associates that VerifierString with that Restricted Asset. A
+            Restricted Asset requires a VerifierString, and the
+            VerifierString "true" must be used when no Qualifiers are
+            desired.<br>
+            <br>
+            <table width="100%" border="2">
+              <tbody>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Description
+                  </th>
+                  <td width="20%" valign="bottom" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">NullAssetVerifierTxDataScript
+
+
+
+
+
+
+
+
+
+
+
+
+                    identifier<br>
+                  </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">50<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Script</td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">anything except 50 </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of VerifierString (&lt;=80 bytes after
+                    whitespace and "#"s are removed) </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 05 </td>
+                </tr>
+                <tr>
+                  <td>VerifierString&nbsp;</td>
+                  <td width="20%" valign="bottom" align="center">&lt;=
+                    80 bytes<br>
+                  </td>
+                  <td width="30%">(RED&amp;BLUE)&amp;!GREEN<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" valign="bottom" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <hr width="100%" size="2"><br>
+            <u><b>Asset Naming Rules</b></u><br>
+            <br>
+            ROOT_ASSET: Root asset name valid characters are: A-Z 0-9 .
+            _<br>
+            &nbsp;&nbsp;&nbsp; special characters can't be the first or
+            last characters or repeated<br>
+            OWNER: Owner asset will be the Root asset with ! appended<br>
+            <br>
+            SUB_ASSET: Sub_asset name valid characters are: A-Z 0-9 . _<br>
+            &nbsp;&nbsp;&nbsp; / must be the first character. special
+            characters can't be the first or last characters or repeated<br>
+            <br>
+            UNIQUE: Unique name valid characters are: A-Z a-z 0-9 @ $ %
+            &amp; * ( ) [ ] { } _ . ? : -<br>
+            &nbsp;&nbsp;&nbsp; # must be the first character. <br>
+            <br>
+            MSGCHANNEL: Message Channel name valid characters are: A-Z
+            0-9 _ .<br>
+            &nbsp;&nbsp;&nbsp; ~ must be the first character. Special
+            characters can't be the first or last characters or repeated<br>
+            <br>
+            VOTE: Vote name valid characters are: A-Z 0-9 _ .<br>
+            &nbsp;&nbsp;&nbsp; ^ must be the first character. Special
+            characters can't be the first or last characters or repeated<br>
+            <br>
+            QUALIFIER or SUB_QUALIFIER: Qualifier or Sub_qualifier name
+            valid characters are: A-Z 0-9 _ .<br>
+            &nbsp;&nbsp;&nbsp; # must be the first character. Special
+            characters can't be the first or last characters or repeated<br>
+            <br>
+            RESTRICTED: Restricted name valid characters are: A-Z 0-9 _
+            .<br>
+            &nbsp;&nbsp;&nbsp; $ must be the first character. Special
+            characters can't be the first or last characters or repeated<br>
+            <br>
+            VerifierString: Boolean expression comprised of root
+            Qualifiers and boolean operators<br>
+            &nbsp;&nbsp;&nbsp; Parentheses () are allowed for grouping<br>
+            &nbsp;&nbsp;&nbsp; Legal operators are: &amp; | !<br>
+            &nbsp;&nbsp;&nbsp; SubQualifiers may NOT be used<br>
+            <br>
+            The names EVR, EVER, EVRMORE. EVERMORE. EVRMORECOIN,
+            EVERMORECOIN, EVRS, EVERS, EVRMORES. EVERMORES.
+            EVRMORECOINS, EVERMORECOINS, RVN, RAVEN, RAVENCOIN RVNS,
+            RAVENS, and RAVENCOINS are reserved<br>
+            <br>
+            Excluding the owner tag ('!') =&gt;<br>
+            &nbsp;&nbsp;&nbsp; Maximum non-channel asset name length =
+            31<br>
+            &nbsp;&nbsp;&nbsp; Maximum channel asset name length = 12<br>
+            &nbsp;&nbsp;&nbsp; Minimum asset name length = 3<br>
+            &nbsp;&nbsp;&nbsp; Max VerifierString Length: 80 bytes after
+            whitespace and "#"s are removed<br>
+            <br>
+            <br>
+            <hr width="100%" size="2">
+            <hr width="100%" size="2"> <br>
+            <div align="center">Copyright 2022 by Hans Schmidt <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

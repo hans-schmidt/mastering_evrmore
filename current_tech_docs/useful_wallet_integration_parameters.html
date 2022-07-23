@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Asset-Related Transaction Generation Behavior by Ravencoin</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Asset-Related Transaction Generation Behavior by
+      Ravencoin" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last update: July
+                    9th 2022 </td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main_Menu</a> </td>
+                  <td width="33%" valign="top" align="right"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>Useful Wallet Integration
+                  Parameter</big></big> <br>
+              <i><b>*Technical information which may be needed by 3rd
+                  party wallet providers to support Evrmore*</b></i><br>
+            </div>
+            <br>
+            <br>
+            <br>
+            <u><b>Useful wallet integration parameters:</b></u><br>
+            <br>
+            <b>Evrmore Info:</b><br>
+            DEFAULT_TRANSACTION_MINFEE = 1000000; //satoshis per kb<br>
+            DEFAULT_FALLBACK_FEE = 1025000;&nbsp; //satoshis per kb
+            (from wallet.h)<br>
+            DEFAULT_TX_CONFIRM_TARGET = 6; //blocks<br>
+            Transaction.MAX_MONEY = 21000000000 * 1e8;<br>
+            nSubsidyHalvingInterval = 1575000; // halving block height<br>
+            nSubsidy = 2750 * COIN;<br>
+            MAX_MONEY = 21000000000 * COIN;<br>
+            DUST_RELAY_TX_FEE = 3000;&nbsp;&nbsp; //per kb<br>
+            DEFAULT_BLOCK_MIN_TX_FEE = 1000;&nbsp; //per kb<br>
+            DUST threshold 546 sats<br>
+            <br>
+            <b>Bitcore</b>: networkMagic is entered in reverse in
+            bitcore<br>
+            <br>
+            <b>MAINNET</b><br>
+            rpcport: 8766<br>
+            addNetwork({<br>
+            &nbsp;&nbsp;&nbsp; pubkeyhash: 0x21,<br>
+            &nbsp;&nbsp;&nbsp; privatekey: 0x80,<br>
+            &nbsp;&nbsp;&nbsp; scripthash: 0x5c,<br>
+            &nbsp;&nbsp;&nbsp; xpubkey: 0x0488b21e,<br>
+            &nbsp;&nbsp;&nbsp; xprivkey: 0x0488ade4,<br>
+            &nbsp;&nbsp;&nbsp; networkMagic: 0x4556524d,<br>
+            &nbsp;&nbsp;&nbsp; port: 8820,<br>
+            &nbsp;&nbsp;&nbsp; dnsSeeds: [<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            'seed-mainnet-evr.evrmorecoin.org',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp; ]<br>
+            });<br>
+            <br>
+            <b>TESTNET</b><br>
+            rpcport: 18766<br>
+            addNetwork({<br>
+            &nbsp;&nbsp;&nbsp; pubkeyhash: 0x6f,<br>
+            &nbsp;&nbsp;&nbsp; privatekey: 0xef,<br>
+            &nbsp;&nbsp;&nbsp; scripthash: 0xc4,<br>
+            &nbsp;&nbsp;&nbsp; xpubkey: 0x043587cf,<br>
+            &nbsp;&nbsp;&nbsp; xprivkey: 0x04358394,<br>
+            &nbsp;&nbsp;&nbsp; networkMagic: 0x45565254,<br>
+            &nbsp;&nbsp;&nbsp; port: 18820,<br>
+            &nbsp;&nbsp;&nbsp; dnsSeeds: [<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            'seed-testnet-evr.evrmorecoin.org',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp; ]<br>
+            });<br>
+            <br>
+            <b>REGTEST</b><br>
+            rpcport: 18443<br>
+            addNetwork({<br>
+            &nbsp;&nbsp;&nbsp; pubkeyhash: 0x6f,<br>
+            &nbsp;&nbsp;&nbsp; privatekey: 0xef,<br>
+            &nbsp;&nbsp;&nbsp; scripthash: 0xc4,<br>
+            &nbsp;&nbsp;&nbsp; xpubkey: 0x043587cf,<br>
+            &nbsp;&nbsp;&nbsp; xprivkey: 0x04358394,<br>
+            &nbsp;&nbsp;&nbsp; networkMagic: 0xfabfb5da,<br>
+            &nbsp;&nbsp;&nbsp; port: 18444,<br>
+            &nbsp;&nbsp;&nbsp; dnsSeeds: []<br>
+            });<br>
+            <br>
+            <br>
+            <hr width="100%" size="2">
+            <hr width="100%" size="2"> <br>
+            <div align="center">Copyright 2022 by Hans Schmidt <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

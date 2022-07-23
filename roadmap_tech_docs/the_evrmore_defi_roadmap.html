@@ -1,0 +1,811 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>The Evrmore Defi Roadmap</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="The Evrmore Defi Roadmap" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last update: July
+                    9th 2022 </td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main_Menu</a> </td>
+                  <td width="33%" valign="top" align="right"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <div align="right"><b><font size="-1"> </font></b><br>
+            </div>
+            <div align="center"> <big><big>The Evrmore DeFi Roadmap</big></big><br>
+              <br>
+            </div>
+            <br>
+            Bitcoin's protocol and UTXO model have proven to be
+            wonderfully secure. Ravencoin built on that base by adding
+            simple enhancements to natively support assets. Evrmore
+            plans to add similar enhancements allowing it to support
+            partial order fulfillment, stop-limit orders, interest
+            rates, options and futures contracts, and many other useful
+            financial primitives. This will enable Evrmore to support
+            much of the DeFi economy without the security risks inherent
+            in overly complex smart contracts. <br>
+            <br>
+            <ul>
+              <li>Thank you Satoshi Nakamoto and all the Bitcoin
+                developers for Bitcoin</li>
+              <li>Thank you Bruce Fenton and Tron Black and all the
+                Ravencoin developers for Ravencoin</li>
+            </ul>
+            <br>
+            <div align="center"><font size="+3"><i><b>How long can
+                    Ravencoin adapt and become stonger? Quoth the Raven:
+                    "Evrmore"<br>
+                    (Not quite Edgar Allan Poe)</b></i><br>
+              </font> </div>
+            <font size="+3"> </font><br>
+            <hr width="100%" size="2">Note: The following text and
+            linked documents describe the design enhancements envisioned
+            for Evrmore at this time. The intent is to convey a sense of
+            what is planned for Evrmore, how it builds on existing
+            technology, and why it is superior in simplicity and
+            security to the many overly complex smart contract platforms
+            which have emerged to serve the DeFi market. The order of
+            implementation is still under review, and details of the
+            protocol will no doubt evolve as development work
+            progresses.<br>
+            <hr width="100%" size="2"><br>
+            <u><b>Documents:</b></u><br>
+            <br>
+            The Evrmore DeFi Roadmap consists of 3 documents:<br>
+            <br>
+            <ol>
+              <li>This document including</li>
+              <ol type="a">
+                <li><a moz-do-not-send="true"
+                    href="#Evrmore_Guiding_Principles">Evrmore Guiding
+                    Principles</a></li>
+                <li><a moz-do-not-send="true"
+                    href="#Evrmore_Roadmap_Summary:">Evrmore&nbsp;
+                    Roadmap Summary</a></li>
+                <li><a moz-do-not-send="true" href="#Evrmore_Details">Evrmore
+
+
+
+
+                    Preliminary Details of Proposed Changes</a></li>
+              </ol>
+            </ol>
+            <ol start="2">
+              <ol type="a">
+              </ol>
+              <li><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html">Evrmore
+
+
+
+
+                  Support for 2-step On-Chain SIGHASH_SINGLE Atomic
+                  Swaps</a></li>
+              <ol type="a">
+                <li><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Level-1_DEX_Support">Level-1
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    DEX Support</a></li>
+                <li><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Level-2_DEX_Support">Level-2
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    DEX Support</a></li>
+                <li><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Level-3_DEX_Support">Level-3
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    DEX Support</a></li>
+                <ol type="i">
+                  <li><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Oracle-guided_trading">Oracle-guided
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      trading</a></li>
+                  <li><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Implementing_the_Price_Oracles">Implementing
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      the Price Oracles</a></li>
+                </ol>
+              </ol>
+            </ol>
+            <ol start="3">
+              <ol type="a">
+                <ol type="i">
+                </ol>
+              </ol>
+              <li><a moz-do-not-send="true"
+                  href="vault_assets-_fungible_assets_with_native_evr_face_value.html">Vault
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  Assets- Fungible Assets with Native EVR Face Value</a></li>
+              <ol type="a">
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#Overview">Overview</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#Naming_Rule">Naming
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Rule</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#New_data">New
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    data maintained by the nodes for each fungible Vault
+                    asset or Vault subasset</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#RPC_Commands">Vault-related
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    RPC Commands</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#RPC_Command_Details">Vault-related
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    RPC Command Details</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#Q_n_A">Q&amp;A</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#Use_Case_Example">A
+                    Simple Use Case Example</a></li>
+                <li><a moz-do-not-send="true"
+href="vault_assets-_fungible_assets_with_native_evr_face_value.html#EvrmoreVault-Plus">EvrmoreVault-Plus</a><br>
+                </li>
+              </ol>
+            </ol>
+            <br>
+            <hr width="100%" size="2"><u><font size="+2"><b><br>
+                  <a name="Evrmore_Guiding_Principles"></a>Evrmore
+                  Guiding Principles:</b></font></u><br>
+            <b><br>
+              <br>
+              <u>Vision:</u></b> Extend the Ravencoin architecture with
+            simple intuitive features designed to make Evrmore an
+            excellent platform for DeFi. When core DeFi concepts become
+            standardized, simple native support should be hard-coded
+            into the Evrmore protocol.<br>
+            <br>
+            <u><b>Ecosystem:</b></u> Whenever possible, add new ways for
+            Evrmore users and nodes to benefit financially from use of
+            the chain. Successful participation in DeFi requires a rich
+            ecosystem of participants earning money in a variety of
+            ways.<br>
+            <br>
+            <u><b>Diversity:</b></u> Support for new functionality in
+            Evrmore means changes to the protocols, data structures, and
+            RPC calls as well as changes to the consensus rules in
+            raven-qt/ravend. But it does not require GUI support in
+            raven-qt for all its features because there will be far too
+            many options and functions to support them all. GUI support
+            and related services are best provided by ecosystem vendors
+            through additional applications or websites on a for-profit
+            basis. Just as TCP and HTML provide the low-level support on
+            which internet businesses are built, the various low-level
+            blockchain features of Evrmore will be able to support a
+            range of product and service vendor businesses.<br>
+            <br>
+            <u><b>Scaling:</b></u> Adding new data fields to the
+            transaction and UTXO specification will increase the on-disk
+            and in-memory storage requirements and the sync time for
+            full nodes, and therefore should be given appropriate
+            consideration. However, the required increase to support
+            most financial primitives is expected to be modest. Unlike
+            account-based systems such as Ethereum or extended-UTXO
+            systems such as Cardano, the changes will not be storing
+            arbitrary persistent system state. Hence, radical changes in
+            support of scaling are not expected to be necessarily for
+            quite some time. Long term, technologies such as Utreexo or
+            Flyclient could be adopted to reduce storage space
+            requirements. For transaction throughput, larger block size
+            has been demonstrated as an effective measure by a number of
+            bitcoin fork projects. Beyond that, technologies such as
+            rollups and sharding as being used by Ethereum, would be
+            equally valid and simpler to deploy on Evrmoree.<br>
+            <br>
+            <u><b>Core Development Funding:</b></u> The Evrmore team
+            respects the ethos adopted by Bitcoin- decentralized,
+            permissionless, as simple as possible. Bitcoin's unique
+            status and its very slow cautious development style are a
+            good match. The DeFi market, however, is fast-moving and
+            requires a more practical mechanism to fund full-time
+            salaried core software developers. Some compromise is
+            necessary and worthwhile in order to be competitive in DeFi.
+            To that end, Evrmore charges a 10% development funding fee
+            on all mining rewards<br>
+            <br>
+            <br>
+            <hr width="100%" size="2"><u><font size="+2"><b><br>
+                  <a name="Evrmore_Roadmap_Summary:"></a>Evrmore&nbsp;
+                  Roadmap Summary:<br>
+                </b></font></u><font size="+2">The following changes are
+              proposed for the Evrmore blockchain, consensus, and
+              related code.</font><u><font size="+2"><b><br>
+                </b></font></u> <b><br>
+              <br>
+            </b>- Add Asset tolls support: See "<a
+              moz-do-not-send="true"
+href="file:///home/mehere/Desktop/Quant_Work/Github_Projects/mastering_evrmore%20-%20Github%20project/roadmap_tech_docs/the_evrmore_defi_roadmap.html#Asset_Tolls">Asset_Tolls</a>"
+            below for details.
+            <ul>
+              <li>Each asset will be given a metadata field indicating a
+                required per-asset Toll qty of EVR (or % of face value
+                for Vault assets) paid to the asset owner whenever that
+                asset is transferred. <br>
+              </li>
+              <li>The transfer of an asset from one address to another
+                address in the same wallet could be used as a method of
+                requesting and paying for a service. <br>
+              </li>
+              <li>Tolls can be used as a way to pay Liquidity Providers
+                who agree to lock up valuable assets on other chains in
+                order to provide Wrapped tokens for trade on Evrmore.</li>
+              <li>Tolls can be used to pay a royalty to the original
+                creator of an NFT (unique asset) whenever the NFT is
+                moved from one address to another<br>
+              </li>
+            </ul>
+            <br>
+            - Add a second IPFS field to asset metadata. See "<a
+              moz-do-not-send="true"
+href="file:///home/mehere/Desktop/Quant_Work/Github_Projects/mastering_evrmore%20-%20Github%20project/roadmap_tech_docs/the_evrmore_defi_roadmap.html#Second_IPFS">Second_IPFS</a>"
+            below for details<br>
+            <br>
+            - Add Expiring Unique Assets (expiring NFTs): See "<a
+              moz-do-not-send="true"
+href="file:///home/mehere/Desktop/Quant_Work/Github_Projects/mastering_evrmore%20-%20Github%20project/roadmap_tech_docs/the_evrmore_defi_roadmap.html#Expiring_Unique">Expiring_Unique</a>"
+            below for details.<br>
+            <ul>
+              <li>Unique assets can be given a lifetime ranging from 1
+                hour to eternal. The price for creating the asset will
+                vary from 0.05 EVR (1 hour life) to 5 EVR (eternal
+                life). <br>
+              </li>
+            </ul>
+            &nbsp;&nbsp;&nbsp; <br>
+            - Add Level-1 DEX support: See details <a
+              moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Level-1_DEX_Support">HERE</a>.
+            <br>
+            <ul>
+              <li>Enhanced support for 2-step
+                SIGHASH_SINGLE|SIGHASH_ANYONECANPAY On-Chain Atomic
+                Swaps by adding Asset_Name/Ask_Qty/Signature fields to
+                every UTXO to communicate the desired trade. This makes
+                it possible to do offer tracking and broadcast on-chain
+                as a way to bootstrap initial DEX activity without
+                requiring a new database of communication channel. DEX
+                trading can also be taken off-chain to speed up activity
+                and to save transaction fees.&nbsp; </li>
+            </ul>
+            <br>
+            - Add Asset Consumption support: See "<a
+              moz-do-not-send="true" href="#Consumable_Assets">Consumable_Assets</a>"
+            below for details.
+            <ul>
+              <li>Assets can be destroyed as well as issued. This
+                capability is important for on-chain tokens which
+                represent off-chain assets, such as wrapped-bitcoin, for
+                which the number of tokens in existence should be
+                adjusted up or down to match the number of bitcoin in
+                escrow. As another example, assets can be issued as
+                one-time-use utility tickets which are consumed
+                (destroyed) when used. This is particularly useful when
+                used with expiring unique assets (#11 below).</li>
+            </ul>
+            <br>
+            - Add Covenant support: See "<a moz-do-not-send="true"
+              href="#Financial_Derivatives">Financial_Derivatives</a>"
+            below for details.
+            <ul>
+              <li>Covenants will allow Evrmore script to support more
+                complex smart contracts within limitations. In
+                particular, an options contract or futures contract on
+                the sale of a valuable token or stablecoin can reside in
+                a separate contract token which can be traded separately
+                from the value token. Recent research on the necessary
+                contracts and the mechanism to link the contracts to a
+                tradeable token separate from the underlying value asset
+                token indicate that this is possible using the covenant
+                opcode extensions which have already been in production
+                use for a few years on Blockstream's Liquid Network
+                blockchain. <br>
+              </li>
+            </ul>
+            <br>
+            - Implement <a moz-do-not-send="true"
+              href="vault_assets-_fungible_assets_with_native_evr_face_value.html">Evrmore
+
+
+
+
+
+
+
+
+
+
+
+
+              Vault Assets</a>.<br>
+            <ul>
+              <li>Vault assets are assets which have a "face value" of
+                EVR and can be "melted" to extract the EVR. </li>
+              <li>Vault assets can pay a daily interest rate as a % of
+                the "face value" or a fixed amount of EVR. Or they can
+                cost a daily demurrage rate as a % of the "face value"
+                or a fixed amount of EVR.</li>
+            </ul>
+            <br>
+            - Add Level-2 Enhanced DEX support: See details <a
+              moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Level-2_DEX_Support">HERE</a>.<br>
+            <ul>
+              <li>On-chain 2-step Atomic Swaps can support "Partial
+                Order Fullfillment" with specified "Granularity". They
+                can also support different order types:
+                Precise(Legacy)/Market/Stop/Limit/Stop_Limit/Stop_Market.
+                This primarily requires only new data fields in the UTXO
+                definition and a change in the related consensus rules.
+                Independent vendors are responsible for matching offer
+                and seller half-transactions for submission to the
+                miners, for which those vendors can make a profit on the
+                spread. </li>
+            </ul>
+            <ul>
+              <li>It is interesting to note that most of these features
+                and Evrmore-like asset trading were proposed as a
+                bitcoin extension by Mark Friedenbach in 2013 for his
+                Freicoin project, but the project was dropped when Adam
+                Back convinced Mark to become a co-founder of
+                Blockstream instead. </li>
+            </ul>
+            &nbsp;&nbsp;&nbsp; <br>
+            - Add Oracle DEX Support:&nbsp; See details <a
+              moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html#Level-3_DEX_Support">HERE</a>.<br>
+            <ul>
+              <li>On-chain 2-step Atomic Swap support for Oracle-based
+                price discovery can provide another vast improvement in
+                price discovery and flexibility. Markets use many
+                different methods of price discovery. Some use
+                traditional off-chain bid/ask order books. DeFi projects
+                are experimenting with a variety of
+                Automatic-Market-Maker algorithms. Oracle support allows
+                the offer creator to select any Oracle of his choice
+                based on the Oracle's public key and signed price
+                reports. Only the price quote and signature format need
+                to be standardized, and a few changes need to be made to
+                the UTXO definition and consensus rules.&nbsp; The buyer
+                can choose an Oracle from any independent vendor who
+                provides that service on a for-profit basis. New
+                technologies such as "Gravity Protocol" are expected to
+                make Oracles much more common.</li>
+            </ul>
+            <br>
+            - Implement a 2-way Peg BTC-Relay to provide Wrapped-BTC
+            liquidity for trading. <br>
+            <ul>
+              <li>EVRWBTC tokens can be issued on the Evrmore blockchain
+                specifying a non-zero toll, so the liquidity providers
+                earn a toll every time a EVRWBTC token is traded.</li>
+            </ul>
+            <ul>
+              <li>Technically, the implementation is similar to a P2SH
+                HTLC Cross-chain Atomic Swap. During a Peg-in it locks
+                up BTC on the bitcoin blockchain and issues an equal
+                number of EVRWBTC on the Evrmore blockchain. During a
+                Peg-out, the EVRWBTC must be consumed and the BTC are
+                returned on the bitcoin blockchain. If BTC and EVR had
+                sufficiently powerful scripting, this could easily be
+                fully automated as a Relay. Since that is not the case,
+                and to improve security, many projects implement it as a
+                Trusted Federation as done by Blockstream for LBTC on
+                the Liquid blockchain, by Rootstock for RBTC on RSK, and
+                by WBTC for Ethereum. In some juridiction, this solution
+                creates KYC requirements for the users. Other projects
+                use more complex solutions to fully automate the Relay
+                such as by running both EVR and BTC chains and transfer
+                code in a Trusted Execution Environment (as done by
+                pTokens for pBTC) or running a Secure Multi-party
+                Computation on distributed VMs (as done for Ren). The
+                maturity of the available solutions and regulatory
+                changes relating to stablecoins will dictate the best
+                solution.</li>
+            </ul>
+            <br>
+            - Implement a 2-way Peg Ethereum Relay to enable Wrapped
+            ERC20 tokens on Evrmore. Same considerations as for
+            BTC-Relay. <br>
+            <br>
+            - Implement Relays to additional popular blockchains: LTC,
+            DOGE, BCH, Cosmos<br>
+            <br>
+            - Implement Reusable Payment Addresses: A mechanism which
+            creates different non-linkable addresses so that on-chain
+            balances and payment totals can remain private. This is a
+            highly desired feature for businesses who want to advertise
+            a payment address yet maintain some financial privacy.<br>
+            <ul>
+              <li>Similar technologies have been used on BCH
+                (BIP-Stealth) and BTC (Stealth Addresses) as well as in
+                Monero</li>
+              <li>Note that this works better on Evrmore than on BTC or
+                BCH because of EVR's common use of extraneous data
+                on-chain (put the nonce in the IPFS field)</li>
+            </ul>
+            <br>
+            - Catch up to Bitcoin on new features: PSBT, Taproot<br>
+            <br>
+            <br>
+            <hr width="100%" size="2"><u><font size="+2"><b><br>
+                  <a name="Evrmore_Details"></a>Evrmore Preliminary
+                  Details of Proposed Changes:<br>
+                </b></font></u><b><br>
+            </b><br>
+            <ul>
+              <li><b><a name="Asset_Tolls"></a>Assets with
+                  owner-required Toll (trading fee):</b></li>
+              <ul>
+                <li>Each asset will be given a metadata field indicating
+                  a required per asset Toll qty of EVR (or % of face
+                  value for Vault tokens) paid whenever that asset is
+                  transferred. Another metadata field specifies the
+                  address to which the payment is made. </li>
+                <li>The value of Toll amount and Toll address fields
+                  will be selected at asset creation time, Toll amount
+                  and Toll address can be changed during reissue unless
+                  Toll Amount is zero, in which case it will always be
+                  zero.&nbsp; </li>
+                <li>There is no toll charged for a "Consume" operation
+                  (consumes are not transfers), so a Wrapping token
+                  which has a toll can be "cashed in" for its associated
+                  value asset by consuming it without incurring a toll.</li>
+                <li>The Toll is paid as a EVR output to the Toll
+                  address. Meeting that requirement is enforced as a
+                  consensus item by all nodes. </li>
+              </ul>
+            </ul>
+            <br>
+            <ul>
+              <li><b><a name="Second_IPFS"></a>Add a second IPFS field
+                  to asset metadata:</b></li>
+              <ul>
+                <li>One of the IPFS fields will be treated as immutable
+                  once the asset has been issued, even during reissue.
+                  The second IPFS field will always be mutable, even for
+                  unique assets and other non-reissuable assets (needs
+                  additional RPC and GUI support). For backward
+                  compatibility, legacy assets which are unique or
+                  otherwise non-reissueable will have their IPFS mapped
+                  to the non-mutable field, while legacy reissueable
+                  assets will have their IPFS mapped to the mutable
+                  field. See Ravencoin Issues <a moz-do-not-send="true"
+href="https://github.com/RavenProject/Ravencoin/issues/336">#336</a> and
+                  <a moz-do-not-send="true"
+                    href="https://github.com/RavenProject/Ravencoin/issues/547">#547</a>
+                  for the application uses driving this feature.</li>
+              </ul>
+            </ul>
+            <br>
+            <ul>
+              <li><b><a name="Expiring_Unique"></a>Expiring Unique
+                  Assets:</b></li>
+              <ul>
+                <li>Unique assets will be given a lifetime when they are
+                  created. There is a minimum lifetime (1 hour) and a
+                  minimum cost (0.05 EVR) to prevent spam and to limit
+                  computational load. All legacy issued unique assets
+                  will be treated as infinite lifetime unique assets.
+                  Only a fixed set of lifetimes and associated prices
+                  will be supported.</li>
+                <li>Proposal:&nbsp;&nbsp;&nbsp; 1hour/0.05 EVR,&nbsp;
+                  1day/0.1EVR,&nbsp; 1week/0.2EVR,&nbsp;
+                  1month/0.5EVR,&nbsp; 3months/1EVR,&nbsp;
+                  6months/2EVR,&nbsp; 1year/4EVR,&nbsp; infinite/5EVR</li>
+                <li>Such assets could represent concert tickets (serial
+                  numbered with assigned seating) which expire after the
+                  concert, or 1-hr worth of VPN service, or a 10-year
+                  bond. </li>
+                <li>The expiring nature of such an asset would also make
+                  it ideal for representing an expiring option or
+                  futures contract. Such securities exhibit unique
+                  pricing behavior because expiring option contracts
+                  trend to a value of zero at the time of expiration
+                  while expiring futures contracts trend toward the spot
+                  market price.</li>
+              </ul>
+            </ul>
+            <br>
+            <ul>
+              <li><b>See Document "</b><a moz-do-not-send="true"
+href="evrmore_support_for_2-step_on-chain_sighash_single_atomic_swaps.html">Evrmore
+
+
+
+
+
+
+
+
+
+
+
+
+                  Support for 2-step On-Chain SIGHASH_SINGLE Atomic
+                  Swaps</a><b>" for details on that topic</b></li>
+            </ul>
+            <br>
+            <ul>
+              <li><b><a name="Consumable_Assets"></a>Consumable Assets:</b></li>
+              <ul>
+                <li>An evrmore-script opcode will be created for
+                  "Consume()" for any asset. Note that while an asset
+                  can be "burned" by sending to a non-spendable address,
+                  there are advantages to being able to destroy assets
+                  and remove them from the UTXO..</li>
+                <li>If used for voting, then destruction can be done
+                  after voting is completed. More generally, If the
+                  asset is a utility token, then the token could be
+                  consumed after it is used to obtain the service.</li>
+                <li>If the token represents a "wrapped" asset such as
+                  for EVR-Wrapped-Bitcoin, then this provides a way for
+                  the existing supply of EVR-Wrapped-Bitcoin tokens to
+                  be made equal to the number of Bitcoins locked on the
+                  bitcoin blockchain, which could vary up or down.</li>
+                <li>Adds a Consumable(T/F) metadata to every asset which
+                  determines whether to allow the Consume() asset
+                  function. Legacy assets have Consumable='F'.</li>
+                <li>During reissue, Consumable(T/F) can be changed from
+                  T to F but never from F to T</li>
+                <li>Note that this makes ^Vote assets unnecessary, and
+                  the "^" symbol is used to identify Vault asset instead</li>
+                <li>Owner tokens may not be consumed. Therefore there is
+                  no concern about whether a subasset name exists below
+                  any given asset name. </li>
+              </ul>
+            </ul>
+            <br>
+            <ul>
+              <li><b><a name="Financial_Derivatives"></a>Trading of
+                  Financial Derivatives:</b></li>
+              <ul>
+                <li>For DeFi, it is critical to be able to trade in
+                  Financial Derivatives such as Options Contracts and
+                  Futures Contracts</li>
+                <li>This capability is also a great motivator to attract
+                  Liquidity Providers. People who lock up their bitcoins
+                  on the bitcoin blockchain and accept EVR-WRAPPED-BTC
+                  assets on the Evrmore blockchain could then write and
+                  sell covered Options and Futures Contracts against
+                  their bitcoins in order to earn income.</li>
+                <li>For this to work, it must to possible to freely
+                  trade a token which represents the Derivative Contract
+                  separately from the token which represents the
+                  underlying value asset.</li>
+                <li>Implementing this requires "Covenants"<br>
+                </li>
+                <li>Recent research on the necessary contracts and the
+                  mechanism to link the contracts to a tradeable token
+                  separate from the underlying value asset token
+                  indicate that this is possible using the covenant
+                  opcode extensions which have already been in
+                  production use for a few years on Blockstream's Liquid
+                  Network blockchain as described here:</li>
+                <ul>
+                  <li><a moz-do-not-send="true"
+href="https://ruggedbytes.com/articles/ll/liquid-asset-based-lending-contract.pdf">https://ruggedbytes.com/articles/ll/liquid-asset-based-lending-contract.pdf</a>
+                    "Asset-Based Lending smart contract for Liquid
+                    network" by Dmitry Petukhov</li>
+                </ul>
+                <li>Additional details of how the new Opcodes support
+                  Covenants on the Liquid Network is described here:</li>
+                <ul>
+                  <li><a moz-do-not-send="true"
+                      href="https://fc17.ifca.ai/bitcoin/papers/bitcoin17-final28.pdf">https://fc17.ifca.ai/bitcoin/papers/bitcoin17-final28.pdf</a>
+                    "Enhancing Bitcoin Transactions with Covenants" by
+                    Russell O'Connor which refers to: <a
+                      moz-do-not-send="true"
+                      href="https://fc16.ifca.ai/bitcoin/papers/MES16.pdf">https://fc16.ifca.ai/bitcoin/papers/MES16.pdf</a>
+                    "Bitcoin Covenants" by Malte Moeser</li>
+                </ul>
+                <li>Blockstream's Liquid Network directly uses the
+                  open-source code of the Elements project according to:<a
+                    moz-do-not-send="true"
+                    href="https://docs.blockstream.com/liquid/technical_overview.html">
+                    https://docs.blockstream.com/liquid/technical_overview.html
+
+
+
+
+
+
+
+
+
+
+                  </a>which was referred to by: <a
+                    moz-do-not-send="true"
+                    href="https://www.blockstream.com/liquid/">https://www.blockstream.com/liquid/</a></li>
+                <li>So Elements on github (which is a bitcoin code fork)
+                  appears to contain the needed code changes to support
+                  the Financial Derivative covenants.</li>
+                <li>The contracts as described do not appear to require
+                  SegWit. Further work will be required to verify the
+                  work of Dmitry Petukhov and to implement it on
+                  Evrmore. But the review of Dmitry's work by Russell
+                  O'Connor from Liquid Network is encouraging.</li>
+              </ul>
+            </ul>
+            <br>
+            <ul>
+              <li><b>Vault Assets with On-Chain Native EVR "Face Value":
+                </b></li>
+              <ul>
+                <li>Mint, Monetize, Melt, Unmelt, &amp; Remint using
+                  Evrmore Vault assets.<br>
+                </li>
+                <li>For details see "<a moz-do-not-send="true"
+                    href="vault_assets-_fungible_assets_with_native_evr_face_value.html">Vault
+
+
+
+                    assets- fungible assets with native EVR face value</a>"</li>
+              </ul>
+            </ul>
+            <br>
+            <hr width="100%" size="2">
+            <hr width="100%" size="2"> <br>
+            <div align="center">Copyright 2022 by Hans Schmidt <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

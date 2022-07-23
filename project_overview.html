@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>All defined Ravencoin raven-qt RPC calls</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="All defined Ravencoin raven-qt RPC calls"
+      name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last update: July
+                    9th 2022 </td>
+                  <td valign="top" align="center"><a href="index.html">Main_Menu</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big>Project Overview</big><br>
+            </div>
+            <br>
+            <div align="center">
+              <table width="75%" cellspacing="2" cellpadding="2"
+                border="0" height="360">
+                <tbody>
+                  <tr>
+                    <td valign="middle" align="center"><img
+                        moz-do-not-send="true"
+                        src="images/evr_logo_blue_400.png" alt=""
+                        width="350" height="350"><br>
+                    </td>
+                    <td valign="middle" align="center"><font size="+3"><b>Evrmore</b></font>
+                      <br>
+                      A Peer-to-Peer System for Decentralized Finance
+                      Applications </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div align="center">
+                <hr width="75%" size="6"></div>
+              <table width="75%" cellspacing="2" cellpadding="2"
+                border="0">
+                <tbody>
+                  <tr>
+                    <td valign="middle" align="center"><a
+                        href="https://evrmorecoin.org"><img
+                          moz-do-not-send="true"
+                          src="images/button_website.gif" alt=""
+                          width="153" border="0" height="44"></a><br>
+                    </td>
+                    <td valign="middle" align="center"><a
+                        href="https://github.com/evrmoreorg"><img
+                          moz-do-not-send="true"
+                          src="images/button_github.gif" alt=""
+                          width="153" border="0" height="44"></a><br>
+                    </td>
+                    <td valign="middle" align="center"><a
+                        href="https://medium.com/@evrmore"><img
+                          moz-do-not-send="true"
+                          src="images/button_medium.gif" alt=""
+                          width="153" border="0" height="44"></a><br>
+                    </td>
+                    <td valign="middle" align="center"><a
+                        href="https://twitter.com/@evrcoin"><img
+                          moz-do-not-send="true"
+                          src="images/button_twitter.gif" alt=""
+                          width="153" border="0" height="44"></a><br>
+                    </td>
+                    <td valign="middle" align="center"><a
+                        href="https://discord.gg/KrQaDxDb"><img
+                          moz-do-not-send="true"
+                          src="images/button_discord.png" alt=""
+                          width="153" border="0" height="44"></a><br>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+            <font color="#000099">Overview:</font><br>
+            Evrmore is a blockchain project which is specifically
+            targetted at Distributed Finance Applications. It is a code
+            fork of Ravencoin, which itself enhanced the Bitcoin
+            codebase and protocol to support assets. Evrmore is being
+            built by current and former Ravencoin developers, hodlers,
+            and miners as a parallel effort using a different set of
+            trade-offs with different goals and different strategies.
+            Evrmore seeks to improve upon Ethereum's failed security
+            promises by further enhancing Ravencoin's asset protocol to
+            enable Distributed Finance functionality WITHOUT
+            general-purpose smart contracts and WITH the security of
+            bitcoin.<br>
+            <br>
+            <br>
+            <br>
+            <font color="#000099">Coin Specs:</font><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Algorithm: EvrProgPow (Programmable POW with 3GB starting
+            DAG)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Whitepaper: http://ravencoin.org/Ravencoin.pdf<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Roadmap:
+            https://github.com/RavenProject/Ravencoin/blob/master/roadmap/README.md<br>
+            &nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Block
+            Time: 1 minute<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Block
+            Reward: 2500 EVR (2750 EVR minus a 10% dev fund mining fee)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Block
+            Reward halving schedule: ~3years<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total
+            Coin Supply: &lt;21 Billion<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Block
+            Size: 2MB (may increase in the future)<br>
+            &nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Pre-mine: No<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Founders Reward: No<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ICO:
+            No<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Masternodes: No<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Airdrop: Yes (one time, to all RVN on-chain holders at time
+            of snapshot)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RPC
+            port: 8819<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Network port: 8820<br>
+            &nbsp;&nbsp;&nbsp; <br>
+            <br>
+            <hr width="100%" size="2">
+            <hr width="100%" size="2"><br>
+            <div align="center">Copyright 2022 by Hans Schmidt <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Mastering Evrmore</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Mastering Evrmore" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top"></td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main_Menu</a> </td>
+                  <td width="33%" valign="top" align="right"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>Mastering Evrmore</big></big>
+              <br>
+              <i><b>*A collection of information about the Evrmore Defi
+                  blockchain*</b></i> <br>
+              <br>
+              <big><big><u>Current Technical Documentation</u><br>
+                </big></big><br>
+              Documents which described the Evrmore asset protocol as it
+              is currently implemented and functioning <br>
+            </div>
+            <!-- start of menu items   --> <br>
+            A set of technical parameters commonly required for
+            integrating EVR into 3rd party wallets is listed <a
+              moz-do-not-send="true"
+              href="useful_wallet_integration_parameters.html">HERE</a><br>
+            <br>
+            <br>
+            Evrmore's asset operations are encoded into transactions by
+            adding one or more extra transaction outputs. Those
+            additional outputs always have a legacy value of zero. A
+            special "asset script" is used to encode the asset
+            operation. If the asset operation involves an address, then
+            the asset script is appended to the traditional
+            bitcoin-style output script. If the asset operation involves
+            no addresses, then the script field of the traditional
+            bitcoin protocol is omitted. Further details of the asset
+            script protocol are documented <a moz-do-not-send="true"
+              href="anatomy_of_an_evrmore_output_asset_script.html">HERE</a><br>
+            <br>
+            <br>
+            Some typical examples of how transaction outputs containing
+            asset scripts are combined with traditional bitcoin-style
+            inputs and outputs to accomplish asset operations are shown
+            <a moz-do-not-send="true"
+              href="evrmore_transaction_structure_to_support_assets.html">HERE</a><br>
+            <!-- end of menu items   --> <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><big><i>"In Theory There Is No
+                    Difference Between Theory and Practice, While In
+                    Practice There Is"</i></big></div>
+            </center>
+            <br>
+            <br>
+            <div align="center">Copyright 2022 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
