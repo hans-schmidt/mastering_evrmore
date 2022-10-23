@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Mastering Evrmore</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Mastering Evrmore" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last update: Oct 23rd
+                    2022<br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main_Menu</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>Mastering Evrmore</big></big>
+              <br>
+              <i><b>*A collection of information about the Evrmore Defi
+                  blockchain*</b></i> <br>
+              <br>
+              <u><big><big>Summary of Evrmore Chain Parameters for
+                    Developers</big></big></u> <br>
+            </div>
+            <br>
+            <small> <small>Ravencoin blockchain snapshot height for the
+                Evrmore genesis airdrop:<br>
+                &nbsp;&nbsp;&nbsp; Ravencoin block #2510000, which
+                should be about 2:43am UTC on 2022-10-25<br>
+                &nbsp;&nbsp;&nbsp; <br>
+                Planned (hopefully) start of Evrmore blockchain mining:
+                2022-10-28 14:00-UTC &nbsp;&nbsp;&nbsp; <br>
+                <br>
+                Evrmore genesis block hash: TBD depends on the RVN
+                snapshot<br>
+                <br>
+                RPC Ports: 8819 mainnet; 18819 testnet<br>
+                <br>
+                P2P Ports: 8820 mainnet; 18820 testnet<br>
+                <br>
+                Algo: <br>
+                &nbsp;&nbsp;&nbsp; mainnet:&nbsp;&nbsp;&nbsp; ProgPow
+                starting with block 0. <br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; Same as Kawpow except starting
+                DAG=3GB and EPOCH=12000 blocks and new custom seeds<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; note: reference C++ implementation
+                with all details is at
+                <a moz-do-not-send="true"
+                  href="https://github.com/EvrmoreOrg/cpp-evrprogpow">
+                  https://github.com/EvrmoreOrg/cpp-evrprogpow</a><br>
+                &nbsp;&nbsp;&nbsp; <br>
+                &nbsp;&nbsp;&nbsp; testnet: SHA256 cpu mining using
+                built-in miner (use "setgenerate true" in the node)<br>
+                <br>
+                Coinbase subsidy: <br>
+                &nbsp;&nbsp;&nbsp; 2778 EVR starting. <br>
+                &nbsp;&nbsp;&nbsp; SubsidyHalvingInterval = 1648776
+                blocks which is ~= 3.1 years<br>
+                <br>
+                Minerdevfund: <br>
+                &nbsp;&nbsp;&nbsp; Every coinbase transaction must have
+                2 outputs: <br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 1 output for the
+                minerdevfund (value &gt;= 0.1 x (block subsidy +
+                transaction fees) note: starting block subsidy is 2778
+                EVR<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 1 output for the
+                miner (value &lt;= 0.9 x (block subsidy + transaction
+                fees) note: starting block subsidy is 2778 EVR <br>
+                &nbsp;&nbsp;&nbsp; The core node software contains a
+                hard-coded whitelist of minerdevfund addresses<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The whitelist of
+                addresses will change with different versions of
+                evrmored/-qt.<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The current
+                whitelist of addresses is reported in the response to
+                the "getblocktemplate" RPC command<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The whitelist is
+                TBD, but currently:<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                Mainnet:<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; "e3Rvyh7CJDnVL29PWFoEaWoLd2y529t9mA",<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; "e4gGKBh6mTGEZk9WpdUzLzo4E8GkEdXswu",<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; "e96CPNE16va8NZynPBCM3heGCkQur6kS4t"<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                Testnet:<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                "2MtafNz7A8yycP6eQ3tSP1Z7A5VmAxei894",<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                "2MupziUh4cDTMcpeXNG88n36sgb4rEw2DTM",<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; "2MzEvnfDxwgmFReUnvoqVUjx5fDD1iQ4823"<br>
+                <br>
+                Airdrop:<br>
+                &nbsp;&nbsp;&nbsp; The genesis block contains the
+                genesis transaction<br>
+                &nbsp;&nbsp;&nbsp; The genesis transaction has 50,001
+                outputs (2778 EVR to Satoshi + the airdrop).<br>
+                &nbsp;&nbsp;&nbsp; The airdrop addresses and amounts
+                will be determined by the RVN snapshot, currently TBD<br>
+                &nbsp;&nbsp;&nbsp; The airdrop outputs become
+                non-spendable at block height 60x60x24 (60 days)<br>
+                <br>
+                Addresses and Keys:<br>
+                mainnet=&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[0] = 0x45; // E<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[1] = 0x56; // V<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[2] = 0x52; // R<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[3] = 0x4d; // M<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned
+                char&gt;(1,33);&nbsp;&nbsp;&nbsp; // produces 'E' as
+                first char of address after base58 encoding<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned
+                char&gt;(1,92);&nbsp;&nbsp;&nbsp; // produces 'e' as
+                first char of address after base58 encoding<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[SECRET_KEY] =&nbsp;&nbsp;&nbsp;&nbsp;
+                std::vector&lt;unsigned char&gt;(1,128); // after base58
+                encoding, produces a first char of '5' for uncompressed<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+                //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIF, 'K' or 'L' for
+                compressed WIF (as for Bitcoin)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2,
+                0x1E};<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD,
+                0xE4};<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nExtCoinType
+                = 175;<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueAssetBurnAddress =
+                "EXissueAssetXXXXXXXXXXXXXXXXYiYRBD";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strReissueAssetBurnAddress =
+                "EXReissueAssetXXXXXXXXXXXXXXY1ANQH";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueSubAssetBurnAddress =
+                "EXissueSubAssetXXXXXXXXXXXXXWW1ASo";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueUniqueAssetBurnAddress =
+                "EXissueUniqueAssetXXXXXXXXXXTZjZJ5";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueMsgChannelAssetBurnAddress =
+                "EXissueMsgChanneLAssetXXXXXXXD3mRa";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueQualifierAssetBurnAddress =
+                "EXissueQuaLifierXXXXXXXXXXXXW5Zxyf";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueSubQualifierAssetBurnAddress =
+                "EXissueSubQuaLifierXXXXXXXXXUgTjtu";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueRestrictedAssetBurnAddress =
+                "EXissueRestrictedXXXXXXXXXXXZZMynb";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strAddNullQualifierTagBurnAddress =
+                "EXaddTagBurnXXXXXXXXXXXXXXXXb5HLXh";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strGlobalBurnAddress =
+                "EXBurnXXXXXXXXXXXXXXXXXXXXXXZ8ZjfN";<br>
+                <br>
+                testnet=&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[0] = 0x45; // E<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[1] = 0x56; // V<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[2] = 0x52; // R<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                pchMessageStart[3] = 0x54; // T<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned
+                char&gt;(1,111);&nbsp; // produces 'm' or 'n' as first
+                char of address after base58 encoding<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned
+                char&gt;(1,196);&nbsp; // produces '2' as first char of
+                address after base58 encoding<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[SECRET_KEY] =&nbsp;&nbsp;&nbsp;&nbsp;
+                std::vector&lt;unsigned char&gt;(1,239);&nbsp; // after
+                base58 encoding, produces a first char of '9' for
+                uncompressed<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+                //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WIF, 'c' for compressed
+                WIF (as for Bitcoin)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87,
+                0xCF};<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83,
+                0x94};<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nExtCoinType
+                = 1;<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueAssetBurnAddress =
+                "n1issueAssetXXXXXXXXXXXXXXXXWdnemQ";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strReissueAssetBurnAddress =
+                "n1ReissueAssetXXXXXXXXXXXXXXWG9NLd";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueSubAssetBurnAddress =
+                "n1issueSubAssetXXXXXXXXXXXXXbNiH6v";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueUniqueAssetBurnAddress =
+                "n1issueUniqueAssetXXXXXXXXXXS4695i";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueMsgChannelAssetBurnAddress =
+                "n1issueMsgChanneLAssetXXXXXXT2PBdD";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueQualifierAssetBurnAddress =
+                "n1issueQuaLifierXXXXXXXXXXXXUysLTj";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueSubQualifierAssetBurnAddress =
+                "n1issueSubQuaLifierXXXXXXXXXYffPLh";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strIssueRestrictedAssetBurnAddress =
+                "n1issueRestrictedXXXXXXXXXXXXZVT9V";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strAddNullQualifierTagBurnAddress =
+                "n1addTagBurnXXXXXXXXXXXXXXXXX5oLMH";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                strGlobalBurnAddress =
+                "n1BurnXXXXXXXXXXXXXXXXXXXXXXU1qejP";<br>
+              </small> </small><br>
+            <!-- end of menu items   --> <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><big><i>"In Theory There Is No
+                    Difference Between Theory and Practice, While In
+                    Practice There Is"</i></big></div>
+            </center>
+            <br>
+            <br>
+            <div align="center">Copyright 2022 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
