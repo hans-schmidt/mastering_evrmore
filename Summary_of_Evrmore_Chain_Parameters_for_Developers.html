@@ -34,8 +34,7 @@ div{margin-top:20px; margin-bottom:20px !important;}
               border="0">
               <tbody>
                 <tr>
-                  <td width="33%" valign="top">last update: Oct 23rd
-                    2022<br>
+                  <td width="33%" valign="top">last update: Nov 7th 2022<br>
                   </td>
                   <td valign="top" align="center"><a href="./index.html"
                       moz-do-not-send="true">Main_Menu</a> </td>
@@ -55,16 +54,40 @@ div{margin-top:20px; margin-bottom:20px !important;}
                     Developers</big></big></u> <br>
             </div>
             <br>
-            <small> <small>Ravencoin blockchain snapshot height for the
-                Evrmore genesis airdrop:<br>
-                &nbsp;&nbsp;&nbsp; Ravencoin block #2510000, which
-                should be about 2:43am UTC on 2022-10-25<br>
+            <small> <small>The Airdrop:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A snapshot of
+                the Ravencoin blockchain was taken at block #2,510,000
+                on 2022-10-25 02:47:20-UTC<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The most
+                valuable 50,000 addresses were extracted. <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; That included
+                all addresses containing &gt;=2,673.14 RVN, and
+                accounted for 99.21% of all RVN including all burned and
+                lost RVN<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The list of
+                included addresses and their balances is available <a
+                  moz-do-not-send="true"
+href="https://github.com/hans-schmidt/Ravencoin/releases/download/v4.6.2snapshot/snapshot_2510000_top50k.txt">HERE</a>.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; From that
+                snapshot, an airdrop was calculated for inclusion in the
+                Evrmore genesis granting 1 EVR for every RVN<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The full
+                details of the Evrmore genesis block coinbase
+                transaction is available <a moz-do-not-send="true"
+                  href="current_tech_docs/genesis_coinbase_tx_info.txt">HERE</a>.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The airdrop
+                outputs become non-spendable after block height 60x60x24
+                (estimated 2022-12-29 19:07-UTC))<br>
                 &nbsp;&nbsp;&nbsp; <br>
-                Planned (hopefully) start of Evrmore blockchain mining:
-                2022-10-28 14:00-UTC &nbsp;&nbsp;&nbsp; <br>
+                Evrmore genesis block:<br>
+                &nbsp; &nbsp; hash:
+                "0000007b11d0481b2420a7c656ef76775d54ab5b29ee7ea250bc768535693b05"<br>
+                &nbsp;&nbsp;&nbsp; merkleroot:
+                "c191c775b10d2af1fcccb4121095b2a018f1bee84fa5efb568fcddd383969262"<br>
                 <br>
-                Evrmore genesis block hash: TBD depends on the RVN
-                snapshot<br>
+                Start of Evrmore blockchain mining: block #1 was mined
+                2022-10--31 15:03:40-UTC
+                &nbsp;&nbsp;&nbsp; <br>
                 <br>
                 RPC Ports: 8819 mainnet; 18819 testnet<br>
                 <br>
@@ -108,36 +131,20 @@ div{margin-top:20px; margin-bottom:20px !important;}
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The current
                 whitelist of addresses is reported in the response to
                 the "getblocktemplate" RPC command<br>
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The whitelist is
-                TBD, but currently:<br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The whitelist (for
+                core v1.0.5) is:<br>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                 Mainnet:<br>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp; "e3Rvyh7CJDnVL29PWFoEaWoLd2y529t9mA",<br>
+                &nbsp;&nbsp;&nbsp; "eHNUGzw8ZG9PGC8gKtnneyMaQXQTtAUm98",<br>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp; "e4gGKBh6mTGEZk9WpdUzLzo4E8GkEdXswu",<br>
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp; "e96CPNE16va8NZynPBCM3heGCkQur6kS4t"<br>
+                &nbsp;&nbsp;&nbsp; "e7Tkk3kjS9NjSYVX2Q8qzxXB1WKMRvea1j"<br>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                 Testnet:<br>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;
-                "2MtafNz7A8yycP6eQ3tSP1Z7A5VmAxei894",<br>
+                &nbsp;&nbsp;&nbsp; "n2rxh4SrVLkzASyxaP3jB6Zf2TEfsPXdMz",<br>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;
-                "2MupziUh4cDTMcpeXNG88n36sgb4rEw2DTM",<br>
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp; "2MzEvnfDxwgmFReUnvoqVUjx5fDD1iQ4823"<br>
-                <br>
-                Airdrop:<br>
-                &nbsp;&nbsp;&nbsp; The genesis block contains the
-                genesis transaction<br>
-                &nbsp;&nbsp;&nbsp; The genesis transaction has 50,001
-                outputs (2778 EVR to Satoshi + the airdrop).<br>
-                &nbsp;&nbsp;&nbsp; The airdrop addresses and amounts
-                will be determined by the RVN snapshot, currently TBD<br>
-                &nbsp;&nbsp;&nbsp; The airdrop outputs become
-                non-spendable at block height 60x60x24 (60 days)<br>
+                &nbsp;&nbsp;&nbsp; "muFMkxZeEpptRMNK1zWvsi2aPRNULCin3s"<br>
                 <br>
                 Addresses and Keys:<br>
                 mainnet=&gt;<br>
@@ -163,6 +170,8 @@ div{margin-top:20px; margin-bottom:20px !important;}
                 std::vector&lt;unsigned char&gt;(1,128); // after base58
                 encoding, produces a first char of '5' for uncompressed<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
 
 
 
@@ -235,6 +244,8 @@ div{margin-top:20px; margin-bottom:20px !important;}
                 base58 encoding, produces a first char of '9' for
                 uncompressed<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
 
 
 
