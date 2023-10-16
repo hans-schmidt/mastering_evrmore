@@ -1,0 +1,630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Bitcoin_vs_Evrmore_Txn_Comparison</title>
+  </head>
+  <body>
+    <br>
+    <table width="100%" cellspacing="2" cellpadding="2" border="0">
+      <tbody>
+        <tr>
+          <td width="33%" valign="top"><b>last update: Oct 12th 2023</b></td>
+          <td valign="top" align="center"><a href="../index.html"><b>Main_Menu</b></a>
+          </td>
+          <td width="33%" valign="top" align="right"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <center><font size="+3"><b>Example Transaction Serialization
+          Comparison of an Evrmore P2PKH Asset Transfer versus a Bitcoin
+          Legacy P2PKH Transaction</b></font></center>
+    <br>
+    <table width="95%" cellspacing="2" cellpadding="2" height="941"
+      border="3" align="center">
+      <tbody>
+        <tr>
+          <td width="50%" align="left"> <br>
+            <font size="+2"><b> Bitcoin 2-Input &amp; 2-Output Legacy
+                Transaction</b> </font> <br>
+          </td>
+          <td align="left"> <br>
+            <font size="+2"><b> Evrmore 2-Input (EVR + Asset) &amp;
+                2-Output (EVR + Asset Transfer) Transaction </b></font>
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="left"> <br>
+            <font size="+1"><b>Transaction Description</b></font>
+            <table cellspacing="2" cellpadding="2" border="1">
+              <tbody>
+                <tr>
+                  <td> <b>Input</b><br>
+                  </td>
+                  <td> <b>From_Addr</b><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>50 mBTC<br>
+                  </td>
+                  <td>A<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>50 mBTC<br>
+                  </td>
+                  <td>B<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Output</b><br>
+                  </td>
+                  <td><b>To_Addr</b><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>48 mBTC<br>
+                  </td>
+                  <td>C<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>50 mBTC<br>
+                  </td>
+                  <td>D<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </td>
+          <td valign="top" align="left"> <br>
+            <font size="+1"><b>Transaction Description</b></font>
+            <table cellspacing="2" cellpadding="2" border="1">
+              <tbody>
+                <tr>
+                  <td><b>Input</b><br>
+                  </td>
+                  <td><b>From_Addr</b><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>50 EVR<br>
+                  </td>
+                  <td>A<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1 Asset named HANS<br>
+                  </td>
+                  <td>B<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Output</b><br>
+                  </td>
+                  <td><b>To_Addr</b><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>48 EVR<br>
+                  </td>
+                  <td>C<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1 Asset named HANS<br>
+                  </td>
+                  <td>D<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"> <br>
+            <font size="+1"><b>Transaction Serialization</b></font>
+            <table width="80%" cellspacing="2" cellpadding="2"
+              border="1">
+              <tbody>
+                <tr>
+                  <td colspan="2">version</td>
+                  <td>02 00 00 00</td>
+                </tr>
+                <tr>
+                  <td colspan="2">input count</td>
+                  <td>02</td>
+                </tr>
+                <tr>
+                  <td rowspan="5">input #0</td>
+                  <td class="txindent">previous output hash<br>
+                    (reversed)</td>
+                  <td>32-byte reversed Transaction ID of the UTXO</td>
+                </tr>
+                <tr>
+                  <td class="txindent">previous output index</td>
+                  <td>00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptSig</td>
+                  <td>script containing signature</td>
+                </tr>
+                <tr>
+                  <td class="txindent">sequence</td>
+                  <td>ff ff ff ff</td>
+                </tr>
+                <tr>
+                  <td rowspan="5">input #1</td>
+                  <td class="txindent">previous output hash<br>
+                    (reversed)</td>
+                  <td>32-byte reversed Transaction ID of the UTXO</td>
+                </tr>
+                <tr>
+                  <td class="txindent">previous output index</td>
+                  <td>00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptSig</td>
+                  <td>script containing signature</td>
+                </tr>
+                <tr>
+                  <td class="txindent">sequence</td>
+                  <td>ff ff ff ff</td>
+                </tr>
+                <tr>
+                  <td colspan="2">output count</td>
+                  <td>02</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">output #0</td>
+                  <td class="txindent">value (reversed)</td>
+                  <td>00 3e 49 00 00 00 00 00<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptPubKey</td>
+                  <td>unlocking script</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">output #1</td>
+                  <td class="txindent">value (reversed)</td>
+                  <td>40 4b 4c 00 00 00 00 00<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptPubKey</td>
+                  <td>unlocking script</td>
+                </tr>
+                <tr>
+                  <td colspan="2">block lock time</td>
+                  <td>00 00 00 00</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </td>
+          <td valign="top"> <br>
+            <font size="+1"><b>Transaction Serialization</b></font>
+            <table width="80%" cellspacing="2" cellpadding="2"
+              border="1">
+              <tbody>
+                <tr>
+                  <td colspan="2">version</td>
+                  <td>02 00 00 00</td>
+                </tr>
+                <tr>
+                  <td colspan="2">input count</td>
+                  <td>02</td>
+                </tr>
+                <tr>
+                  <td rowspan="5">input #0</td>
+                  <td class="txindent">previous output hash<br>
+                    (reversed)</td>
+                  <td>32-byte reversed Transaction ID of the UTXO</td>
+                </tr>
+                <tr>
+                  <td class="txindent">previous output index</td>
+                  <td>00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptSig</td>
+                  <td>script containing signature</td>
+                </tr>
+                <tr>
+                  <td class="txindent">sequence</td>
+                  <td>ff ff ff ff</td>
+                </tr>
+                <tr>
+                  <td rowspan="5">input #1</td>
+                  <td class="txindent">previous output hash<br>
+                    (reversed)</td>
+                  <td>32-byte reversed Transaction ID of the UTXO</td>
+                </tr>
+                <tr>
+                  <td class="txindent">previous output index</td>
+                  <td>00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptSig</td>
+                  <td>script containing signature</td>
+                </tr>
+                <tr>
+                  <td class="txindent">sequence</td>
+                  <td>ff ff ff ff</td>
+                </tr>
+                <tr>
+                  <td colspan="2">output count</td>
+                  <td>02</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">output #0</td>
+                  <td class="txindent">value (reversed)</td>
+                  <td>00 3e 49 00 00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptPubKey</td>
+                  <td>unlocking script</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">output #1</td>
+                  <td class="txindent">value (reversed)</td>
+                  <td>00 00 00 00 00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td class="txindent">script length</td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">scriptPubKey</td>
+                  <td>
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td>unlocking script</td>
+                        </tr>
+                        <tr>
+                          <td>asset operation script</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">block lock time</td>
+                  <td>00 00 00 00</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <font size="+2"><b>Note that nothing changed except the
+                scriptPubKey in output #1</b></font> </td>
+        </tr>
+        <tr>
+          <td valign="top"> <br>
+            <font size="+1"><b>Serialization of Bitcoin Output #1:</b></font>
+            <br>
+            <br>
+            <table cellspacing="2" cellpadding="2" border="1">
+              <tbody>
+                <tr>
+                  <td><b>Unlocking Script: Description</b></td>
+                  <td align="center"><b>Length</b></td>
+                  <td><b>Hex Value Example</b></td>
+                </tr>
+                <tr>
+                  <td>OP_DUP</td>
+                  <td align="center">1 byte<br>
+                  </td>
+                  <td>76</td>
+                </tr>
+                <tr>
+                  <td>OP_HASH160</td>
+                  <td align="center">1 byte</td>
+                  <td>a9<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PUSHDATA 14</td>
+                  <td align="center">1 byte</td>
+                  <td>14<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">public key hash</td>
+                  <td align="center">20 bytes<br>
+                  </td>
+                  <td>c8 e9 09 96 c7 c6 08 0e e0 62 84 60 0c 68 4e d9 04
+                    d1 4c 5c</td>
+                </tr>
+                <tr>
+                  <td>OP_EQUALVERIFY</td>
+                  <td align="center">1 byte<br>
+                  </td>
+                  <td>88<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OP_CHECKSIG</td>
+                  <td align="center">1 byte<br>
+                  </td>
+                  <td>ac<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <font size="+1"><b>For Bitcoin at the transaction level,
+                (Sum of BTC input amounts)-(Sum of BTC output
+                amounts)=(The transaction fee paid to the miner) </b></font>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <font size="+2"><b>The additional Asset script is attached
+                to the UTXO in Evrmore after the unlocking script as
+                shown to the right ===&gt;&gt;&gt;</b></font> <br>
+          </td>
+          <td valign="top"> <br>
+            <font size="+1"><b>Serialization of Evrmore Asset Transfer
+                Output #1:</b></font> <br>
+            <br>
+            <table width="90%" cellspacing="2" cellpadding="2"
+              border="1">
+              <tbody>
+                <tr>
+                  <td><b>Unlocking Script: Description</b></td>
+                  <td align="center"><b>Length</b></td>
+                  <td><b>Hex Value Example</b></td>
+                </tr>
+                <tr>
+                  <td>OP_DUP</td>
+                  <td align="center">1 byte<br>
+                  </td>
+                  <td>76</td>
+                </tr>
+                <tr>
+                  <td>OP_HASH160</td>
+                  <td align="center">1 byte</td>
+                  <td>a9<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PUSHDATA 14</td>
+                  <td align="center">1 byte</td>
+                  <td>14<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="txindent">public key hash</td>
+                  <td align="center">20 bytes<br>
+                  </td>
+                  <td>c8 e9 09 96 c7 c6 08 0e e0 62 84 60 0c 68 4e d9 04
+                    d1 4c 5c</td>
+                </tr>
+                <tr>
+                  <td>OP_EQUALVERIFY</td>
+                  <td align="center">1 byte<br>
+                  </td>
+                  <td>88<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OP_CHECKSIG</td>
+                  <td align="center">1 byte<br>
+                  </td>
+                  <td>ac<br>
+                  </td>
+                </tr>
+                <tr>
+                  <th style="text-align: left; width: 60%;"> Asset
+                    Script: Description </th>
+                  <td width="20%" align="center">&nbsp;<b>Length</b>&nbsp;
+
+
+
+
+
+                    <br>
+                  </td>
+                  <th style="text-align: left;" width="30%"> Hex Value
+                    Example </th>
+                </tr>
+                <tr>
+                  <td>OP_EVR_ASSET </td>
+                  <td width="20%" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> c0 </td>
+                </tr>
+                <tr>
+                  <td><small>Either:<br>
+                      a) The number (#) of bytes below not counting
+                      OP_DROP (if #&lt;=75)<br>
+                      or <br>
+                      b) 0x4c followed by the number (#) of bytes below
+                      not counting OP_DROP (if #&gt;75)</small></td>
+                  <td width="20%" align="center">1 or 2 bytes<br>
+                  </td>
+                  <td width="30%">4F<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Asset_type Header("evr" in ASCII) </td>
+                  <td width="20%" align="center">3 bytes<br>
+                  </td>
+                  <td width="30%"> 657672 </td>
+                </tr>
+                <tr>
+                  <td>Asset operation type: transfer(t)=74</td>
+                  <td width="20%" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 74 </td>
+                </tr>
+                <tr>
+                  <td>Bytelength of Asset_Name</td>
+                  <td width="20%" align="center">1 byte<br>
+                  </td>
+                  <td width="30%">04<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Asset_Name:<br>
+                    <small><small>root_asset, root_asset!,
+                        root/subasset, root#unique, $restricted_asset,
+                        #qualifier, #qualifier/#subqualifier </small></small>
+                  </td>
+                  <td width="20%" align="center">&gt;=3 and &lt;=30
+                    bytes not including the owner asset ! </td>
+                  <td width="30%">48 41 4e 53<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8 Bytes of Little Endian hex: Amount of assets in
+                    satoshis </td>
+                  <td width="20%" align="center">8 bytes<br>
+                  </td>
+                  <td width="30%">00 e1 f5 05 00 00 00 00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%" cellspacing="2" cellpadding="2"
+                      border="1">
+                      <tbody>
+                        <tr>
+                          <td>userdata Type <small>(usually 0x12 or
+                              0x54)</small><br>
+                          </td>
+                          <td>1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>userdata Length (usually 0x20)<br>
+                          </td>
+                          <td>1 byte<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>userdata; <small>usually:<br>
+                              &nbsp;&nbsp; IPFS_base58_converted_to_hex
+                              (type=0x12)<br>
+                              or Transaction_Hash_ID (type=0x54)<br>
+                            </small> </td>
+                          <td>32 bytes max<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td width="20%" align="center">optional;<br>
+                    variable (max 34 bytes) </td>
+                  <td width="30%">1220c9ae8712366f46a43e<br>
+                    7403e50d1967f2f068d6f42c<br>
+                    c65f742edc0cc1706c109f<br>
+                    <br>
+                    &nbsp; (equivalent to Qmbuw1XZV8i4uFucmKSSYH7<br>
+                    gGhD5B1B1NPMseh9tp5hgea)</td>
+                </tr>
+                <tr>
+                  <td>userdata Expiry Time (UTC Unix timestamp format)<br>
+                  </td>
+                  <td width="20%" align="center">optional;<br>
+                    8 bytes<br>
+                  </td>
+                  <td width="30%">00000000625a168a<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OP_DROP </td>
+                  <td width="20%" align="center">1 byte<br>
+                  </td>
+                  <td width="30%"> 75 </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <font size="+1"><b>For Evrmore at the transaction level,
+                (Sum of EVR input amounts)-(Sum of EVR output
+                amounts)=(The transaction fee paid to the miner)<br>
+                AND<br>
+                Evrmore requires by consensus that (Sum of Asset input
+                amounts for each Asset by name)= (Sum of Asset output
+                amounts for each Asset by name) except in asset
+                creation/reissue transactions. </b></font> <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <font size="+2"><b>For additional Asset protocol information
+                please check <a
+                  href="anatomy_of_an_evrmore_output_asset_script.html">HERE</a>
+                and <a href="evrmore_overview_of_assets.html">HERE</a>
+              </b></font> <br>
+            <br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>

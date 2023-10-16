@@ -3,10 +3,10 @@
   <head>
     <meta content="text/html; charset=windows-1252"
       http-equiv="content-type">
-    <title>Asset-Related Transaction Generation Behavior by Ravencoin</title>
+    <title>Useful Wallet Integration Parameters</title>
     <meta content="Hans Schmidt" name="author">
-    <meta content="Asset-Related Transaction Generation Behavior by
-      Ravencoin" name="description">
+    <meta content="Useful Wallet Integration Parameters"
+      name="description">
     <style type="text/css">
 
 body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
@@ -35,11 +35,12 @@ div{margin-top:20px; margin-bottom:20px !important;}
               border="0">
               <tbody>
                 <tr>
-                  <td width="33%" valign="top">last update: July
-                    9th 2022 </td>
+                  <td width="33%" valign="top">last update: Oct 8th 2023
+                  </td>
                   <td valign="top" align="center"><a
                       href="../index.html">Main_Menu</a> </td>
-                  <td width="33%" valign="top" align="right"></td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -56,23 +57,25 @@ div{margin-top:20px; margin-bottom:20px !important;}
             <u><b>Useful wallet integration parameters:</b></u><br>
             <br>
             <b>Evrmore Info:</b><br>
-            DEFAULT_TRANSACTION_MINFEE = 1000000; //satoshis per kb<br>
-            DEFAULT_FALLBACK_FEE = 1025000;&nbsp; //satoshis per kb
-            (from wallet.h)<br>
-            DEFAULT_TX_CONFIRM_TARGET = 6; //blocks<br>
+            DEFAULT_TRANSACTION_MINFEE = 1000000; //satoshis per kb -
+            from wallet.h<br>
+            DEFAULT_FALLBACK_FEE = 1025000;&nbsp; //satoshis per kb -
+            from wallet.h<br>
+            DEFAULT_TX_CONFIRM_TARGET = 6; //blocks - from wallet.h<br>
             Transaction.MAX_MONEY = 21000000000 * 1e8;<br>
-            nSubsidyHalvingInterval = 1575000; // halving block height<br>
-            nSubsidy = 2750 * COIN;<br>
+            nSubsidyHalvingInterval = 1648776; // halving block height -
+            from chainparams.cpp<br>
+            nSubsidy = 2778 * COIN; - from chainparams.cpp<br>
             MAX_MONEY = 21000000000 * COIN;<br>
-            DUST_RELAY_TX_FEE = 3000;&nbsp;&nbsp; //per kb<br>
-            DEFAULT_BLOCK_MIN_TX_FEE = 1000;&nbsp; //per kb<br>
-            DUST threshold 546 sats<br>
-            <br>
-            <b>Bitcore</b>: networkMagic is entered in reverse in
-            bitcore<br>
+            DUST_RELAY_TX_FEE = 3000;&nbsp;&nbsp; //per kb - from
+            policy.h<br>
+            DEFAULT_BLOCK_MIN_TX_FEE = 1000;&nbsp; //per kb - from
+            policy.h<br>
+            DUST threshold 546 sats - calculated from DUST_RELAY_TX_FEE
+            and non-segwit txin,txout sizes<br>
             <br>
             <b>MAINNET</b><br>
-            rpcport: 8766<br>
+            rpcport: 8819<br>
             addNetwork({<br>
             &nbsp;&nbsp;&nbsp; pubkeyhash: 0x21,<br>
             &nbsp;&nbsp;&nbsp; privatekey: 0x80,<br>
@@ -89,7 +92,7 @@ div{margin-top:20px; margin-bottom:20px !important;}
             });<br>
             <br>
             <b>TESTNET</b><br>
-            rpcport: 18766<br>
+            rpcport: 18819<br>
             addNetwork({<br>
             &nbsp;&nbsp;&nbsp; pubkeyhash: 0x6f,<br>
             &nbsp;&nbsp;&nbsp; privatekey: 0xef,<br>
@@ -121,7 +124,7 @@ div{margin-top:20px; margin-bottom:20px !important;}
             <br>
             <hr width="100%" size="2">
             <hr width="100%" size="2"> <br>
-            <div align="center">Copyright 2022 by Hans Schmidt <br>
+            <div align="center">Copyright 2022, 2023 by Hans Schmidt <br>
             </div>
           </div>
         </div>

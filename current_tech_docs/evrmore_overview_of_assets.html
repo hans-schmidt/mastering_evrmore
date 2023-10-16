@@ -1,0 +1,1346 @@
+
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evrmore Overview of Assets</title>
+<meta property="og:title" content="Assets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A peer-to-peer blockchain designed to handle the efficient creation and transfer of assets from one party to another. It’s an open-source project based on Bitcoin" />
+<meta property="og:description" content="A peer-to-peer blockchain designed to handle the efficient creation and transfer of assets from one party to another. It’s an open-source project based on Bitcoin" />
+<link rel="canonical" href="https://hans-schmidt.github.io/mastering_evrmore/current_tech_docs/evrmore_overview_of_assets.html" />
+<meta property="og:url" content="https://hans-schmidt.github.io/mastering_evrmore/current_tech_docs/evrmore_overview_of_assets.html" />
+<meta property="og:site_name" content="Evrmore" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Assets" />
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:300,400,500,600,700" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+</head>
+<body>
+<br>
+<table width="100%" cellspacing="2" cellpadding="2" border="0">
+<tbody>
+<tr>
+<td width="33%" valign="top"><b>last update: Oct 9th 2023</b></td>
+<td valign="top" align="center"><a href="../index.html"><b>Main_Menu</b></a> </td>
+<td width="33%" valign="top" align="right"><br></td>
+</tr>
+</tbody>
+</table>
+<br>
+
+<main class="page-container">
+
+<div class="page-content" aria-label="Content">
+  <div class="wrapper mt-16 pb-20">
+  <h2>All About Evrmore Assets</h2>
+
+  <p>This page is a work in progress. 
+  <br>If you would like to make corrections or provide additional detail, please make a pull request on
+<a href="https://github.com/hans-schmidt/mastering_evrmore/blob/master/current_tech_docs/evrmore_overview_of_assets.html">this website's github source</a> or visit us at our
+<a href="https://discord.gg/4csauGuvw3">discord server</a>.
+<br>At this time, most transaction examples point to transactions on the Ravencoin blockchain, which is similar to Evrmore in those cases.
+</p>
+
+  <br />
+  <p>This webpage will attempt to describe Evrmore assets at a high level, and then dig deeper into the technical implementation.
+  <br><b><h4>For more precise asset naming rules and some of the datafield contents, please also see 
+  <a href="./anatomy_of_an_evrmore_output_asset_script.html">HERE</a> and <a href="evrmore_transaction_structure_to_support_assets.html">HERE</a></h4></b></p>
+  <br />
+
+  <h2>Table of Contents</h2>
+  <ul>
+  	<li><a href="#asset_fundamentals"><u>Evrmore Asset Fundamentals</u></a></li>
+  	<ul>
+    <li><a href="#what_is_an_asset">What is an asset?</a></li>
+    <li><a href="#where_can_i_trade_assets">Where can I trade assets?</a></li>
+    <li><a href="#privacy">Privacy and Access</a></li>
+    <li><a href="#the_nomenclature">The Nomenclature</a></li>
+    <li><a href="#creating_assets">Creating Assets</a></li>
+    	<ul>
+	    	<li><a href="#main_assets_subassets_unique">Main Assets, Subassets, and Unique Assets</a></li>
+   	 	<li><a href="#broadcasts_and_messages">Broadcasts and Messages</a></li>
+    		<li><a href="#qualifiers_restricted_tags">Qualifiers, Restricted Assets, and More</a></li>
+    	</ul>
+    </ul>
+  	 <li><a href="#asset_technicals"><u>Evrmore Asset Technical Implementation</u></a></li>
+    <ul> 
+     <li><a href="#what_is_on_chain">What is on the chain?</a></li>
+     <li><a href="#burn_addresses">Burn Addresses</a></li>
+     <li><a href="#scripts">Standard Asset Scripts</a></li>
+<!--    
+     <ul>
+      <li><a href="#chain_parsing_note">A note on chain parsing</a></li>
+     </ul>
+-->    
+     <li><a href="#create_transactions">Building Asset Transactions</a></li>
+    </ul>
+  </ul>
+
+  <br /><br />
+  <h2 id="asset_fundamentals">Evrmore Asset Fundamentals:</h2></a>
+  
+  <h3 id="what_is_an_asset"><u>What is an asset?</u></h3>
+
+  <p>An Evrmore asset (sometimes referred to as a token) is an on-chain data object which contains user-generated information. An asset can be used as an event ticket, a subscription, a coupon, a badge, an authentication approval, a coin, a financial security, or a representation of a physical asset such as real estate, art, precious metal, etc. It is created and processed according to the blockchain consensus rules, which dictate the conditions under which it can be created, under which it can be moved (traded) to a different address, under which the enclosed information can be edited, and under which additional assets of the same type or derivative type may be created.  </p>
+  <p>An Evrmore asset has a human-readable guaranteed unique name which is chosen by the user when created. </p>
+  <p>In bitcoin terminology, every Evrmore asset is contained in a UTXO or group of UTXOs.</p>
+
+  <br />
+  <h3 id="where_can_i_trade_assets"><u>Where can I trade assets?</u></h3>
+  <p>Marketplaces can be public, global, and free of regulation such as the EVRSea NFT Marketplace at <a href="https://evrsea.io">https://evrsea.io</a> which specializes in the trading of NFT art implemented as Evrmore assets. Other marketplaces are proprietary and require a membership. A financial security marketplace would require regulatory approvals based on the juristiction of the participants.</p>
+  <br />
+
+  <h3 id="privacy"><u>Privacy and Access</u></h3>
+  <p>An Evrmore asset, like a Bitcoin, is held at a blockchain address and all movements on the chain are publicly viewable. Ownership of an asset is therefore pseudonomous based on knowledge of who owns which address. Some data contained in the asset, such as its name, are also publicly viewable. But other data, such as data pointed to by an IPFS link contained within the asset, could be encrypted so that only users who possess the decryption key can view that data.</p> 
+  <p>The ability to buy and sell most assets is unrestricted beyond the requirement that the owner must prove ownership by proving possession of the keys associated with the address at which the asset resides. However, Evrmore does also support a special Restricted Asset type which is subject to a number of addtional restrictions including mechanisms to limit which addresses are allowed to receive the asset or to globally freeze and unfreeze trading for all addresses.</p>
+  <br />
+
+  <h3 id="the_nomenclature"><u>The Nomenclature</u></h3>
+  <p>The following terms are commonly used to describe Evrmore asset capabilities or operations:</p>
+  <ul>
+    <li>
+      <h4><u>Reissuability</u></h4>
+      <p>This is a metadata flag which denotes whether or not an asset can be reissued, which also provides an opportunity to change some of the asset's metadata. Once this flag is set to false it CANNOT be changed back! If you want (or if there is even a small chance that you will want) to change your asset's information in the future, ensure that you issue your asset as reissuable when you create it!</p>
+    </li>
+    <li>
+      <h4><u>Divisibility (Units)</u></h4>
+      <p>Units is a metadata value from zero to eight which denotes how much an asset can be broken up. Specifically this number is how many digits past the decimal this asset can be divided into (a minimum size of 10<sup>-d</sup> where d is the divisibility).</p>Units=0 means the tokens are not divisible at all -- whole tokens only can be transferred.  Units=2 would be two decimal places like cents on a dollar it would be possible to transfer 0.01.   Units=8 is the most divisible and allows tokens to be tranferred in increments of 0.00000001.
+    </li>
+    <li>
+      <h4><u>Reissuing</u></h4>
+      <p>Reissuing an asset is an act which does one or both of the following:</p>
+      <ul>
+        <li>Changing the metadata associated with an asset.</li>
+        <li>Creating more of an asset.</li>
+      </ul>
+      <br />
+      <p>In order to reissue an asset, the asset must be reissuable and you must have the associated ownership asset.</p>
+      <br />
+      <p>When changing divisibility during a reissuance, the divisibility may only be kept the same or increased, never decreased.</p>
+      <br />
+      <p>When increasing divisibility, you cannot use the new lowest asset amount when creating more of the asset; the asset still has the old divisibility amount until the reissue transaction has been mined into a block</p>
+    </li>
+    <li>
+      <h4><u>Ownership Assets</u></h4>
+      <p>When creating an asset of type "main", you will also receive an ownership asset. Ownship assets allow a user to reissue an asset and create "child assets" which we will explore in the next section. Ownership assets are designated by an exclamation point (!) appended to the chosen name of the Asset. For instance, for an asset created with the name "ASSET", the associated ownership asset would be "ASSET!". If an asset A requires the ownership asset of asset B to be created, asset B is said to be asset A's "parent" and asset A is said to be asset B's "child".</p>
+    </li>
+    <li>
+      <h4><u>Associated Data</u></h4>
+      <p>This is a 32-byte data field which contains user-supplied data. It usually contains an <a href="https://ipfs.io">IPFS hash</a> or a Transaction Identifier (TXID), but it can be anything.</p>
+    </li>
+    <li>
+      <h4><u>Message Broadcasts</u></h4>
+      <p>Any owner of any asset can broadcast a 32 byte message associated with that asset. We will go more in-depth with broadcasts later.</p>
+    </li>
+    <li>
+      <h4><u>Null Asset Tags</u></h4>
+      <p>These are special <a href="https://en.bitcoin.it/wiki/Script">scripts</a> used by holders of qualifier assets and restricted ownership assets to define behavior between restricted assets and addresses. The relationship between qualifiers, restricted assets, tags, and addresses is fairly complicated. We will go more in-depth further down the page.</p>
+    </li>
+  </ul>
+
+  <br />
+
+  <h3 id="creating_assets"><u>Creating Assets</u></h3>
+  <p>When creating an asset, you need to know what type of asset you want, the name you want for the asset, the quantity of the asset which you want to issue, how much it costs to create the asset, and the metadata you want associated with the asset.</p>
+  <p>Assets are easily identified by their names, which must be unique. An asset creation will not be accepted by the chain if the name is not unique.</p>
+  <p>Asset names are encoded using plain ascii. Therefore asset names can only contain characters in the latin alphabet.</p>
+  <p>The cost of creating an asset can be viewed as the cost to "reserve the name" similar to purchasing a DNS name. The cost is not a function of the quantity of tokens issued of that asset.</p>
+  <p>To put this information in a more readable format, all of the upcoming asset types will contain the following chart:</p>
+   <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td>Name specifications</td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Ownership specifications</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>Prerequisite specifications</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>Amount specifications</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>Cost specifications</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>Reissuability specifications</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility specifications</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>Associated data specifications</td>
+    </tr>
+  </table> 
+  
+  <p>This table denotes the fields avaliable and their limitations.</p>
+  <p>For instance, an ownership asset table looks like this:</p>
+  <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td>Base asset name + '!'</td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>No associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>Created with another asset</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>There can only be 1 of some ownership asset</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>Comes with the base asset</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>Cannot be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Has 0 divisibility</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>No data can be associated</td>
+    </tr>
+  </table>
+  <br />
+  <h3 id="main_assets_subassets_unique"><u>Main Assets, Subassets, and Unique Assets</u></h3>
+  <p>When working with Evrmore assets you will most likely be using one of these three. They are by far the most used types of assets.</p>
+  <br />
+  <h4><u>Main assets</u></h4>
+  <p>Using a website analogy, a main asset is like a domain name.</p>
+  
+  <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td>From 3 to 30 of the symbols A-Z 0-9 . _ The point or underscore cannot be the first or last characters or repeated. The names EVR, EVER, EVRMORE. EVERMORE. EVRMORECOIN, EVERMORECOIN, EVRS, EVERS, EVRMORES. EVERMORES. EVRMORECOINS, EVERMORECOINS, RVN, RAVEN, RAVENCOIN RVNS, RAVENS, and RAVENCOINS are reserved.</td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Main assets have an associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 - 21,000,000,000 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>500 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset can be set to be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility can be set from 0-8</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset can have associated data</td>
+    </tr>
+  </table> 
+  <p>The ownership asset of a main asset is required to create the following two asset types.</p>
+
+  <br />
+
+  <h4><u>Sub-assets</u></h4>
+  <p>A sub-asset is like a path within a website or like a filesystem subdirectory. Creating a sub asset requires a main asset ownership token.</p>
+
+  <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td><p>The sub-portion of the name must be at least 1 capital letter. '.' and '_' are also allowed, but they cannot be at the beginning or end of the sub-portion. More than one of these special characters also cannot be next to one another.</p>
+      <p>The full sub-asset name takes the form [main asset name]/[sub-portion]. This full name must be 30 or less characters.</p></td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Sub-assets have an associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>A main asset's ownership asset</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 - 21,000,000,000 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset can be set to be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility can be set from 0-8</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset can have associated data</td>
+    </tr>
+  </table> 
+
+  <br />
+
+  <h4><u>Unique assets</u></h4>
+  <p>A unique asset can be likened to a file on a website. Creating a unique asset requires a main asset ownership token or a sub-asset ownership token. There can only be 1 of a unique asset.</p>
+
+  <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td>The unique portion of the name must be at least 1 character. The full unique asset name takes the form [main or sub asset name]#[unique portion]. This full name must be 30 or less characters.</td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Unique assets have no associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>A main asset or sub-asset's ownership asset</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>5 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset cannot be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility is 0</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset can have associated data</td>
+    </tr>
+  </table>
+  <br />
+  <h3 id="broadcasts_and_messages"><u>Broadcasts and Message Channels</u></h3>
+<p>Message Channel is an asset type which is defined in Evrmore. However, it is not supported in any of the mainstream community software releases, and it is rarely used. It is included here only for the sake of completeness. </p>
+  <h4><u>Asset Messages</u></h4>
+  <p>Any user can send an asset message on any asset of any type which they own. An asset message is a 34 bytes long data field in any asset transfer transaction which the user can set to carry a message. It uses the same datafield which is used to associate an IPFS link or Transaction ID as metadata to an asset when the asset is created or reissued. During other asset operations it just becomes usable as a general purpose message field. When the transfer is to another address, the message is interpreted to be intended to be directed to the owner of that address.</p>
+  <h4><u>Asset Broadcasts</u></h4>
+  <p>In a message channel asset transfer transaction, if the receiving address is the same as the sending address, this is interpreted as a message broadcast. Only message channels can broadcast messages. It is important to note that the term "broadcast" is actually a misnomer since there is nothing being sent to multiple destinations beyond the usual transaction relaying. It is solely a scheme by which the client software could interpret use of the data field in a transaction, but no such user interface for message broadcasts has been implemented in the core wallet and may never be implemented.</p>
+  <h4><u>Message Channels</u></h4>
+  <p>A message channel requires a main or sub-asset's ownership asset. A message channel is an asset specifically made for broadcasting messages. Their purpose is to add more control to whoever
+  might be subscribed to the message channel's parent.</p>
+  <p>On-chain messages are a very limited and expensive way to send messages because the data field is very small and because every transaction costs a transaction fee. On the other hand, the data field size problem can be avoided by making it a link to (possibly changing) data off-chain. Also, the transaction fees do provide a mechanism to discourage spam.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td><p>The message channel portion of the name must at most 12 characters. It can contain letters, numbers, and '_'. '_' cannot be at the beginning or end of the message channel portion and two or more '_''s cannot be next to each other.</p>
+      <p>The message channel asset name takes the form [main or sub asset name]~[message channel portion]. This full name must be 30 or less characters.</p></td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Message channel assets have no associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>A main asset or sub-asset's ownership asset</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset cannot be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility is 0</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset cannot have associated data</td>
+    </tr>
+  </table>
+  <br />
+  
+  <h3 id="qualifiers_restricted_tags"><u>Qualifiers, restricted assets, addresses, and tags</u></h3>
+  <p>Restricted assets, qualifiers, address tagging, and other related items are a complex topic. They are fully supported on-chain and in the Evrmore core code. And you may find an interesting way to use them in your application. But it is more likely that you won't need to understand or use them. They were created specifically to support the regulatory requirements of Security Token Offerings, Financial Security trading, and the required Know-Your-Customer regulations. Restricted assets are restricted in the sense that only certain addresses may receive them. Those address must satisfy the requirements of a "Verifier String" defined for that Restricted Asset. A Verifier String is a boolean expressed composed from Qualifier names. Qualifier names are the names of Qualifier Assets which represent the satisfaction of some requirement such as having been KYC vetted or being a member of a club. Addresses can be tagged or untagged by the holder of a Qualifier Asset, and the result of those address tagging operations must satisfy the boolean Verifier String in order for that address to receive the Restricted Asset. The creator of a Qualifier Asset can create more than one of them with the same name, which he can give to other addresses, effectively delegating to the owner of that address the ability to tag any address on his behalf with the Qualifier.</p>
+  <p>Lets start out with some definitions.</p>
+  <ul>
+    <li>
+    <h4><u>Asset Tags</u></h4>
+    <p>An asset tag determines whether or not an address is able to receive a restricted asset. It costs 0.1 EVR to create an asset tag. There are three types of asset tags:</p>
+    <ul>
+    <li><h5><u>Null Asset Tag</u></h5>
+    <p>A null asset tag has two sub-types:</p>
+    <ul>
+    <li>Qualifying Null Asset Tag: This type of null asset tag can be created with a qualifier asset. It qualifies or unqualifies some address.</li>
+    <li>Restricted Null Asset Tag: This type of null asset tag can be created with a restricted asset's ownership asset. It can add or remove an address from being blacklisted from receiving this restricted asset
+     no matter the address's qualifications.</li>
+    </ul>
+    </li>
+    <li>
+    <h5><u>Verifier Asset Tag</u></h5>
+    <p>A verifier asset tag can be created with a restricted asset's ownership asset. It associates this restricted asset with one or more qualifiers. (This
+   means that to recieve this restricted asset, an address must be qualified by all of the qualifiers defined in this tag).</p>
+    </li>
+    <li>
+    <h5><u>Restricted Asset Tag</u></h5>
+    <p>Also known as a global freeze tag, a restricted asset tag can be created with a restricted asset's ownership asset. This tag
+     can freeze or unfreeze all movements across all addresses of this restricted asset.</p>
+    </li>
+    </ul>
+    </li>
+    <li>
+    <h4><u>Qualifier Asset</u></h4>
+    <p>Qualifier assets are administrative assets (in the same group as ownership assets) used to determine what addresses can receive restricted assets. Simply owning a qualifier asset gives a user this power.</p>
+    <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td><p>The qualifier portion of the name has the same naming rules as a main asset.</p>
+      <p>The qualifier asset name takes the form #[qualifier portion]. Note how this is differentiated from unique assets with the fact that a qualifier has no parent. This full name must be less than 30 characters.</p></td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Qualifier assets have no associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 - 10 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>1000 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset cannot be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility is 0</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset can have associated data. Note: because qualifiers cannot be reissued, if you choose to have associated data, it cannot be changed in the future.</td>
+    </tr>
+    </table>
+    </li>
+    
+    <br>
+    <li>
+    <h4><u>Sub-qualifier Asset</u></h4>
+    <p>Currently, sub-qualifiers have exactly the same powers as their parents. Sub-qualifiers use a parent qualifier asset in lieu of a parent ownership asset in its creation.</p>
+    <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td><p>The sub-qualifier portion of the name has the same naming rules as a sub-asset.</p>
+      <p>The sub-qualifier asset name takes the form #[qualifier portion]/#[sub-qualifier]. Note how this is differentiated from unique assets with the fact the the intermediary characters are '/#' This full name must be less than 30 characters.</p></td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Qualifier assets have no associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>A qualifier</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 - 10 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset cannot be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility</td>
+      <td>Divisibility is 0</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset can have associated data. Note: because qualifiers cannot be reissued, if you choose to have associated data, it cannot be changed in the future.</td>
+    </tr>
+    </table>
+    </li>
+    <br>
+    
+    <li>
+    <h4><u>Restricted Asset</u></h4>
+    <p>Restricted assets are comparable to main assets except for the fact that they are, well, restricted. Currently restricted assets can only be associated with main qualifiers (not sub-qualifiers). If a restricted asset is not associated with any qualifier, it cannot be transfered. 
+    Restricted assets are also somewhat unique in the fact that if they can be reissued, they are able to change what qualifiers they are associated with.</p>
+    <table style="width:100%">
+    <tr>
+      <th>Metadata</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>Asset Name</td>
+      <td><p>The restricted portion of the name has the same naming rules as a main asset.</p>
+      <p>The restricted asset name takes the form $[restricted protion]. This full name must be less than 30 characters.</p></td>
+    </tr>
+    <tr>
+      <td>Ownership Asset</td>
+      <td>Restricted assets have an associated ownership asset</td>
+    </tr>
+    <tr>
+      <td>Prerequisites</td>
+      <td>A qualifier</td>
+    </tr>
+    <tr>
+      <td>Asset Amount</td>
+      <td>1 - 21,000,000,000 of this asset can be created</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>1500 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissuability</td>
+      <td>This asset can be reissued</td>
+    </tr>
+    <tr>
+      <td>Divisibility (Units)</td>
+      <td>Divisibility (Units) can be 0 - 8</td>
+    </tr>
+    <tr>
+      <td>Associated Data</td>
+      <td>This asset can have associated data.</td>
+    </tr>
+    </table>
+    </li>
+  </ul>
+
+  <br />
+  
+<h2 id="asset_technicals">Evrmore Asset Technical Implementation:</h2></a>
+
+<h3><u>TLDR:</u></h3> 
+
+<p>If you understand Bitcoin's transaction and UTXO
+structures and you just want to see an example of how
+Evrmore differs from Bitcoin in order to support Assets,
+then look <a href="bitcoin_vs_evrmore_txn_comparison.html">HERE</a>
+</p>
+<br>
+
+  <h3 id="what_is_on_chain"><u>What is stored on the chain?</u></h3>
+  <p>All asset creations, reissues, transfers, and tags are special scripts and are part of normal transactions.
+  </p>
+  <p>When an asset is created, nodes store the asset name, reissuability, divisions, associated data, and respective VOUT information in a database. This is how nodes easily access metadata. During a reissuance, the ownership asset must be sent to prove ownership on-chain and the node will save the new metadata. These asset creation and reissuance transactions are the only places where the metadata is stored on the chain.</p>
+  <p>This means that, say, a 3rd party wallet sends you asset information. Whatever protocol they are using will need to send the client the VOUT of asset creations or reissues so that the client may verify the integrity of the metadata.</p>
+  <p>The same is true for asset tags. They only exist on the chain in one singular transaction. The node then keeps track of where that transaction is in a database for verification later.</p>
+  <p>As discussed earlier, there is also an optional 34-byte data field in the asset script portion of any asset transaction. During creation or reissue of an asset, that datafield determines the IPFS or TXID metadata attached to the asset. During other asset operations it can serve as a general purpose message field.</p>
+
+  <br />
+  <h3 id="burn_addresses"><u>Burn Addresses and Cost of Asset Operations</u></h3>
+  <p>In order to create an asset, a certain amount of EVR must be sent to a burn address.</p>
+  <p>The first two characters are due to Evrmore's P2PKH address type of 0x21 and the seeming random characters at the end of each address are the <a href="https://en.bitcoin.it/wiki/File:Address_map.jpg">public key's checksum</a>.</p>
+  <table style="width:100%">
+    <tr>
+      <th></th>
+      <th>Mainnet Address</th>
+      <th>Testnet Address</th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <td>Issue Asset</td>
+      <td>EXissueAssetXXXXXXXXXXXXXXXXYiYRBD</td>
+      <td>n1issueAssetXXXXXXXXXXXXXXXXWdnemQ</td>
+      <td>500 EVR</td>
+    </tr>
+    <tr>
+      <td>Reissue Asset</td>
+      <td>EXReissueAssetXXXXXXXXXXXXXXY1ANQH</td>
+      <td>n1ReissueAssetXXXXXXXXXXXXXXWG9NLd</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Issue Sub-Asset</td>
+      <td>EXissueSubAssetXXXXXXXXXXXXXWW1ASo</td>
+      <td>n1issueSubAssetXXXXXXXXXXXXXbNiH6v</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Issue Unique Asset</td>
+      <td>EXissueUniqueAssetXXXXXXXXXXTZjZJ5</td>
+      <td>n1issueUniqueAssetXXXXXXXXXXS4695i</td>
+      <td>5 EVR</td>
+    </tr>
+    <tr>
+      <td>Issue Message Channel</td>
+      <td>EXissueMsgChanneLAssetXXXXXXXD3mRa</td>
+      <td>n1issueMsgChanneLAssetXXXXXXT2PBdD</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Issue Qualifier</td>
+      <td>EXissueQuaLifierXXXXXXXXXXXXW5Zxyf</td>
+      <td>n1issueQuaLifierXXXXXXXXXXXXUysLTj</td>
+      <td>1000 EVR</td>
+    </tr>
+    <tr>
+      <td>Issue Sub-Qualifier</td>
+      <td>EXissueSubQuaLifierXXXXXXXXXUgTjtu</td>
+      <td>n1issueSubQuaLifierXXXXXXXXXYffPLh</td>
+      <td>100 EVR</td>
+    </tr>
+    <tr>
+      <td>Issue Restricted Asset</td>
+      <td>EXissueRestrictedXXXXXXXXXXXZZMynb</td>
+      <td>n1issueRestrictedXXXXXXXXXXXXZVT9V</td>
+      <td>1500 EVR</td>
+    </tr>
+    <tr>
+      <td>Add Asset Tag</td>
+      <td>EXaddTagBurnXXXXXXXXXXXXXXXXb5HLXh</td>
+      <td>n1addTagBurnXXXXXXXXXXXXXXXXX5oLMH</td>
+      <td>0.1 EVR</td>
+    </tr>
+    <tr>
+      <td>General Burn</td>
+      <td>EXBurnXXXXXXXXXXXXXXXXXXXXXXZ8ZjfN</td>
+      <td>n1BurnXXXXXXXXXXXXXXXXXXXXXXU1qejP</td>
+      <td>N/A</td>
+    </tr>
+  </table>
+  <br />
+  <h3 id="scripts"><u>Asset Scripts</u></h3>
+  <p>The following sections describe the low-level implementation details of asset scripts. They assume hat you are familiar with <a href="https://en.bitcoin.it/wiki/Script">script</a> and
+   <a href="https://en.bitcoin.it/wiki/Transaction">transactions</a>. 
+   <br>We do not endorse any of the assets shown in examples.
+   <br>If you are looking to use this as a guide to parse the Evrmore chain, please see a note at the end of this section.</p>
+  <p><b><h4>For more precise asset naming rules and some of the datafield contents, please also see 
+  <a href="./anatomy_of_an_evrmore_output_asset_script.html">HERE</a> and <a href="evrmore_transaction_structure_to_support_assets.html">HERE</a></h4></b></p>
+  <div>
+  <h4><u>New asset script</u></h4>
+  <p>New asset scripts are used to transfer an amount of an asset into and address during an asset create as well as associate metadata
+   with the created asset.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>Standard vout script (P2PKH)</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset data (OP_PUSH) (Not including OP_DROP)</td>
+      <td>1 or 2 bytes</td>
+    </tr>
+    <tr>
+      <td>'evr' in ascii (657672)</td>
+      <td>3 bytes</td>
+    </tr>
+    <tr>
+      <td>Asset script type 'q' (71)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of asset name (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Asset name in ascii</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>Amount in sats (little endian)</td>
+      <td>8 bytes</td>
+    </tr>
+    <tr>
+      <td>Divisions (00-08)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Reissuability (00-01)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Has associated data (00-01)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Associated data (Optional; only if previous byte is 01)<br>
+      Contains 1 byte Type (usually 0x12 for IPFS or 0x54 for TXID) + 1 byte Length (usually 0x20) + 32 bytes</td>
+      <td>Optional 34 bytes user defined data</td>
+    </tr>
+    <tr>
+      <td>OP_DROP (75)</td>
+      <td>1 byte</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=8eefce8d264d723b6b8f3cf87bcb400a009d01c2771f94e5cc07af252851aa96&amp;decode=1">8eefce8d264d723b6b8f3cf87bcb400a009d01c2771f94e5cc07af252851aa96</a> VOUT 3</p>
+</div>  
+<br><br>
+  
+<div>
+  <h4><u>Ownership asset script</u></h4>
+  <p>Ownership asset scripts are used in tandem with a new asset script if the new asset has an associated ownership asset.
+   Notice how ownership assets have no extra information, not even an amount.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>Standard vout script (P2PKH)</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset data (OP_PUSH) (Not including OP_DROP)</td>
+      <td>1 or 2 bytes</td>
+    </tr>
+    <tr>
+      <td>'evr' in ascii (657672)</td>
+      <td>3 bytes</td>
+    </tr>
+    <tr>
+      <td>Asset script type 'o' (6F)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of asset name (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Asset name in ascii</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>OP_DROP (75)</td>
+      <td>1 byte</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=8eefce8d264d723b6b8f3cf87bcb400a009d01c2771f94e5cc07af252851aa96&amp;decode=1">8eefce8d264d723b6b8f3cf87bcb400a009d01c2771f94e5cc07af252851aa96</a> VOUT 2</p>
+</div>
+<br><br>
+
+<div>
+  <h4><u>Reissue asset script</u></h4>
+  <p>Reissue asset scripts are used to change an asset's metadata. If the amount is not zero, that amount of the asset is created for the pubkey in the standard script.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>Standard vout script (P2PKH)</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset data (OP_PUSH) (Not including OP_DROP)</td>
+      <td>1 or 2 bytes</td>
+    </tr>
+    <tr>
+      <td>'evr' in ascii (657672)</td>
+      <td>3 bytes</td>
+    </tr>
+    <tr>
+      <td>Asset script type 'r' (72)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of asset name (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Asset name in ascii</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>Amount in sats (little endian) (Amount to add into circulation)</td>
+      <td>8 bytes</td>
+    </tr>
+    <tr>
+      <td>Divisions (00-08) (FF for unchanged; can only increase)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Reissuability (00-01)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Associated data (Optional; only if associating new data)</td>
+      <td>1 type byte, 1 length byte, 32 bytes user data</td>
+    </tr>
+    <tr>
+      <td>OP_DROP (75)</td>
+      <td>1 byte</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=b9d3ba355acbf58e44e893dccbcad06a10af88727adc340eeacd10d11b026f52&amp;decode=1">b9d3ba355acbf58e44e893dccbcad06a10af88727adc340eeacd10d11b026f52</a> VOUT 3</p>
+</div>  
+<br><br>
+  
+<div>  
+  <h4><u>Transfer asset script</u></h4>
+  <p>Transfer asset scripts are used to transfer an amount of an asset to another address. If transfering an ownership asset, use 100,000,000 (00:E1:F5:05:00:00:00:00) for the sat value.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>Standard vout script (P2PKH)</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset data (OP_PUSH) (Not including OP_DROP)</td>
+      <td>1 or 2 bytes</td>
+    </tr>
+    <tr>
+      <td>'evr' in ascii (657672)</td>
+      <td>3 bytes</td>
+    </tr>
+    <tr>
+      <td>Asset script type 't' (74)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of asset name (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Asset name in ascii</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>Amount in sats (little endian)</td>
+      <td>8 bytes</td>
+    </tr>
+    <tr>
+      <td>Associated data (Optional; only if a broadcast)</td>
+      <td>1 type byte, 1 length byte, 32 bytes user data</td>
+    </tr>
+    <tr>
+      <td>OP_DROP (75)</td>
+      <td>1 byte</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=bae95f349f15effe42e75134ee7f4560f53462ddc19c47efdd03f85ef4ab8f40&amp;decode=1">bae95f349f15effe42e75134ee7f4560f53462ddc19c47efdd03f85ef4ab8f40</a> VOUT 0</p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Null asset tag script</u></h4>
+  <p>Dictates if an address is qualified for a restricted asset.</p>
+  <p>If the asset is a qualifier, a flag of 1 denotes a qualification. A flag of 0 denotes a revocation.</p>
+  <p>If the asset is a restricted asset, a flag of 1 denotes blacklisting the address. A flag of 0 denotes unblacklisting the address.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the pubkey h160 (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Pubkey h160</td>
+      <td>20 bytes</td>
+    </tr>
+    <tr>
+      <td>Length of the asset portion (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset name (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Qualifier or restricted asset name</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>Flag (00-01)</td>
+      <td>1 byte</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=4ea3369ef6fb57fc26e176ad5903d4684a8c64f641aa0e1f02e5c7428609e060&amp;decode=1">4ea3369ef6fb57fc26e176ad5903d4684a8c64f641aa0e1f02e5c7428609e060</a> VOUT 1</p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Verifier asset tag script</u></h4>
+  <p>This script must be sent with a new asset script or a reissue asset script for a restricted asset. It associates qualifiers with the restricted asset.</p>
+  <p>An asset name portion of 'true' in ascii is the default to denote no associated qualifiers.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>OP_RESERVED (50)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset portion (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the qualifier name(s) (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Qualifier name(s) (joined with &amp; in ascii)</td>
+      <td>Var bytes</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=477a0b2214475d11e316524b500e29837c6763fec256594c2ca7aa369b15888b&amp;decode=1">477a0b2214475d11e316524b500e29837c6763fec256594c2ca7aa369b15888b</a> VOUT 2</p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Global restriction asset tag script</u></h4>
+  <p>If the flag is 1, this stops all movement of the restricted asset. A flag of 0 re-enables movement.</p>
+  <table style="width:100%">
+    <tr>
+      <th>Script portion</th>
+      <th>Number of bytes</th>
+    </tr>
+    <tr>
+      <td>OP_EVR_ASSET (C0)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>OP_RESERVED (50)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>OP_RESERVED (50)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset portion (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Length of the asset name (OP_PUSH)</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td>Restricted asset name</td>
+      <td>Var bytes</td>
+    </tr>
+    <tr>
+      <td>Flag (00-01)</td>
+      <td>1 byte</td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=2fc0bb7e3a33d12ca08f72add0effc3d059cf63382bebcad96e8923e91c3c537&amp;decode=1">2fc0bb7e3a33d12ca08f72add0effc3d059cf63382bebcad96e8923e91c3c537</a> VOUT 2</p>
+</div>
+
+  <br><br>
+
+<!--
+  <p id="chain_parsing_note">**Chain parsing note**</p>
+  <p>Just like the pirate by-laws, the OP_PUSH after OP_EVR_ASSET can be seen more as a suggestion rather than a rule-of-thumb. Currently nodes accept assets based on whether or not the ‘evr’ is within 1 or 2 bytes after OP_EVR_ASSET instead of actually reading the OP_PUSH after OP_EVR_ASSET. Because of this, there are some transactions on the chain that have non-standard bytes after OP_EVR_ASSET. (Including lengths that are greater or less than the asset data or bytes that are greater than OP_PUSHDATA4).</p>
+  <p>If you only want to track ‘good’ transactions you can ignore these, as the vast majority of transactions follow proper serialization protocols. However, these malformed transactions are in fact ‘valid’ outpoints (for now) and if you want an all-encompassing tracking of the chain, you will need to check for these edge cases.</p>
+  <p>See <a href="https://github.com/EvrmoreOrg/electrumx-evrmore/blob/fc59b07c4ffcaae25a49a1b7a74a955067f350c2/electrumx/server/block_processor.py#L787">here</a> for an example of a full chain parsing or <a href="https://github.com/EvrmoreOrg/electrumx-evrmore/blob/fc59b07c4ffcaae25a49a1b7a74a955067f350c2/electrumx/server/mempool.py#L418">here</a> for a best-effort parsing.</p>
+  <br />
+-->
+
+  <h3 id="create_transactions"><u>Asset transaction structures</u></h3>
+  <p>Similar to normal Evrmore (and bitcoin) transactions, the amount of an asset from the VINS must equal the amount in the VOUTS (Not including created assets).
+  <br>A EVR fee must be paid for asset-only transactions just like any other.
+  <br>All of the protocols pertaining to transactions are the same. The only thing that changes is the scripts.
+  <br>The order of the VOUTS <i>does</i> matter when creating and reissuing assets.
+  <br>When creating transactions the created ownership asset (if there is one) must be sent to the same address as the created asset.</p>
+<br>
+  
+<div>  
+  <h4><u>Transfer asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee</p>
+      <p>Asset outpoint(s) for transfer</p>
+      </td>
+      <td>
+      <p>EVR change address(s)</p>
+      <p>Asset transfer script(s)</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=bae95f349f15effe42e75134ee7f4560f53462ddc19c47efdd03f85ef4ab8f40&amp;decode=1">bae95f349f15effe42e75134ee7f4560f53462ddc19c47efdd03f85ef4ab8f40</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a main asset transaction</u></h4>
+  Note that when creating assets, you get to freely determine what address to send the assets and ownership asset to.
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      </td>
+      <td>
+      <p>Issue asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Ownership asset script</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=8eefce8d264d723b6b8f3cf87bcb400a009d01c2771f94e5cc07af252851aa96&amp;decode=1">8eefce8d264d723b6b8f3cf87bcb400a009d01c2771f94e5cc07af252851aa96</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a sub-asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Parent ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Issue sub-asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For parent ownership asset)</p>
+      <p>Ownership asset script</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=15127b9ea4c21c323dde1f2dd64b24b12efef2adec43b0b5f2e2377ad4aea369&amp;decode=1">15127b9ea4c21c323dde1f2dd64b24b12efef2adec43b0b5f2e2377ad4aea369</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a unique asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Parent ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Issue unique asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For parent ownership asset)</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=12f39ab78609e312e80c86d1ed3f25937120cbdeee6fc81b1068c400eb1c8518&amp;decode=1">12f39ab78609e312e80c86d1ed3f25937120cbdeee6fc81b1068c400eb1c8518</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a reissue asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Reissue asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For ownership asset)</p>
+      <p>Reissue asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=1370040248ba64a2676f125e645a83421adb2859c8c2aacc74017d738309ebda&amp;decode=1">1370040248ba64a2676f125e645a83421adb2859c8c2aacc74017d738309ebda</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a message channel asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Parent ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Issue message channel asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For parent ownership asset)</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=d5a13003bff69513b1bb172164ba015afd9bd5afc0a2d654cf10daf1ae470a8c&amp;decode=1">d5a13003bff69513b1bb172164ba015afd9bd5afc0a2d654cf10daf1ae470a8c</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a qualifier asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      </td>
+      <td>
+      <p>Issue qualifier asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/tx/?txid=748c7e0996e0a4f599c51635c8fce8ddd6ae0e625be640fa4074f51f2574d7a1">748c7e0996e0a4f599c51635c8fce8ddd6ae0e625be640fa4074f51f2574d7a1</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a sub-qualifier asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Parent asset outpoint</p>
+      </td>
+      <td>
+      <p>Issue sub-qualifier asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For parent asset)</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/tx/?txid=748c7e0996e0a4f599c51635c8fce8ddd6ae0e625be640fa4074f51f2574d7a1">748c7e0996e0a4f599c51635c8fce8ddd6ae0e625be640fa4074f51f2574d7a1</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a restricted asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      </td>
+      <td>
+      <p>Issue restricted asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Verifier asset tag script</p>
+      <p>Ownership asset script</p>
+      <p>New asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=c1e61a69bfb3a02f15c44b530a76fee8d69c8b54b0cc69c0fab81a583e3e5c33&amp;decode=1">c1e61a69bfb3a02f15c44b530a76fee8d69c8b54b0cc69c0fab81a583e3e5c33</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a reissue restricted asset with new qualifiers transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Reissue asset burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Verifier asset tag script</p>
+      <p>Transfer asset script (For ownership asset)</p>
+      <p>Reissue asset script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvnt.cryptoscope.io/api/getrawtransaction/?txid=a2b634e160974348647484302501a64bc80a841d4a9ea833498a47e72e987628&amp;decode=1">a2b634e160974348647484302501a64bc80a841d4a9ea833498a47e72e987628 (testnet)</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a null asset script transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Qualifier or restricted ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Tag burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For qualifier or restricted ownership asset)</p>
+      <p>Null asset tag script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=0332beef9c76cf300b166cf5f56e8acd83788201eae1fc93f05364c28cd882f2&amp;decode=1">0332beef9c76cf300b166cf5f56e8acd83788201eae1fc93f05364c28cd882f2</a></p>
+</div>
+<br><br>
+
+<div>  
+  <h4><u>Creating a freeze restricted asset transaction</u></h4>
+  <table>
+  <tr>
+      <th>VINS</th>
+      <th>VOUTS</th>
+    </tr>
+    <tr>
+      <td>
+      <p>EVR outpoint(s) for fee and burn</p>
+      <p>Restricted ownership asset outpoint</p>
+      </td>
+      <td>
+      <p>Tag burn address</p>
+      <p>EVR change address(s)</p>
+      <p>Transfer asset script (For restricted ownership asset)</p>
+      <p>Global restriction asset tag script</p>
+      </td>
+    </tr>
+  </table>
+  <p>On chain example: <a href="https://rvn.cryptoscope.io/api/getrawtransaction/?txid=cb6f7a7cf7d65d532101a259ef37cebff77ccb1e9f86823910537d6580071668&amp;decode=1">cb6f7a7cf7d65d532101a259ef37cebff77ccb1e9f86823910537d6580071668</a></p>
+</div>
+
+</div>
+<br><br>
+</div>
+
+    </main>
+<br>
+<hr width="100%" size="2">
+<br>
+<hr width="100%" size="2">
+<br>
+<div align="center">Thanks to kralverde and the Ravencoin project for collecting some of this information</div>
+<br><br>
+    
+</body>
+
+</html>
