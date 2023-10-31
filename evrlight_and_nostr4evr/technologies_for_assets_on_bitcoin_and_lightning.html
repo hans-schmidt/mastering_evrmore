@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Technologies for Assets on Bitcoin and Lightning</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Technologies for Assets on Bitcoin and Lightning"
+      name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last updated 2023-10-30</td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main Menu- Mastering Evrmore</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" valign="top"> <br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="evrlight_and_nostr4evr.html">Main Menu-
+                      EvrLight and Nostr4Evr</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>EvrLight and Nostr4Evr</big></big>
+              <br>
+              <i><b><small>*EvrLight uses Evrmore as Layer-1 for diverse
+                    Lightning assets like Bitcoin is Layer-1 for
+                    Lightning money*</small></b></i> <br>
+              <br>
+              <br>
+              <br>
+              <u><big><big>An Overview of Technologies for Assets on
+                    Bitcoin and Lightning</big></big></u> <br>
+              <i>The limitations of payment channels and why EvrLight is
+                better</i> </div>
+            <!-- start of main content   --> <br>
+            There is a long history of projects which have attempted to
+            implement Assets on the Bitcoin blockchain. The first
+            generation, often called "colored coins", such as
+            Counterparty and Mastercoin/OmniLayer, suffered from the
+            risk of being destroyed if the coins were spent by wallets
+            which did not understand their protocol. They also suffered
+            from the high fees and slow confirmation times of the
+            Bitcoin blockchain. More recently, the Ordinals project is
+            similar and is famous for generating large mining fees. <br>
+            <br>
+            RGB and Taproot-Assets are relatively recent projects
+            offering improvements which may prove useful in the future.
+            But they are very complex, unintuitive, and more centralized
+            because they require critical portions of their data to be
+            stored off-chain in some secure way. <br>
+            Taproot-Assets is an impressive work of cryptographic
+            design. It provides the cryptographic primitives needed to
+            store arbitrary data in a UXTO, and it defines a protocol
+            for using that to create and track Assets. But it doesn't
+            define any standards for the types or characteristics of
+            Assets or how the Asset holders interact or are restricted.
+            Even for on-chain Taproot Assets, the Asset transactional
+            data is stored off-chain with clients (which they would only
+            do for assets they own since it costs resources and fees) or
+            in a centralized database per asset. <br>
+            <br>
+            Evrmore, by contrast, is a simple UTXO-based extension of
+            the bitcoin design enhanced specifically to support assets,
+            which any Bitcoin developer or Lightning developer can
+            easily understand and use. <br>
+            <br>
+            RGB and Taproot-Assets have both made claims that their
+            assets can be routed on Bitcoin's Lightning Network.
+            OmniLayer, meanwhile, has proposed OmniBOLT, a
+            Lightning-like network which would have to be built in
+            parallel with Bitcoin's Lightning Network, but which could
+            then route USTD (Tether) along with other assets. <br>
+            <br>
+            But those claims can be misleading to non-experts. So it is
+            worth taking a closer look at what they can actually
+            deliver. In fact, it is worthwhile to consider what the
+            limitations are for ANY assets being routed on the Lightning
+            Network. <br>
+            <br>
+            First just a brief review of Lightning Network
+            functionality: The Lightning Network is based on Payment
+            Channels. As any Lightning developer or node operator knows,
+            one of the biggest challenges in routing payments over a
+            multi-hop route of Payment Channels is finding nodes with
+            sufficient liquidity. If you want to send X Bitcoins to
+            someone else through a multi-hop route, every node along
+            that route must have locked up at least X Bitcoins on-chain
+            to give them X Bitcoins off-chain in their channel. The
+            on-chain Bitcoin are effectively collateral to guarantee the
+            IOUs they are handing out off-chain. Moreover, their X
+            off-chain Bitcoins must not have already been spent so that
+            they still have X liquidity in the correct direction. <br>
+            <br>
+            That scheme can work very well for fungible items available
+            in high volume. It is well suited for Bitcoin, and it could
+            be used for any widely-available high-volume stable coin
+            like Tether. <br>
+            <br>
+            On the other end of the scale, Payment Channels don't work
+            at all for non-fungible tokens (NFTs). By definition, an NFT
+            is unique so that if you own it, none of the Lightning
+            Network nodes can own it. End of story. NFTs cannot be
+            supported. OmniBOLT says this in their spec, which they
+            admit without hesitation since they are only interested in
+            Tether. <br>
+            <br>
+            Between those extremes, there could be fungible tokens which
+            are available in only limited supply, or there could be a
+            related group of non-fungible tokens which are very similar
+            to each other. Taproot-Assets claims to support all these
+            cases (including single NFTs) with the ability to do
+            multi-hop routing over the Lightning Network. But the way it
+            accomplishes that feat is by converting the asset to
+            standard Bitcoins when entering the Lightning Network,
+            routing the Bitcoins, and then converting the Bitcoins back
+            to assets when exiting the Lightning Network. That sounds
+            wonderful in principle, but in reality it imposes serious
+            limitations in all cases except high-volume stable coins.
+            First, such a scheme can only work if there is a universally
+            trusted price oracle to dictate the conversion prices.
+            Moreover, the Lightning entry and exit nodes must be willing
+            to take additional arbitrage risk in holding the asset. The
+            Lightning entry node must already be holding that asset and
+            be willing to sell it at that price in order to deliver
+            Bitcoin into the route. The next-to-last exit node must be
+            willing to buy that asset at that price in order to receive
+            Bitcoin and deliver the Asset. Lastly, if the assets are
+            NFTs, then in addition to requiring a trusted price oracle
+            (which is unlikely for an NFT), the data in the NFT which
+            makes it unique must be stored off-chain and off-Lightning
+            in some trusted way to make the conversions possible. <br>
+            <u>Once again, the end result is functionality which in
+              truth only works for Bitcoin and high-volume stable coins.
+            </u><br>
+            <br>
+            Now that the inherent limitation of assets on Payment
+            Channels has been established, we can compare those designs
+            with EvrLight. <br>
+            <br>
+            To be clear, EvrLight makes it possible to buy and sell
+            assets USING Lightning, but not OVER Lightning. Assets do
+            not move through a Lightning network routing path from one
+            party to another as open chained HTLCs the way Lightning-BTC
+            does. Assets move from one UTXO to another on the Evrmore
+            block chain under the control of Lightning interacting with
+            the Evrmore on-chain UTXO Assets. Asset transactions are
+            therefore affected by the block interval speed, mining cost,
+            and security of the Evrmore blockchain. On the upside, there
+            is no such thing as asset channel capacity to worry about,
+            which makes EvrLight work just as efficiently for low volume
+            fungible assets and NFTs as it does for high-volume
+            stable-coin assets. The same cannot be said of any
+            Lightning-native virtual colored coin scheme, for which
+            channel capacity would make the scheme unusable for all but
+            the highest volume stable coins. Note also that Evrlight
+            transactions do not require the use of Watchtowers to
+            prevent losing an asset. Either party is free to go offline
+            as long as the asset seller heeds the HTLC refund timeout
+            and the Lightning invoice expiry which he himself decides.
+            Finally, it is worth saying that the basic idea of tying an
+            asset layer to Lightning using HTLCs could be applied to
+            other asset chains, but Evrmore's similarity to Bitcoin and
+            its simplicity allow a tighter level of integration than is
+            possible with other chains. EvrLight does require that both
+            parties be on-line when an asset is bought or sold in order
+            for the sale to be successful, as all these schemes do. A
+            Lightning payment is made from one wallet to another, and
+            the on-chain activity is a related side effect. In that
+            sense it is no different that ZAPs, which are also Lightning
+            wallet-to-wallet transactions which require that both
+            parties be on-line or using a Lightning service provider who
+            is on-line. The recipient of a ZAP must have his wallet
+            online or the ZAP will fail. <br>
+            <br>
+            EvrLight does not promise the impossible at some time in the
+            future after a new platform is built and achieves community
+            consensus. EvrLight cannot deliver infinite scalability and
+            near-instant settlement. But <u>EvrLight can deliver
+              as-good-as-it-can-be peer-to-peer asset support which
+              works just as well for NFTs as it does for stablecoins,
+              with 2-minute 1-conf settlement time, low fees, and
+              enhanced privacy, available as a protocol for developers
+              to build into their applications today</u>. <br>
+            <br>
+            Technical protocol details of EvrLight are documented <a
+              href="protocol_details_of_evrlight.html">HERE</a> <br>
+            <br>
+            References: <br>
+            <a href="https://github.com/omnilaboratory/OmniBOLT-spec">https://github.com/omnilaboratory/OmniBOLT-spec</a>
+            <br>
+            <a
+href="https://thebitcoinmanual.com/articles/ln-stable-coins-work-omnibolt/">https://thebitcoinmanual.com/articles/ln-stable-coins-work-omnibolt/</a>
+            <br>
+            <a
+href="https://docs.lightning.engineering/the-lightning-network/taproot-assets">https://docs.lightning.engineering/the-lightning-network/taproot-assets</a>
+            <br>
+            <a
+              href="https://thebitcoinmanual.com/articles/lightning-labs-adds-taro/">https://thebitcoinmanual.com/articles/lightning-labs-adds-taro/</a>
+            <br>
+            <a href="https://rgb-org.github.io/">https://rgb-org.github.io/</a>
+            <br>
+            <a
+href="https://bitcoinmagazine.com/technical/how-rgb-enables-altcoins-on-bitcoin">https://bitcoinmagazine.com/technical/how-rgb-enables-altcoins-on-bitcoin</a>
+            <br>
+            <br>
+            <!-- end of main content   --> <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><i>"In Theory There Is No
+                  Difference Between Theory and Practice, While In
+                  Practice There Is"</i></div>
+            </center>
+            <br>
+            <div align="center">Copyright 2022,2023 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

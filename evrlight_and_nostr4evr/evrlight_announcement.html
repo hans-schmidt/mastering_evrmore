@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>The EvrLight Announcement</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="The EvrLight Announcement" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last updated 2023-10-31</td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main Menu- Mastering Evrmore</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" valign="top"> <br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="evrlight_and_nostr4evr.html">Main Menu-
+                      EvrLight and Nostr4Evr</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>EvrLight and Nostr4Evr</big></big>
+              <br>
+              <i><b><small>*EvrLight uses Evrmore as Layer-1 for diverse
+                    Lightning assets like Bitcoin is Layer-1 for
+                    Lightning money*</small></b></i> <br>
+              <br>
+              <br>
+              <br>
+              <u><big><big>The EvrLight Announcement</big></big></u> </div>
+            <!-- start of main content   --> <br>
+            The announcement of EvrLight, which was made on Oct 31st
+            2023 on the first anniversary of Evrmore's launch, is
+            recorded here. It provides a good summary of why EvrLight is
+            important and why it can be important to Nostr:<br>
+            <br>
+            <hr width="50%" size="2"> <br>
+            Those of you who have followed my work know that much of it
+            has focused on low-level protocol. In 2018 I began working
+            with the Medici developers to debug Ravencoin's basic UTXO
+            asset functionality, and eventually it led to the planned
+            enhancements documented in the Evrmore whitepaper. But most
+            importantly, I know that Evrmore must attract users and
+            developers for real-world use cases. Doing so requires
+            interfacing with other projects and communities. To
+            accomplish that, I have increasingly focused on asset atomic
+            swap technology as a key building block. I spent substantial
+            effort 2 years ago debugging asset HTLCs on testnet and
+            successfully executed cross-chain atomic swaps of assets in
+            exchange for Bitcoin. I implemented that asset functionality
+            with some needed bugfixes on Evrmore's mainnet when it
+            launched a year ago. <br>
+            <br>
+            Earlier this year I went even deeper down the HTLC rabbit
+            hole to understand in detail how Komodo's AtomicDEX
+            technology functions and what it would take to support EVR
+            and Evrmore Assets. I turned on EVR support in AtomicDEX but
+            decided not to invest the time yet to implement Evrmore
+            assets in AtomicDEX because I realized something much more
+            important. <br>
+            I realized that since <br>
+            &nbsp;&nbsp;&nbsp; a) Bitcoin and Evrmore are both based on
+            UTXOs and addresses, <br>
+            &nbsp;&nbsp;&nbsp; b) Bitcoin-Lightning is based on HTLCs
+            and secret-locked invoices, and<br>
+            &nbsp;&nbsp;&nbsp; c) Evrmore supports HTLCs for both EVR
+            and Evrmore Assets in a very Bitcoin-like way, <br>
+            that means something hugely important: <b>It means that
+              Evrmore is the perfect Layer-1 for diverse Lightning
+              assets in the same way that Bitcoin is the Layer-1 for
+              Lightning money</b>. <br>
+            <br>
+            In retrospect it is obvious, like the way many of the best
+            inventions are. This technology, which I call EvrLight, is
+            an enhanced protocol based on BTC-Lightning submarine swap
+            technology interacting with the Evrmore on-chain UTXO
+            Assets. It takes advantage of the strengths of both Evrmore
+            and Bitcoin-Lightning to enable users to buy and sell
+            Evrmore Assets using only a Lightning-capable Bitcoin
+            wallet, the EvrLight protocol, and associated automation
+            code. It will enable transactions which are atomic and
+            non-custodial, with low fees, and 1-conf average settlement
+            time of just over 2 minutes. Moreover, the transactions will
+            be privacy-enhanced because the Lightning invoice payment
+            leaves no on-chain record of the source of the Bitcoins. I
+            have been working through the details and have documented
+            the first draft of my work for other developers to study,
+            begin testing, and help generate reference code examples for
+            different languages. It will take time for developers to
+            implement it in applications before end users can enjoy its
+            benefits. But it is certainly worth celebrating with this
+            announcement on Evrmore's birthday. <br>
+            <br>
+            EvrLight will make it possible to build asset-based Commerce
+            and DeFi applications for users who do not need to know
+            anything about Evrmore. But all commerce, including a DEX,
+            also requires an orderbook or other mechanism for buyers and
+            sellers to communicate. Therefore I also want to highlight
+            the strategic opportunity which is emerging from the Nostr
+            protocol. Like Evrmore, Nostr embraces the core values of
+            Bitcoin and a focus on protocols. From a technology
+            viewpoint, Nostr is a perfect fit for EvrLight. Not only are
+            many of the Nostr developers also Lightning developers, but
+            Nostr's users generate a private/public key pair as their
+            effective user ID, and that key can be directly translated
+            to an Evrmore address. That means that, without any prior
+            communication, you can directly interact with Nostr users
+            for EvrLight transactions using their address and know that
+            they will have the needed private key. <br>
+            <br>
+            Nostr is still a tiny project compared to its competitors,
+            and one of the biggest challenges will be in finding a
+            revenue model which can support the needed infrastructure
+            and developers to compete with the well-financed social
+            media titans. EvrLight can provide the tools to add powerful
+            peer-to-peer social commerce and DeFi capabilities to Nostr.
+            I am working on an EvrLight example application for Nostr
+            and a list of apps worth writing, which I will promote under
+            the name Nostr4Evr. I hope other developers will join me.
+            Working with Nostr is a win-win opportunity. <br>
+            <br>
+            As most of you know and anyone can see in the <a
+              href="https://evr.cryptoscope.io/">explorer</a>, we have
+            accomplished our work this year without touching the
+            minderdevfund. As the price of EVR rises, the Evrmore
+            Foundation will begin using your minerdevfund as intended to
+            pay a few part-time followed by full-time developer salaries
+            and bounties to help speed up the pace of progress. <br>
+            <br>
+            There has never been a more exciting time for Evrmore. We
+            are just getting started. Welcome to the new world where the
+            EvrLight protocol will make it possible to buy and sell
+            Evrmore assets using only a Lightning-capable Bitcoin
+            wallet. See the <a href="https://evrmorecoin.org/">website</a>
+            for more information. <br>
+            <br>
+            Happy Birthday Evrmore !!! <br>
+            <br>
+            <!-- end of main content   --> <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><i>"In Theory There Is No
+                  Difference Between Theory and Practice, While In
+                  Practice There Is"</i></div>
+            </center>
+            <br>
+            <div align="center">Copyright 2022,2023 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

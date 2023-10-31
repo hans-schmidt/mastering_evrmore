@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Nostr4Evr</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Nostr4Evr" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last updated 2023-10-30</td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main Menu- Mastering Evrmore</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" valign="top"> <br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="evrlight_and_nostr4evr.html">Main Menu-
+                      EvrLight and Nostr4Evr</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>EvrLight and Nostr4Evr</big></big>
+              <br>
+              <i><b><small>*EvrLight uses Evrmore as Layer-1 for diverse
+                    Lightning assets like Bitcoin is Layer-1 for
+                    Lightning money*</small></b></i> <br>
+              <br>
+              <br>
+              <br>
+              <u><big><big>Nostr4Evr</big></big></u> </div>
+            <!-- start of main content   --> <br>
+            Nostr4Evr is a vision of the future in which the Nostr
+            communications protocol is used not only to build a Twitter
+            replacement but to create a global peer-to-peer social
+            commerce marketplace. The EvrLight protocol empowers that
+            vision by providing access to diverse digital assets and the
+            mechanism to buy and sell them peer-to-peer using the
+            Lightning Network and associated automation code. <u>Protocols
+              not platforms</u>.<br>
+            <br>
+            This webpage contains thoughts about integrating Evrmore
+            with Nostr.&nbsp; It is still early stage, so it currently
+            holds just brain-storming thoughts on things worth building.
+            Suggestions and criticisms are welcome.<br>
+            <br>
+            For extended thoughts about social commerce click <a
+              moz-do-not-send="true"
+              href="thoughts_on_social_commerce.html">HERE</a>.<br>
+            For technical details about the EvrLight protocol click <a
+              moz-do-not-send="true"
+              href="protocol_details_of_evrlight.html">HERE</a>.<br>
+            <br>
+            <b><font size="+2"><u>The context:</u></font></b><br>
+            <ul>
+              <li>Nostr4Evr uses EvrLight to integrate Evrmore's
+                bitcoin-code-based UTXO-based asset management
+                functionality with Nostr.</li>
+              <li>EvrLight enables the noncustodial atomic peer-to-peer
+                buying and selling of Evrmore assets using the Bitcoin
+                Lightning Network.</li>
+            </ul>
+            <blockquote>Nostr users already enjoy the power and fun of
+              zapping Lightning Satoshis to their friends. Now, using
+              nothing but Lightning Sats, they will also be able to buy,
+              sell, or just give away event tickets, subscriptions,
+              coupons, badges, authentication tokens, memes, shares, and
+              NFTs. Using EvrLight, the Nostr community can build a
+              social commerce economy to fund growth and to take on the
+              corporate social media titans.<br>
+            </blockquote>
+            <br>
+            &nbsp;&nbsp;&nbsp; <br>
+            <u><b>Thoughts on things worth building:</b></u><br>
+            <br>
+            Whenever possible, things should be accomplished as simply
+            as possible and without creating new NIPs or
+            over-complicating current NIPs<br>
+            <br>
+            NIP-46 (Nostr Connect) provides a signing service so that
+            apps don't need direct access to private keys. The NIP
+            should be generalized to allow the selection of signing
+            algorithm<br>
+            <br>
+            NIP-47 (Wallet Connect) describes a way for clients to
+            access a remote Lightning wallet through a standardized
+            protocol. There should be a new NIP or a re-write of this
+            NIP to support more general wallets including the
+            functionality which would be useful for Evrmore<br>
+            <br>
+            NIP-57 (Lightning Zaps) defines event types for recording
+            lightning payments between users.<br>
+            &nbsp;&nbsp;&nbsp; -It creates two new kinds of notes: kind
+            9735 (A Zap) and kind 9734 (A Zap request)<br>
+            &nbsp;&nbsp;&nbsp; -It requires:<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; a) A Zap-compatible
+            lightning wallet (like Alby or Wallet of Satoshi)<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; b) A client that has
+            implemented Zaps (like Damus, Amethyst, Iris, or Snort)<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; c) Have your lightning
+            address where you'll receive Zaps set in your Nostr profile
+            in the LN address or LUD-06 field.&nbsp;&nbsp; <br>
+            &nbsp;&nbsp;&nbsp; -There needs to be a way of doing this
+            for more general asset types. Not sure whether it is best to
+            re-write this NIP more generally, create a new NIP, or find
+            a different approach<br>
+            <br>
+            NIP-58 (Badges) are a very specific limited type of asset.
+            This NIP should be removed or generalized to support a more
+            comprehensive asset type description.<br>
+            <br>
+            Nostr-EvrControl<br>
+            &nbsp;&nbsp;&nbsp; -like
+            https://github.com/joelklabo/nostr-control &amp;
+            https://github.com/joelklabo/nostrify<br>
+            &nbsp;&nbsp;&nbsp; -a utility which allows you talk to your
+            Evrmore core node (evrmored/-qt) node over Nostr DMs. It
+            also will send you events from your node over Nostr DMs.<br>
+            <br>
+            Nost-EVR-Address-Convert- A utility to convert a Nostr
+            public key (npub or hex format) into an Evrmore address<br>
+            <br>
+            A method or service where people can enter their nostr
+            npubkey and preferred relay in order to be notified whenever
+            anything is transferred into their equivalent Evrmore
+            address.<br>
+            <br>
+            Nostr could be used as a public bulletin board for asset
+            owners who want to post a half-transaction "offer to sell"
+            an asset using the 2-step atomic swap method. That method
+            requires no interaction between the buyer and seller beyond
+            the seller posting an offer and a buyer later accepting that
+            offer. Such offers are built on Evrmore as half-transactions
+            using SIGHASH_SINGLE:ANYONECANPAY.<br>
+            <br>
+            EvrLight provides a built-in DEX for trades between
+            BTC-Lightning and EVR or EVR assets. The only thing missing
+            is the orderbook, which Nostr can provide.
+            <br>
+            <br>
+            Would it be useful to be able to post a raw Evrmore
+            transaction in a Nostr note and have it automatically be
+            transmitted?&nbsp;&nbsp;&nbsp; <br>
+            &nbsp;&nbsp;&nbsp; -That capability allows total flexibility
+            on the types of Evrmore operations which can be executed
+            from within Nostr<br>
+            &nbsp;&nbsp;&nbsp; -But it assumes that the application
+            provides the information needed for that capability to be
+            useful. Otherwise the user would need an Evrmore wallet and
+            explorer. <br>
+            &nbsp;&nbsp;&nbsp; -See:<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            https://github.com/nostr-protocol/nips/pull/476<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            https://github.com/benthecarman/nostr-tx-broadcast<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            https://gist.github.com/melvincarvalho/70c29313554ce9d1a22ce9bf954909d9<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            https://github.com/monty888/txbroadcastr<br>
+            &nbsp;&nbsp;&nbsp; <br>
+            Authentication Tokens: Nostr user-IDs (npub addresses) can
+            be translated into addresses on Evrmore. Holding an asset at
+            that address could provides the nostr user with automatic
+            login access to a website hosting subscription content or an
+            event. When the asset is transferred (sold) to a different
+            address (nostr user-ID and Evrmore address), login access
+            would transfer to the new nostr user.<br>
+            &nbsp;&nbsp;&nbsp; -Implementation: When someone requests
+            access to a web server, the user presents their public key
+            to the web server. The server then presents an access
+            challenge and asks the user to sign it using the private key
+            corresponding to the public key. The server then uses the
+            plaintext challenge and the signature to calculate the
+            public key. From the public key it calculates the address,
+            and then checks the blockchain to verify that the address
+            holds the required access token. <br>
+            <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><i>"In Theory There Is No
+                  Difference Between Theory and Practice, While In
+                  Practice There Is"</i></div>
+            </center>
+            <br>
+            <div align="center">Copyright 2022,2023 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

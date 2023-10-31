@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>An Overview of Evrmore for Nostriches</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="An Overview of Evrmore for Nostriches"
+      name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last updated 2023-10-30</td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main Menu- Mastering Evrmore</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" valign="top"> <br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="evrlight_and_nostr4evr.html">Main Menu-
+                      EvrLight and Nostr4Evr</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>EvrLight and Nostr4Evr</big></big>
+              <br>
+              <i><b><small>*EvrLight uses Evrmore as Layer-1 for diverse
+                    Lightning assets like Bitcoin is Layer-1 for
+                    Lightning money*</small></b></i> <br>
+              <br>
+              <br>
+              <br>
+              <u><big><big>An Overview of Evrmore for Nostriches</big></big></u>
+            </div>
+            <!-- start of main content   --> <br>
+            Evrmore is a code and chain fork of Ravencoin, a
+            proof-of-work GPU-mined blockchain forked from Bitcoin in
+            2018. Like Bitcoin, Ravencoin was launched in a fair way
+            with no premine or founder rewards, no masternodes, no
+            staking. Evrmore was launched in late 2022 as a code-cleanup
+            feature-enhanced datasize-reduction of Ravencoin, based on
+            the same fairness principles. Evrmore made the sole
+            compromise of creating a minerdevfund (10% of miner coinbase
+            rewards) which we hope will help fund development in the
+            future (no coins have yet been spent).
+            <br>
+            <br>
+            Evrmore provides secure flexible fast inexpensive assets
+            with human readable names guaranteed to be globally unique.
+            Evrmore is a simple UTXO-based open permissionless
+            decentralized noncustodial solution whose community shares
+            the same values as Bitcoiners. We are Bitcoiners.
+            <br>
+            <br>
+            An Evrmore transaction looks exactly like a Bitcoin
+            transaction, except for the contents of some outputs. Most
+            Evrmore transaction outputs looks exactly like a Bitcoin
+            transaction output except that an Evrmore asset control
+            script may be appended to the traditional scriptPubkey. The
+            Evrmore block interval time is 1 minute.
+            <br>
+            <br>
+            More details of Evrmore assets and the asset implementation
+            are explained <a
+href="../current_tech_docs/evrmore_overview_of_assets.html#asset_fundamentals">HERE</a>
+            <br>
+            <br>
+            <hr width="100%" size="2"> <br>
+            <br>
+            With EvrLight, the newly-announced technology to couple
+            Evrmore with Bitcoin-Lightning, casual Nostr users will be
+            able to receive, buy, sell, or give away Evrmore assets
+            atomically and noncustodially using only BTC-Lightning and
+            associated automation code. Average 1-conf settlement time
+            will be slightly over 2 minutes. Furthermore, the
+            transactions will be privacy-enhanced because the Lightning
+            invoice payment leaves no on-chain record of the source of
+            the Bitcoins. EvrLight is an enhanced protocol based on
+            BTC-Lightning submarine swap technology interacting with the
+            Evrmore on-chain UTXO Assets. Lightning thereby acts as a
+            payment rail and noncustodial controller for Evrmore assets.
+            The result is that Evrmore functions as the Layer-1 for
+            diverse Lightning assets in the same way that Bitcoin is the
+            Layer-1 for Lightning money. <br>
+            <br>
+            For Nostr users, the UTXO on the Evrmore blockchain could
+            hold assets and EVR at an Evrmore address which is
+            equivalent to the Nostr user's npubkey and could therefore
+            be spent by their nseckey. An alternate address could be
+            specified by the user in their Nostr profile if desired and
+            the user might specify a different user's npubkey if they
+            are giving the asset to someone else. Assets which are
+            intended for purchase or sale by Nostr users are prepared by
+            bundling them with enough EVR coins to satisfy an
+            anticipated number of Evrmore on-chain mining fees. No
+            Bitcoin on-chain fees or confirmations are involved, so
+            transactions confirm inexpensively within about two minutes
+            on average. <br>
+            <br>
+            More complex asset operations such as issueing, reissueing,
+            editing metadata, or extended trading after the bundled EVR
+            are exhausted are in theory also possible using only a
+            Lightning wallet and associated automation code. Lightning
+            wallets with those capabilities may become available. But in
+            the near term merchants should plan to use an Evrmore native
+            wallet for those operations. Evrmore provides evrmore-qt
+            (C++ desktop for Linux/Windows), electrum-evrmore (Python
+            for Linux/Windows), and Moontree (Android) wallets.
+            <br>
+            <br>
+            An overview of how EvrLight works, compared to how other
+            Asset technologies interact with Bitcoin-Lightning and their
+            limitations is explained <a
+              href="technologies_for_assets_on_bitcoin_and_lightning.html">HERE</a>
+            <br>
+            Technical protocol details of EvrLight are documented <a
+              href="protocol_details_of_evrlight.html">HERE</a>
+            <br>
+            <br>
+            <hr width="100%" size="2"> <br>
+            <br>
+            Nostr and Lightning both face challenges in how to pay for
+            the infrastructure and developers they need to prosper.
+            Supporting flexible assets can help Nostr developers build
+            the Social Commerce features needed for a global market
+            community. Lightning node operators could increase their
+            volume and income by being not only the fastest and least
+            expensive way to buy things with Bitcoin, but by also
+            becoming the standard way to buy tickets, subscriptions, and
+            many other types of assets. We are confident that Evrmore
+            will prevail as the best asset solution. But for the good of
+            both Bitcoin, Lightning and Nostr, if you don't like
+            something about Evrmore, try a different asset solution.
+            Evrmore welcomes the opportunity to compete and win against
+            other solutions.
+            <br>
+            <br>
+            Additional thoughts and references about Social Commerce are
+            available <a href="thoughts_on_social_commerce.html">HERE</a>
+            <br>
+            <br>
+            <!-- end of main content   --> <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><i>"In Theory There Is No
+                  Difference Between Theory and Practice, While In
+                  Practice There Is"</i></div>
+            </center>
+            <br>
+            <div align="center">Copyright 2022,2023 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

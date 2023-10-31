@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Protocol details of EvrLight</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Protocol details of EvrLight" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last updated 2023-10-30</td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main Menu- Mastering Evrmore</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" valign="top"> <br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="evrlight_and_nostr4evr.html">Main Menu-
+                      EvrLight and Nostr4Evr</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>EvrLight and Nostr4Evr</big></big>
+              <br>
+              <i><b><small>*EvrLight uses Evrmore as Layer-1 for diverse
+                    Lightning assets like Bitcoin is Layer-1 for
+                    Lightning money*</small></b></i> <br>
+              <br>
+              <br>
+              <br>
+              <b><u><big><big>Protocol Details of EvrLight</big></big></u></b>
+            </div>
+            <!-- start of main content   --> <br>
+            For corrections, please enter Issues or Pull Requests <a
+              href="https://github.com/hans-schmidt/mastering_evrmore">HERE</a>
+            for file
+            "evrlight_and_nostr4evr/protocol_details_of_evrlight.html" <br>
+            <br>
+            For a higher-level overview of how EvrLight works, compared
+            to how other Asset technologies interact with
+            Bitcoin-Lightning and their limitations, go <a
+              href="technologies_for_assets_on_bitcoin_and_lightning.html">HERE</a>
+            <br>
+            <br>
+            <b>A TLDR of the protocol for Lightning experts is available
+              <a href="#_TLDR">HERE</a></b> <br>
+            <br>
+            <br>
+            <b><u>A brief history of Bitcoin Hash-Time-Locked-Contract
+                Applications</u></b>
+            <ol>
+              <li>
+                <dl>
+                  <dt><u> The Cross-Chain Atomic Swap: </u></dt>
+                  <dd> -First proposed by Tier Nolan in 2013;
+                    implemented by Decred and Komodo; now in common use</dd>
+                  <dd> -A trade between Bitcoin and an Altcoin</dd>
+                </dl>
+              </li>
+              <li>
+                <dl>
+                  <dt> <u>The Lightning Network </u></dt>
+                  <dd> -First proposed by Taj Dryja and Joseph Poon in
+                    2016; implemented by Lightning Labs and Blockstream</dd>
+                </dl>
+              </li>
+              <li>
+                <dl>
+                  <dt> <u>The Lightning Submarine Swap:
+                      Bitcoin-for-Lightning_Invoice_Payments </u></dt>
+                  <dd> -Proposed and implemented by Alex Bosworth in
+                    2018</dd>
+                  <dd> -Alex also did it for LTC and BCH in place of BTC</dd>
+                </dl>
+              </li>
+              <li>
+                <dl>
+                  <dt> <u>The Ravencoin testnet Assets-for-tBitcoin
+                      Atomic Swap </u></dt>
+                  <dd> -Executed and published by Hans Schmidt on
+                    testnet in 2021.</dd>
+                </dl>
+              </li>
+              <li>
+                <dl>
+                  <dt> <u>EvrLight: Evrmore
+                      Assets-for-Lightning_Invoice_Payments Atomic Swap
+                    </u></dt>
+                  <dd> -Announced 2023-03-31</dd>
+                  <dd> -Note that EvrLight has embedded reverse
+                    submarine swaps for the EVR bundled with the assets</dd>
+                </dl>
+              </li>
+            </ol>
+            <br>
+            <br>
+            <u><b>An EvrLight transaction is the execution of an
+                agreement between a buyer and a seller whereby they
+                agree that:</b></u><br>
+            <blockquote>The buyer will pay an agreed upon number of
+              Bitcoins to the seller by paying a Lightning Network
+              invoice<br>
+              <br>
+              The seller will deliver an agreed upon number of certain
+              digital Assets on the Evrmore blockchain together with an
+              agreed upon number of bundled EVR. The delivery will be
+              made to an address generated from a public key which the
+              buyer chooses, for which the buyer also holds the matching
+              private key. They buyer may provide the address directly
+              or he may provide the public key and the address will be
+              generated for him<br>
+              <br>
+              The exchange will be performed using the EvrLight protocol</blockquote>
+            <br>
+            <br>
+            <u><b>Application consideration with EvrLight include:</b></u><br>
+            <blockquote>The appropriate number of bundled EVR will vary
+              based on fees but primarily based on application since an
+              asset could be any of a long list of things including an
+              event ticket, subscription, coupon, badge, authentication
+              token, meme, share, or NFT. The number of times an asset
+              would be expected to be transferred would therefor vary by
+              application. At least one transfer will be required for
+              the sweep/redeem portion of the protocol.<br>
+              <br>
+              The buyer and the seller will both need software to
+              participate in the exchange. In that sense it is no
+              different than any internet sale in which the buyer needs
+              a web-browser and the seller needs a shopping cart
+              application. EvrLight is different in that the sale is
+              trustless and atomic and the software is much simpler<br>
+              <br>
+              EvrLight is designed to be a peer-to-peer protocol. In
+              practice, it could be used in a client-server fashion if a
+              single seller services many buyers using the same software<br>
+              <br>
+              The buyer and seller must each decide on their terms for
+              the agreement. But beyond that, the process can be fully
+              automated. It could be used like a standard internet sale
+              in which the buying human is actively involved. But it
+              could also be used in an application where buyers and
+              sellers post their offers to a shared bulletin board from
+              which an orderbook is built with matching and trading
+              taking place without further human involvement.<br>
+              <br>
+              The buyer and seller of an asset may choose any
+              communication channel for coordinating their EvrLight
+              transactions. EvrLight is particularly well suited for use
+              with Nostr due to its distributed protocol and its use of
+              keys as user-IDs.</blockquote>
+            <br>
+            <hr width="100%" size="2"><br>
+            <font size="+3"><u><b>The EvrLight Protocol</b></u></font><br>
+            <blockquote>The heart of EvrLight is based on Reverse
+              Submarine Swap technology. Submarine Swaps are a special
+              application of Hash-Time-Locked-Contracts often used with
+              the Lightning Network. So to understand EvrLight it is
+              necessary to understand Submarine Swaps; and before that
+              it is necessary to first undrstand a few details about
+              traditional (coin, not asset) cross-chain HTLC-based
+              Atomic Swaps and a few details about Lightning.<br>
+              <br>
+              The most important item to understand about a traditional
+              (coin, not asset) cross-chain HTLC Atomic Swap is that the
+              first party picks a secret and locks their coin into a
+              contract locked by the hash of the secret. The second
+              party does the same using the same hash, for which they do
+              not know the secret preimage. But when the first party
+              broadcasts a transaction to sweep/redeem their purchase,
+              doing so reveals the secret preimage. The second party can
+              then use the revealed secret to claim their purchase as
+              well. Timeouts are added to each HTLC in order to refund
+              the locked up coins in case either of the parties become
+              uncooperative.<br>
+              <br>
+              Submarine swaps are similar, but there is only one HTLC
+              created, which locks Bitcoin into an on-chain contract
+              locked by the hash of a secret. The second party pays a
+              Lightning invoice which is locked to that same secret.
+              Without getting into the details, it is important to
+              understand that every Lightning invoice contains a hash,
+              and the secret preimage of that hash is revealed when the
+              invoice is settled (paid). It is fundamental to the design
+              of the Lightning Network that a successful payment is a
+              2-part process consisting of sending a payment for a given
+              invoice along a Lightning Network route from sender to
+              recipient and receiving the secret preimage for the
+              payment back up the route so that all the nodes can settle
+              the invoice and collect their routing fees.<br>
+              <br>
+              The Lightning Network has two types of invoices- standard
+              BOLT11 invoices, and hold (also called hodl) invoices. <br>
+              For a standard BOLT11 invoice, the invoice issuer chooses
+              the contained hash, and the secret preimage is revealed as
+              soon as the invoice is paid. <br>
+              For a hold/hodl invoice, when the invoice payer pays the
+              invoice, the Lightning Network holds the payment until the
+              secret pre-image is revealed. With a hold invoice there is
+              also an additional option where the payment hash can be
+              generated by someone different than the recipient. This
+              additional option is used for Reverse Submarine Swaps and
+              for EvrLight. From the payer's perspective, a hold invoice
+              looks identical to a BOLT11 invoice- there is no way for
+              the payer to know when a hold invoice is paid to the
+              invoice issuer. But if the invoice times out before the
+              secret pre-image is revealed then the funds will be
+              returned to the payer. A Lightning node may have a max of
+              483 open hold invoices.<br>
+              <br>
+              An invoice is also given an expiration time chosem by the
+              issuer, which could be 10 minutes or less, or could be
+              very long (there is no specified maximum time).<br>
+            </blockquote>
+            <br>
+            <br>
+            <u><b>The Protocol Sequence for EvrLight is as Follows:</b></u><br>
+            <blockquote>
+              <ul style="line-height: 150%;">
+                <li>The owner of an asset and the buyer negotiate an
+                  agreement: how many Lightning Network Bitcoin will be
+                  paid for what quantity of assets and bundled EVR </li>
+                <li>The Lightning invoice payer (asset purchaser)
+                  chooses a secret (preimage)</li>
+                <li>The invoice payer sends the hash of that secret to
+                  the asset seller and asks him to issue an
+                  invoice&nbsp; <br>
+                </li>
+                <li>The asset seller then issues a hold invoice using
+                  that hash chosen by the buyer and an expiration time
+                  he chooses</li>
+                <ul>
+                  <li>for LND use API call "/v2/invoices/hodl". See
+                    "https://lightning.engineering/api-docs/api/lnd/rest-endpoints"</li>
+                </ul>
+                <li>The asset buyer then pays the invoice, protected by
+                  the knowledge that the invoice issuer cannot settle
+                  the invoice and get paid until the secret preimage is
+                  revealed</li>
+                <li>The asset seller (invoice issuer) then broadcasts a
+                  commit transaction to lock his on-chain asset(s) and
+                  bundled EVR into a pair of HTLC UTXOs on the Evrmore
+                  blockchain using the same hash </li>
+                <ul>
+                  <li>The HTLC UTXO for the asset(s) has Value=0 and an
+                    Evrmore-defined asset script appended to the P2SH
+                    locking script which performs the asset transfer
+                    into the HTLC</li>
+                  <li>The HTLC for the bundled EVR is a standard P2SH
+                    transfer of the EVR into the HTLC to pay for
+                    anticipated future mining fees</li>
+                  <li>He includes a timeout to refund to himself in case
+                    the buyer becomes uncooperative</li>
+                </ul>
+                <li>The asset seller (invoice issuer) then informs the
+                  asset buyer of the HTLC transaction number</li>
+                <li>The asset buyer inspects the on-chain transaction to
+                  verify that it meets the terms of the agreement </li>
+                <li>The asset buyer then uses his secret preimage to
+                  create a sweep/redeem transaction which he broadcasts.
+                  That transaction unlocks the asset(s) and bundled EVR
+                  from the HTLC and moves them into his chosen final
+                  address </li>
+                <ul>
+                  <li>Both HTLC UTXOs of the commit transaction are used
+                    as inputs. The sweep transaction also has two
+                    outputs</li>
+                  <li>The first output has Value=0 and an
+                    Evrmore-defined asset script appended to the P2PKH
+                    scriptPubKey which performs the asset transfer into
+                    the final address</li>
+                  <li>The second HTLC is a standard P2PKH transfer of
+                    the bundled EVR minus the mining fee into the final
+                    address</li>
+                  <li>Publishing this sweep transaction reveals the
+                    secret preimage by putting it on-chain in plaintext</li>
+                </ul>
+                <li>The invoice issuer can then use the revealed secret
+                  preimage to settle the invoice and collect payment
+                  from the Lightning Network</li>
+                <ul>
+                  <li>For LND use API call "/v2/invoices/settle". See
+                    "https://lightning.engineering/api-docs/api/lnd/rest-endpoints"</li>
+                </ul>
+                <li>In case the previous steps didn't occur and the HTLC times out because the asset buyer never did the sweep 
+                transaction to claim his purchase, the asset seller (invoice issuer) should build and broadcast his refund 
+                transaction in order to claim refund of his asset and bundled EVR from the HTLC contract.</li>
+                <ul><li>The refund transaction must take place before the Lightning invoice expires. Otherwise the buyer may claim the asset after invoice expiry.
+                </li></ul>
+              </ul>
+            </blockquote>
+            <br>
+            <u><b>The following consideration apply to the protocol:</b></u><br>
+            <blockquote>If the invoice approaches expiration without the
+              buyer having claimed the asset, the asset seller must
+              claim his refunded asset(s) and bundled EVR from the HTLCs
+              to prevent the buyer from claiming them after invoice
+              expiration. But beyond this simple precaution, there are
+              no timeout risks and neither party needs to use a
+              Watchtower service. <br>
+              <br>
+              Both parties do, however, need their Lightning nodes to be
+              online for the Lightning payment to execute successfully.<br>
+              <br>
+              Note that this is essentially an "offer to buy" the
+              on-chain asset, and committing the HTLC needs to be
+              delayed until after the invoice is paid. However, since
+              the secret is held by the invoice payer, he could choose
+              not to claim the asset and let the invoice time out. <br>
+              <br>
+              The invoice issuer (the seller) optionally may require the
+              payment of a small non-refundable downpayment invoice
+              prior to committing the HTLC in order to discourage
+              insincere buyers and to cover his potential mining costs.<br>
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; -Note, however, that
+              if a buyer allows the invoice to expire without claiming
+              his purchase, then he will have his payment locked up for
+              that duration, which already provides some built-in
+              disincentive for bad behavior.<br>
+              <br>
+              Finally, note that the EvrLight protocol could also be
+              modified to use standard BOLT11 invoices rather than hold
+              invoices. That would change which party acts first and who
+              chooses the secret. There may be situations in which that
+              has advantages. However, that approach has the
+              disadvantage that it has no built-in disincentives for bad
+              behavior by insincere buyers, so a non-refundable
+              downpayment invoice would be required, making it less
+              desirable.<br>
+            </blockquote>
+            <br>
+            <br>
+            <u><b>The EvrLight HTLCs</b></u><br>
+            <br>
+            &nbsp;&nbsp;&nbsp; <u>HTLC Contract:</u><br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OP_SIZE<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data: 0x20<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_EQUAL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ; limit the
+            size of the secret to prevent a vulnerability<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OP_IF<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_HASH160<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data:
+            the ripemd120 of the invoice Hash<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_EQUALVERIFY<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_DUP<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_HASH160 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data:
+            the Hash160 of buyer's REDEEM address <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OP_ELSE<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data:
+            the timeout in the future in Unix time&nbsp;&nbsp;&nbsp; ;must be before invoice expiry<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_CHECKLOCKTIMEVERIFY<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_DROP<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_DUP<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_HASH160<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data:
+            the Hash160 of seller's REFUND address<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OP_ENDIF<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_EQUALVERIFY<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            OP_CHECKSIG<br>
+            <br>
+            <br>
+            &nbsp;&nbsp;&nbsp; <u>Sweep/Redeem scriptSig:</u><br>
+            <br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Signature using the
+            key for the buyer's selected address<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SIGHASH_ALL<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The PubKey of the
+            buyer's address<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The full 32-byte
+            secret preimage<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; OP_1 (a "True" which
+            indicates that the first clause in the contract is being
+            chosen)<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The full HTLC contract
+            hex<br>
+            <br>
+            <br>
+            &nbsp;&nbsp;&nbsp; <u>Refund scriptSig:</u><br>
+            <br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Signature using the
+            key for the seller's refund address<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SIGHASH_ALL<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The PubKey of the
+            seller's refund address<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; OP_0 (a "False" which
+            indicates that the second clause in the contract is being
+            chosen)<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The full HTLC contract
+            hex<br>
+            <br>
+            <br>
+            <u><b>Client-Side Code</b></u><br>
+            <blockquote>The EvrLight client-side code must support
+              building and signing three transaction types. The asset
+              seller's code must build the commit and possibly a refund
+              transaction, while the buyer's code must build a
+              sweep/redeem transaction. <br>
+              <br>
+              Details will vary by application. For instance, a media
+              player app with in-app subscription purchases might only
+              need sweep capability implemented in the stand-alone app.
+              A different app might require both capabilities in a
+              web-browser.<br>
+            </blockquote>
+            <br>
+            <br>
+            <u><b>Keychain (Wallet)</b></u><br>
+            <blockquote>&nbsp;&nbsp;&nbsp; EvrLight by default does not
+              specify its own wallet and private keys are never
+              transmitted. The seller's software create an HTLC
+              transaction locally using the private key associated with
+              the address of his asset and EVR, and likewise the buyer's
+              sofware creates a sweep/redeem transaction locally using
+              the private key associated with his desired final address.
+              The code uses the private keys supplied to it, which could
+              come from a variety of keystores. In many cases, users do
+              not need to even be aware of the existence of the Evrmore
+              blockchain during the purchase or sale of an Evrmore
+              asset. From their point of view, the asset appears to be
+              on Lightning. Keeping track of which assets a user owns
+              and at which addresses is application specific. <br>
+              <br>
+              &nbsp;&nbsp;&nbsp; For low/mid-value assets for Nostr
+              users the Nostr keystore could be re-used so that the UTXO
+              on the Evrmore blockchain could hold assets and EVR at an
+              Evrmore address which is equivalent to the Nostr user's
+              npubkey and could therefore be spent by their nseckey. An
+              alternate address could be specified by the user in their
+              Nostr profile if desired and the user might specify a
+              different user's npubkey if they are giving the asset to
+              someone else.<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; Some apps may choose to re-use the
+              Bitcoin keystore with the public keys translated to
+              Evrmore addresses using Evrmore's address prefixes and
+              encoding.<br>
+            </blockquote>
+            <br>
+            <hr width="100%" size="2"><br>
+            <a name="_TLDR"><u><b>TLDR for Lightning experts:</b></u></a>
+            <br>
+            <blockquote>
+              <ul>
+                <li>EvrLight transactions are similar to a Reverse
+                  Submarine Swap using a hold/hodl invoice.</li>
+                <li>The swap is performed cross-chain with the Evrmore
+                  blockchain.</li>
+                <li>The commit transaction has two inputs: one points to
+                  an EVR UTXO and the other points to an asset UTXO.</li>
+                <li>The commit transaction has two HTLC outputs, both
+                  locked with the same hash and using the same timeout.</li>
+                <ul>
+                  <li>The first HTLC output has Value=0 and an
+                    Evrmore-defined asset script appended to the P2SH
+                    locking script which performs the asset transfer
+                    into the HTLC.</li>
+                  <li>The second HTLC is a standard P2SH transfer of
+                    some bundled EVR into the HTLC to pay for future
+                    mining fees.</li>
+                </ul>
+                <li>The sweep/redeem transaction has both of these HTLC
+                  UTXOs as inputs. It also has two outputs.</li>
+                <ul>
+                  <li>The first output has Value=0 and an
+                    Evrmore-defined asset script appended to the P2PKH
+                    scriptPubKey which performs the asset transfer into
+                    the final address.</li>
+                  <li>The second HTLC is a standard P2PKH transfer of
+                    the bundled EVR minus the mining fee into the final
+                    address.</li>
+                </ul>
+                <li>Client-side code must support building and signing
+                  three transaction types. The asset seller's code must
+                  build the commit and possibly a refund transaction,
+                  while the buyer's code must build a sweep/redeem
+                  transaction.</li>
+                <li>The contract terms are essentially unchanged from a
+                  Reverse Submarine Swap.</li>
+                <li>Key management will vary by application.</li>
+              </ul>
+            </blockquote>
+            <br>
+            <br>
+            <!-- end of main content   --> <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><i>"In Theory There Is No
+                  Difference Between Theory and Practice, While In
+                  Practice There Is"</i></div>
+            </center>
+            <br>
+            <div align="center">Copyright 2022,2023 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
