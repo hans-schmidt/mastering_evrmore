@@ -35,8 +35,8 @@ div{margin-top:20px; margin-bottom:20px !important;}
               border="0">
               <tbody>
                 <tr>
-                  <td width="33%" valign="top">last update: Oct 8th 2023
-                  </td>
+                  <td width="33%" valign="top">last update: Feb 14th
+                    2025 </td>
                   <td valign="top" align="center"><a
                       href="../index.html">Main_Menu</a> </td>
                   <td width="33%" valign="top" align="right"><br>
@@ -47,8 +47,10 @@ div{margin-top:20px; margin-bottom:20px !important;}
             <br>
             <br>
             <div align="center"> <big>All defined Evrmore evrmore-qt
-                RPC calls as of v1.0.5</big><br>
-            </div>
+                RPC calls<br>
+                items is <font color="#3333ff">blue</font> for
+                Version-2 only<br>
+              </big> </div>
             <tt>Note: Enter 'help "command"' in the GUI command console
               to get more details about each command.<br>
               <br>
@@ -66,13 +68,25 @@ div{margin-top:20px; margin-bottom:20px !important;}
             </tt>
             <ul>
               <li><tt>getassetdata "asset_name"</tt></li>
+              <li><tt><font color="#3333ff">getburnaddresses</font><br>
+                </tt></li>
               <li><tt>getcacheinfo </tt></li>
+              <li><tt><font color="#3333ff">getcalculatedtoll
+                    "asset_name" amount ( change_amount ) (
+                    overwrite_toll_fee )</font><br>
+                </tt></li>
               <li><tt>getsnapshot "asset_name" block_height</tt></li>
               <li><tt>issue "asset_name" qty "( to_address )" "(
                   change_address )" ( units ) ( reissuable ) ( has_ipfs
-                  ) "( ipfs_hash )"</tt></li>
+                  ) "( ipfs_hash )"<font color="#3333ff"> "(
+                    permanent_ipfs_hash )" ( toll_amount ) "(
+                    toll_address ) ( toll_amount_mutability ) (
+                    toll_address_mutability ) ( remintable )"</font></tt></li>
               <li><tt>issueunique "root_name" [asset_tags] (
-                  [ipfs_hashes] ) "( to_address )" "( change_address )"</tt></li>
+                  [ipfs_hashes] ) "( to_address )" "( change_address )"<font
+                    color="#3333ff">&nbsp; ( [permanent_ipfs_hashes] )
+                    "( toll_address )" ( toll_amount ) (
+                    toll_amount_mutability ) ( toll_address_mutability )</font></tt></li>
               <li><tt>listaddressesbyasset "asset_name" (onlytotal)
                   (count) (start)</tt></li>
               <li><tt>listassetbalancesbyaddress "address" (onlytotal)
@@ -84,7 +98,13 @@ div{margin-top:20px; margin-bottom:20px !important;}
               <li><tt>purgesnapshot "asset_name" block_height</tt></li>
               <li><tt>reissue "asset_name" qty "to_address"
                   "change_address" ( reissuable ) ( new_units) "(
-                  new_ipfs )" </tt></li>
+                  new_ipfs )"<font color="#3333ff"> "( permanent_ipfs )"
+                    ( change_toll_amount ) ( toll_amount ) "(
+                    toll_address ) ( toll_amount_mutability ) (
+                    toll_address_mutability )"</font></tt></li>
+              <li><tt><font color="#3333ff">remint "asset_name" "qty"
+                    "to_address" "change_address" "update_remintable"<br>
+                  </font></tt></li>
               <li><tt>transfer "asset_name" qty "to_address" "message"
                   expire_time "change_address" "asset_change_address"</tt></li>
               <li><tt>transferfromaddress "asset_name" "from_address"
@@ -94,6 +114,12 @@ div{margin-top:20px; margin-bottom:20px !important;}
                   ["from_addresses"] qty "to_address" "message"
                   expire_time "evr_change_address"
                   "asset_change_address"</tt></li>
+              <li><tt><font color="#3333ff">updatemetadata "asset_name"
+                    "change_address" "ipfs_hash" "permanent_ipfs"
+                    "toll_address" ( change_toll_amount ) ( toll_amount
+                    ) ( toll_amount_mutability ) (
+                    toll_address_mutability )</font><br>
+                </tt></li>
             </ul>
             <tt><br>
               <b>== Blockchain ==</b><br>
@@ -220,10 +246,14 @@ div{margin-top:20px; margin-bottom:20px !important;}
                   (asset_data)</tt></li>
               <li><tt>getverifierstring restricted_name</tt></li>
               <li><tt>issuequalifierasset "asset_name" qty "( to_address
-                  )" "( change_address )" ( has_ipfs ) "( ipfs_hash )"</tt></li>
+                  )" "( change_address )" ( has_ipfs ) "( ipfs_hash )"<font
+                    color="#3333ff"> "( permanent_ipfs_hash )"</font></tt></li>
               <li><tt>issuerestrictedasset "asset_name" qty "verifier"
                   "to_address" "( change_address )" (units) ( reissuable
-                  ) ( has_ipfs ) "( ipfs_hash )"</tt></li>
+                  ) ( has_ipfs ) "( ipfs_hash )"<font color="#3333ff">
+                    "( permanent_ipfs_hash )" ( toll_amount ) "(
+                    toll_address )" ( toll_amount_mutability ) (
+                    toll_address_mutability ) ( remintable )</font></tt></li>
               <li><tt>isvalidverifierstring verifier_string</tt></li>
               <li><tt>listaddressesfortag tag_name</tt></li>
               <li><tt>listaddressrestrictions address</tt></li>
@@ -232,7 +262,10 @@ div{margin-top:20px; margin-bottom:20px !important;}
               <li><tt>reissuerestrictedasset "asset_name" qty to_address
                   ( change_verifier ) ( "new_verifier" ) "(
                   change_address )" ( new_units ) ( reissuable ) "(
-                  new_ipfs )"</tt></li>
+                  new_ipfs )"<font color="#3333ff"> "( permanent_ipfs )"
+                    ( change_toll_amount ) ( toll_amount ) "(
+                    toll_address ) ( toll_amount_mutability ) (
+                    toll_address_mutability )"</font></tt></li>
               <li><tt>removetagfromaddress tag_name to_address
                   (change_address) (asset_data)</tt></li>
               <li><tt>transferqualifier "qualifier_name" qty
@@ -334,13 +367,13 @@ div{margin-top:20px; margin-bottom:20px !important;}
                   minconf "comment" "comment_to" )</tt></li>
               <li><tt>sendfromaddress "from_address" "to_address" amount
                   ( "comment" "comment_to" subtractfeefromamount
-                  replaceable conf_target "estimate_mode")</tt></li>
+                  conf_target "estimate_mode")</tt></li>
               <li><tt>sendmany "fromaccount" {"address":amount,...} (
-                  minconf "comment" ["address",...] replaceable
-                  conf_target "estimate_mode")</tt></li>
+                  minconf "comment" ["address",...] conf_target
+                  "estimate_mode")</tt></li>
               <li><tt>sendtoaddress "address" amount ( "comment"
-                  "comment_to" subtractfeefromamount replaceable
-                  conf_target "estimate_mode")</tt></li>
+                  "comment_to" subtractfeefromamount conf_target
+                  "estimate_mode")</tt></li>
               <li><tt>setaccount "address" "account"</tt></li>
               <li><tt>settxfee amount</tt></li>
               <li><tt>signmessage "address" "message"</tt></li>

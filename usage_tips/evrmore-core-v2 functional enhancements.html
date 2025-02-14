@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Evrmore Core Version-2 Functional Enhancements</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Evrmore Core Version-2 Functional Enhancements"
+      name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last update: Feb 14th
+                    2025 </td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Evrmore-Core-V2 Functional
+                      Enhancements</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <font size="+2"><b>Bug Fixes</b></font><br>
+            <ul>
+              <li>Fixed a bug in which large numbers in the response of
+                "getaddressbalance" RPC call were returning a negative
+                number</li>
+              <li>Importing a mnemonic now triggers a rescan from
+                genesis block to make sure all transactions and the
+                balance are correct</li>
+              <li>Fixed a bug in which Verifier strings (for Restricted
+                Assets) longer than 75 characters failed. Up to 80
+                characters is now properly supported.</li>
+              <li>Fixed assorted typos and incorrect URLs<br>
+              </li>
+            </ul>
+            <b><font size="+1"><br>
+                <font size="+2"> Modify the behavior of metadata field
+                  "ipfs_hash"</font></font></b><br>
+            <ul>
+              <li>"ipfs_hash" == 46-character IPFS_address or 32-byte
+                TXID</li>
+              <li>Permitted for all asset types</li>
+              <li>Alterations are permitted at any time for all assets
+                including Unique_Assets (using "updatemetadata"), and
+                also assets with "reissueable"==False</li>
+              <li>It can be set by RPCs "issue", "issueunique",
+                "issuequalifierasset" and "issuerestrictedasset"</li>
+              <li>It can be altered by RPCs "reissue",
+                "reissuerestrictedasset" and "updatemetadata"</li>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add support for new
+                "permanent_ipfs_hash" metadata field for assets: </b></font><br>
+            <ul>
+              <li>"permanent_ipfs_hash" == 46-character IPFS_address or
+                32-byte TXID</li>
+              <li>Permitted for all asset types</li>
+              <li>permanent_ipfs_hash can never be changed after it is
+                set</li>
+              <li>For legacy reissuable assets, permanent_ipfs_hash can
+                be set to any value</li>
+              <li>For legacy non-reissuable assets or Unique Assets and
+                the asset has an ipfs_hash, permanent_ipfs_hash will be
+                automatically set to the same value as ipfs_hash </li>
+              <li>For legacy non-reissuable assets or Unique Assets and
+                the asset has no ipfs_hash, permanent_ipfs_hash can be
+                set to any value</li>
+              <li><u>Details:</u><br>
+              </li>
+              <ul>
+                <li>Post-fork, "permanent_ipfs_hash" can be set by RPCs
+                  "issue", "issueunique", "issuequalifierasset" and
+                  "issuerestrictedasset"</li>
+                <li>Post-fork, for post-fork-issued (V2) assets,
+                  "permanent_ipfs_hash" can be set by RPCs "reissue",
+                  "reissuerestrictedasset" and "updatemetadata" if not
+                  previously set, regardless of "reissuable"==True/False</li>
+                <li>Post-fork, for post-fork-issued (V2) assets, if an
+                  RPC generates an error by attempting to set an
+                  already-set "permanent_ipfs_hash", then none of the
+                  changes requested by that RPC will be performed</li>
+                <li>Post-fork, for pre-fork-issued (V1) assets with
+                  "reissuable"==True, "permanent_ipfs_hash" can be set
+                  by RPCs "reissue", "reissuerestrictedasset" and
+                  "updatemetadata" if not previously set</li>
+                <ul>
+                  <li>In this case "permanent_ipfs_hash" can be set
+                    regardless of whether an "ipfs_hash" exists, and
+                    there is no requirement to set an "ipfs_hash" value
+                    in the same RPC that sets the "permanent_ipfs_hash"
+                    value</li>
+                </ul>
+                <li>Post-fork, for pre-fork-issued (V1) assets with
+                  "reissuable"==False and the asset has an ipfs_hash,
+                  "permanent_ipfs_hash" will be automatically set to
+                  "ipfs_hash" </li>
+                <ul>
+                  <li>In this case, if the first "reissue",
+                    "reissuerestrictedasset" or "updatemetadata" RPC
+                    call on that asset attempts to change
+                    "permanent_ipfs_hash" to another value, then that
+                    request will have no effect, it will not generate an
+                    RPC error, and other change requests within that RPC
+                    call will be performed. </li>
+                  <li>Subsequent RPCs which attempt to change
+                    "permanent_ipfs_hash" will generate an RPC error and
+                    the RPC will not perform any requests within that
+                    call.</li>
+                </ul>
+                <li>Post-fork, for pre-fork-issued (V1) assets with
+                  "reissuable"==False and the asset has NO ipfs_hash:</li>
+                <ul>
+                  <li>setting and subsequently changing the "ipfs_hash"
+                    value can be done by RPC at any time</li>
+                  <li>setting the ipfs_hash does not automatically set
+                    the "permanent_ipfs_hash"</li>
+                  <ul>
+                    <li>the ONLY way to set the "permanent_ipfs_hash" is
+                      by using an RPC which specifies the values of both
+                      "ipfs_hash" and "permanent_ipfs_hash" in the same
+                      RPC</li>
+                    <li>the two values can be the same or different</li>
+                    <li>the "ipfs_hash" can have been unset prior to
+                      this RPC or it could have been previously set</li>
+                    <li>attempting to set the "permanent_ipfs_hash"
+                      without specifying the "ipfs_hash" in the same RPC
+                      generates an RPC error&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add new RPC "getburnaddresses"</b></font><br>
+            <ul>
+              <li>returns a list of all the burn addresses for the chain</li>
+            </ul>
+            <ul>
+              <li>mainnet burn addresses:</li>
+            </ul>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueAssetXXXXXXXXXXXXXXXXYiYRBD"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXReissueAssetXXXXXXXXXXXXXXY1ANQH"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueSubAssetXXXXXXXXXXXXXWW1ASo"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueUniqueAssetXXXXXXXXXXTZjZJ5"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueMsgChanneLAssetXXXXXXXD3mRa"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueQuaLifierXXXXXXXXXXXXW5Zxyf"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueSubQuaLifierXXXXXXXXXUgTjtu"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXissueRestrictedXXXXXXXXXXXZZMynb"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXaddTagBurnXXXXXXXXXXXXXXXXb5HLXh"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXBurnXXXXXXXXXXXXXXXXXXXXXXZ8ZjfN"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "EXBurnMintXXXXXXXXXXXXXXXXXXXbdK5E"<br>
+            <br>
+            <ul>
+              <li>testnet/regtest burn addresses:</li>
+            </ul>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueAssetXXXXXXXXXXXXXXXXWdnemQ"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1ReissueAssetXXXXXXXXXXXXXXWG9NLd"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueSubAssetXXXXXXXXXXXXXbNiH6v"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueUniqueAssetXXXXXXXXXXS4695i"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueMsgChanneLAssetXXXXXXT2PBdD"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueQuaLifierXXXXXXXXXXXXUysLTj"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueSubQuaLifierXXXXXXXXXYffPLh"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1issueRestrictedXXXXXXXXXXXXZVT9V"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1addTagBurnXXXXXXXXXXXXXXXXX5oLMH"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1BurnXXXXXXXXXXXXXXXXXXXXXXU1qejP"<br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            "n1BurnMintXXXXXXXXXXXXXXXXXXbVTQiY"<br>
+            <br>
+            <br>
+            <font size="+2"> <b>Add new RPC "updatemetadata" (cost = 1
+                EVR)</b></font><br>
+            <ul>
+              <li>costs only 1 EVR fee paid to </li>
+              <li>can change only the fields:</li>
+              <ul>
+                <li>"ipfs_hash"</li>
+                <li>"permanent_ipfs" (if not already set)</li>
+                <li>"toll_address"</li>
+                <li>"toll_amount"</li>
+                <li>"toll_amount_mutability"</li>
+                <li>"toll_address_mutability"</li>
+              </ul>
+              <li>these fields can be changed using the "updatemetadata"
+                RPC regardless whether the asset has "reissuable" set
+                True or False</li>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add new RPC "getcalculatedtoll"</b></font><br>
+            <ul>
+              <li>useful for calculating the toll you must pay for a
+                Toll_Asset transfer and determining which address to pay
+                the toll to.</li>
+              <li>note that while the toll_amount can be set as low as 1
+                satoshi (1e-8 EVR) and the qty can be set as high as 21
+                billion, the calculated toll will be reassigned within
+                the limits of 0.00005 EVR minimum and 1 Billion EVR
+                maximum</li>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add new RPC "remint" (cost = 0.1 EVR)</b></font><br>
+            <ul>
+              <li>Use to remint assets which were previously sent to the
+                BurnMint address</li>
+              <li>For more details, see description below of BurnMint
+                functionality</li>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add Toll_Asset support</b></font><br>
+            <ul>
+              <li>Uses four (4) new asset metadata fields: </li>
+              <ul>
+                <li>"toll_amount" &gt;= 0 EVR per qty per asset </li>
+                <li>"toll_address" == any valid Evrmore address</li>
+                <li>"toll_amount_mutability" == True/False</li>
+                <li>"toll_address_mutability" == True/False</li>
+              </ul>
+              <li>Permitted for Root_Assets, Sub_Assets,
+                Restricted_Assets and Unique_Assets</li>
+              <li>Not permitted for Qualifier_Assets or
+                SubQualifier_Assets</li>
+              <li>Toll payment is required for transfers of an asset to
+                all addresses except to the address from which the asset
+                came</li>
+              <ul>
+                <li>note the implication that this requires address
+                  reuse for asset "wallet change" to avoid paying toll
+                  on asset transfers to yourself</li>
+              </ul>
+              <li>The toll required is ("toll_amount" * qty_of_asset)
+                paid to "toll_address"</li>
+              <li>The calculated toll will be reassigned within the
+                limits of 0.00005 EVR minimum and 1 Billion EVR maximum</li>
+              <li>For legacy pre-fork (V1) assets "toll_amount"==0 and
+                can never be increased </li>
+              <li>The 4 toll metadata fields can be altered by the RPCs
+                "issue", "issuerestrictedasset", "reissue",
+                "reissuerestrictedasset",</li>
+              <ul>
+                <li>"issueunique" and "updatemetadata"</li>
+                <li>"toll_amount_mutability" can be changed from True to
+                  False but never from False to True </li>
+                <li>"toll_address_mutability" can be changed from True
+                  to False but never from False to True</li>
+                <li>"toll_amount" can be decreased but never increased</li>
+                <li>The issue RPCs generate an error if toll_amount is
+                  set non-zero without specifying a valid toll_address
+                  or if a valid toll_address is specified with
+                  toll_amount=0</li>
+              </ul>
+              <li>Unwanted Toll_Assets can be sent to the GlobalBurn
+                address toll-free</li>
+              <ul>
+                <li>Mainnet GlobalBurn address:
+                  "EXBurnXXXXXXXXXXXXXXXXXXXXXXZ8ZjfN"</li>
+                <li>Testnet/Regtest GlobalBurn address:
+                  "n1BurnXXXXXXXXXXXXXXXXXXXXXXU1qejP"</li>
+              </ul>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add new BurnMint addresses for
+                remintability</b></font><br>
+            <ul>
+              <li>Mainnet BurnMint address:
+                EXBurnMintXXXXXXXXXXXXXXXXXXXbdK5E</li>
+              <li>Testnet/Regtest BurnMint address:
+                n1BurnMintXXXXXXXXXXXXXXXXXXbVTQiY</li>
+            </ul>
+            <br>
+            <font size="+2"> <b>Add support for Burn/Remint
+                functionality</b></font><br>
+            <ul>
+              <li>Uses the new "remint" RPC to remint assets which were
+                previously sent to the BurnMint address</li>
+              <li>Permitted for Root_Assets, Sub_Assets,
+                Restricted_Assets</li>
+              <li>Not permitted for Unique_Assets, Qualifier_Assets or
+                SubQualifier_Assets</li>
+              <li>Uses one new asset metadata field:</li>
+              <ul>
+                <li>"remintable" == True/False</li>
+              </ul>
+              <li>Can be used only if the asset metadata
+                "remintable"==True</li>
+              <li>"remintable" can be set True by RPCs "issue" and
+                "issuerestrictedasset" (defaults to True if not
+                specified)</li>
+              <li>"remintable" can be set False by RPCs "issue",
+                "issuerestrictedasset", and "remint"&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; </li>
+              <li>On legacy pre-fork (V1) assets, "remintable" will be
+                shown post-fork as "False" initially and will remain
+                "False" if the asset is non-reissuable. But if the asset
+                is reissuable, then the "remintable" value will be
+                automatically changed to "True" during any asset
+                transfer, reissue, or remint RPC.</li>
+              <li>The node calculates and tracks: "total_burned",
+                "currently_burned", "reminted_total"</li>
+              <li>The max qty of assets to remint must be &lt;=
+                "currently_burned" which is calculated and tracked by
+                the node as ("total_burned"-"reminted_total")</li>
+              <li>In scenarios where assets are burned and reminted
+                within the same block, reminting will be restricted to
+                the balance burned prior to the block being processed.</li>
+              <li>Note that reminting assets does not remove the
+                quantity of those assets at the BurnMint address (nobody
+                has the key to that address). But assets at the BurnMint
+                address are not counted in the "amount" of assets
+                reported by the RPCs such as "getassetdata".<br>
+              </li>
+            </ul>
+            <br>
+            <font size="+2"> <b>For Burn/Remint functionality,</b></font><br>
+            <ul>
+              <li>the assets should be burned by transferring them to:</li>
+              <ul>
+                <li>"EXBurnMintXXXXXXXXXXXXXXXXXXXbdK5E" for mainnet</li>
+                <li>"n1BurnMintXXXXXXXXXXXXXXXXXXbVTQiY" for
+                  testnet/regtest</li>
+              </ul>
+              <li>&nbsp;&nbsp;&nbsp; and when reminting, the fee (0.1
+                EVR) should be sent to:</li>
+              <ul>
+                <li>"EXReissueAssetXXXXXXXXXXXXXXY1ANQH"<br>
+                </li>
+                <li>"n1ReissueAssetXXXXXXXXXXXXXXWG9NLd"<br>
+                </li>
+              </ul>
+            </ul>
+            <br>
+            <font size="+2"> <b>Note:</b></font><br>
+            <font size="+1">The update metadata RPC will only modify
+              parameters which are modifiable and it is up to the
+              application which is making the RPC calls to keep track of
+              the modifiability states. The state of the asset's
+              "reissuable" metadata is irrelevant. The user gets charged
+              the transaction fee and the 1 EVR RPC fee, and the
+              transaction will be mined, regardless whether the RPC was
+              able to do what the user wanted. There are guard rails for
+              the RPC commands to stop them from broadcasting
+              transaction which cannot have the desired effects. People
+              who manually build transactions in a third-party
+              application will not be protected by those guard rails so
+              they need to check metadata states. Note also that an
+              attempt to change "permanent_ipfs_hash" when it has
+              already been set will generate an error and none of the
+              requested changes will be performed.&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; <br>
+            </font><br>
+            <font size="+2"> <b>Note:</b></font><br>
+            <font size="+1">The RPC commands "reissue" and
+              "reissuerestrictedasset" can be used to change asset
+              metadata fields regardless whether the asset has
+              "reissuable" set True or False. If the reissue RPC is used
+              to change only these metadata fields, then the operation
+              is equivalent to an "updatemetadata" RPC call, and only 1
+              EVR fee is required for the RPC rather than the full 100
+              EVR usually required for reissue RPCs. The metadata fields
+              are the same as for the "updatemetadata" RPC command
+              ("ipfs_hash", "permanent_ipfs", "toll_address",
+              "toll_amount", "toll_amount_mutability",
+              "toll_address_mutability") and additionally "reissuable",
+              which can be set False if it is True. The RPC will change
+              only those requested fields which it is permitted to
+              change, and will return an error only if it makes no
+              changes (because no changes were requested or because none
+              of the requested changes were permitted). There is an
+              exception that an attempt to change "permanent_ipfs_hash"
+              when it has already been set will generate an error and
+              none of the requested changes will be performed.</font><br>
+            <br>
+            <br>
+            <font size="+2"> <b>RPC Fees</b></font><br>
+            <ul>
+              <li>Issue Asset: 500 EVR</li>
+              <li>Reissue Asset: 100 EVR</li>
+              <li>Issue Sub-Asset: 100 EVR</li>
+              <li>Issue Unique Asset: 5 EVR</li>
+              <li>Issue Msg Channel Asset: 100 EVR</li>
+              <li>Issue Qualifier Asset: 1000 EVR</li>
+              <li>Issue Sub Qualifier Asset: 100 EVR</li>
+              <li>Issue Restricted Asset: 1500 EVR</li>
+              <li>Add Null Qualifier Tag: 0.1 EVR</li>
+              <li>Reissue Metadata Only: 1 EVR</li>
+              <li>Remint Asset: 0.1 EVR</li>
+            </ul>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
