@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Nostr4Evr</title>
+    <meta content="Hans Schmidt" name="author">
+    <meta content="Nostr4Evr" name="description">
+    <style type="text/css">
+
+body{margin:0; padding-left: 50px; padding-right: 50px; font-family: verdana; font-size: 150%;}
+
+p{padding:100px; height:20px; color:#4e4e4e; font-size:30px;}
+
+a:link{color:#000066;}
+
+a:visited{color:#6666ff;}
+
+a:hover{color:#000000; text-decoration:underline;}
+
+#spiral_note{margin:0; background-image:url(../images/spiral_note.png); background-repeat: repeat-y;}
+
+div{margin-top:20px; margin-bottom:20px !important;}
+  </style>
+  </head>
+  <body>
+    <div id="spiral_note">
+      <div style="padding-left: 126px;">
+        <div style="background-image: url(../images/nospiral_note.png);
+          background-repeat: repeat;">
+          <div style="padding-right: 50px; padding-top: 10px;
+            padding-bottom: 20px;"><br>
+            <table width="100%" cellspacing="2" cellpadding="2"
+              border="0">
+              <tbody>
+                <tr>
+                  <td width="33%" valign="top">last updated 2026-04-11</td>
+                  <td valign="top" align="center"><a
+                      href="../index.html">Main Menu- Mastering Evrmore</a>
+                  </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" valign="top"> <br>
+                  </td>
+                  <td valign="top" align="center"><a
+                      href="evrlight_and_nostr4evr.html">Main Menu-
+                      EvrLight and Nostr4Evr</a> </td>
+                  <td width="33%" valign="top" align="right"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <div align="center"> <big><big>EvrLight and Nostr4Evr</big></big>
+              <br>
+              <i><b><small>*EvrLight uses Evrmore as Layer-1 for diverse
+                    Lightning assets like Bitcoin is Layer-1 for
+                    Lightning money*</small></b></i> <br>
+              <br>
+              <br>
+              <br>
+              <u><big><big>Nostr4Evr_Addy - What is this all about ?</big></big></u> </div>
+            <!-- start of main content   --> <br>
+This is about "social commerce" - the ability to easily send money and other valuables to friends and family.
+            <br>
+            <br> 
+You may be familiar with "Venmo" or "Zelle" or "Paypal" to send money. Those are services run by big banks for sending cash.
+            <br>
+            <br> 
+But what if you don't have an account with one of those banks? Or you need to send internationally? Or you want to send concert tickets, or a subscription of some kind, or a coupon, or an NFT?
+            <br>
+            <br> 
+That is where Nostr, Evrmore, and Bitcoin really shine.
+            <br>
+            <br> 
+Nostr is a social network like Twitter/X or Facebook, but run by individuals with no company in control.
+            <br>
+            <br> 
+Users on Nostr use a public key as their user identifier, which is created when they create their account. It looks something like "4891ffb81c2f8d34d57af96d58178d51af09c6e83008ba3b2868d2fabe3abd20". That public key is attached to every message or posting they send and is publicly viewable by anyone who can see the message. 
+            <br>
+            <br> 
+Sometimes the user identifier is shown in a format which starts with "npub1" and looks something like "npub1fzgllwqu97xnf4t6l9k4s9ud2xhsn3hgxqyt5wegdrf04036h5sq5k5h4q". That is just a different format for the same public key, but doesn't contain all the information.
+            <br>
+            <br> 
+More often, for convenience, the user identifier is shown in a format which looks like an email address (like "hans_schmidt@evrmore.xyz") or like a domain name (like "utxo.one"). Those are actually places where the user's public key can be looked up automatically so that you can send a message to the user using that name instead of needing the long numerical key. Usually the identifier needs to be in the email-like format. But if the domain is personally owned by the Nostr user then "utxo@utxo.one" would be redundant so "utxo.one" is acceptable. The Nostr user will advertise which identifier name should be used to contact them.
+            <br>
+            <br> 
+Associated with that public key is a private key which only the user knows. He uses that private key on Nostr to sign a message or a posting before sending as proof of authorship.
+            <br>
+            <br> 
+Now here is the magic: A Nostr user's public key can be translated to a Bitcoin address and an Evrmore address. And the Nostr user's private key will work for those addresses because Nostr uses the same cryptographic standards as Bitcoin and Evrmore !
+            <br>
+            <br> 
+In other words, if you have been communicating with someone using Nostr, you can look up that person's public key (like "4891ffb81c2f8d34d57af96d58178d51af09c6e83008ba3b2868d2fabe3abd20") or user name (like "hans_schmidt@evrmore.xyz" or "utxo.one"). Then you can enter that information on the Nostr4Evr_Addy webpage, and click "Calculate fields". That will give you the user's Bitcoin address and Evrmore address. You can then securely send Bitcoin to the Bitcoin address. Or you can send EVR or Evrmore assets (like tickets, subscriptions, coupons, or  NFTs) to the Evrmore address. The value you sent will then be securely locked on the blockchain at that address. The user can then open their Bitcoin wallet or Evrmore wallet, import their Nostr private key, and gain access to the value you sent to them. They then own that value and can sell it, trade it, or just give it to someone else ! All securely, quickly, globally, and at low cost with no bank or company involved !
+            <br>
+            <br> 
+Other Notes:
+<ul>
+<li>The NIP-05 user name will only work for fetching the public key if it was set up properly by the user.</li>
+<li>The "npub" version of the Nostr public key is shown for information only since it can be calculated from the hex public key.</li>
+<li>The hex public key cannot be calculated from the npub version of the key. You must have the Nostr user's public key in hex format or fetch it using the user name if you want to generate the Bitcoin and Evrmore addresses.</li>
+</ul>
+            <br>
+            <br>           
+            For more information about Nostr4Evr click <a
+              moz-do-not-send="true"
+              href="evrlight_and_nostr4evr.html">HERE</a>.<br>
+            <br>
+            <!-- end of main content   --> <br>
+            <br>
+            <br>
+            <center>
+              <div style="width: 70%;"><i>"In Theory There Is No
+                  Difference Between Theory and Practice, While In
+                  Practice There Is"</i></div>
+            </center>
+            <br>
+            <div align="center">Copyright 2022,2023 by Hans Schmidt<br>
+            </div>
+            <font size="-1">Note: this is in no way related to the
+              wonderful book "Mastering Bitcoin" by Andreas Antonopoulos</font><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
